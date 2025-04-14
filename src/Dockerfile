@@ -10,7 +10,7 @@ RUN apk update && apk add --no-cache \
 
 # Cài đặt các extensions PHP cần thiết
 RUN apk update && apk add --no-cache mariadb-client
-RUN docker-php-ext-install pdo_mysqlcom
+RUN docker-php-ext-install pdo_mysql
 
 # Cài đặt Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
