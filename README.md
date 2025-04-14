@@ -43,3 +43,11 @@ Open your browser and go to:
 ```
 http://localhost:8088
 ```
+
+## Notice
+
+After running the container, you can access the container and using all `artisan` or `npm` commands inside the container.
+
+```bash
+docker exec -it laravel_app bash
+```
