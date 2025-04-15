@@ -1,0 +1,27 @@
+.snowflakes {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.snowflake {
+    top: 0;
+    z-index: 9999;
+    position: fixed;
+    width: 20px; /* Kích thước bông tuyết */
+    height: 20px;
+    background-image: url('https://dl.glitter-graphics.com/pub/1015/1015869ai2a70c4wr.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    opacity: 0; /* Độ trong suốt của bông tuyết */
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(100vh) translateX(calc(var(--wind-offset) * 1vw)) rotate(360deg);
+    }
+}
