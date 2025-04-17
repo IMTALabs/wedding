@@ -4,27 +4,36 @@
 
 - Docker
 
-## Build
+## Build and Start the Application
+
+To build the Docker images and start the application containers in detached mode, run:
 
 ```bash
 docker compose up --build -d
 ```
 
-## Run
+## Initial Setup
 
-```bash
-docker exec -it laravel_app bash
-```
+After the containers are running, you need to perform some initial setup steps inside the application container.
 
-In the container, run:
+1.  Access the application container's shell:
 
-```bash
-composer install
+    ```bash
+    docker exec -it laravel_app bash
+    ```
 
-php artisan key:generate
+2.  Inside the container, run the following commands:
 
-php artisan migrate
-```
+    ```bash
+    # Install PHP dependencies
+    composer install
+
+    # Generate the application key
+    php artisan key:generate
+
+    # Run database migrations
+    php artisan migrate
+    ```
 
 If this error occurs:
 
