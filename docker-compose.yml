@@ -5,6 +5,8 @@ services:
     build:
       context: ./docker/php
     container_name: laravel_app
+    ports:
+      - "5177:5177"
     volumes:
       - ./src:/var/www/html
     working_dir: /var/www/html
