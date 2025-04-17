@@ -3,12 +3,12 @@
 namespace Tests\Unit;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase; // Use RefreshDatabase to reset the database for each test
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
-    use RefreshDatabase; // Add this trait
+    use RefreshDatabase;
 
     /**
      * Test if a user can be created using the factory.
