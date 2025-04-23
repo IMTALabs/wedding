@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('google_id')->nullable()->unique();
+        Schema::create('settup_templates', function (Blueprint $table) {
+            $table->id();
+            $table->string('banner')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('google_id');
-        });
+        Schema::dropIfExists('settup_templates');
     }
 };
