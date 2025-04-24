@@ -43,6 +43,22 @@ services:
     networks:
       - laravel
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: laravel_phpmyadmin
+    ports:
+      - "8089:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: laravel
+      PMA_PASSWORD: secret
+      UPLOAD_LIMIT: 100M
+    depends_on:
+      - db
+    networks:
+      - laravel
+
 volumes:
   db_data:
 
