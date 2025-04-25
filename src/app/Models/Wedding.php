@@ -22,6 +22,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property int|null $created_by
  * @property int|null $template_id
+ * @property string|null $bride_image
+ * @property string|null $groom_image
+ * @property string|null $bride_birthday
+ * @property string|null $groom_birthday
  */
 class Wedding extends Model
 {
@@ -39,13 +43,17 @@ class Wedding extends Model
         'about_bride',
         'about_groom',
         'bride_mother',
-        'brider_father',
+        'bride_father',
         'groom_mother',
         'groom_father',
         'created_at',
         'updated_at',
         'created_by',
         'template_id',
+        'bride_image',
+        'groom_image',
+        'bride_birthday',
+        'groom_birthday',
     ];
 
     /**

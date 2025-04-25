@@ -15,11 +15,15 @@ return new class extends Migration
             $table->id();
             $table->timestamp('wedding_date')->nullable();
             $table->string('bride_name')->nullable();
+            $table->string('bride_image')->nullable();
+            $table->string('bride_birthday')->nullable();
             $table->string('groom_name')->nullable();
+            $table->string('groom_image')->nullable();
+            $table->string('groom_birthday')->nullable();
             $table->text('about_bride')->nullable();
             $table->text('about_groom')->nullable();
             $table->string('bride_mother')->nullable();
-            $table->string('brider_father')->nullable();
+            $table->string('bride_father')->nullable();
             $table->string('groom_mother')->nullable();
             $table->string('groom_father')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users');
