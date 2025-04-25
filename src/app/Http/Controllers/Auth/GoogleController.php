@@ -31,6 +31,7 @@ class GoogleController extends Controller
                 $newUser = User::create([
                     'name' => $googleUser->name,
                     'email' => $googleUser->email,
+                    'avatar' => $googleUser->avatar,
                     'google_id' => $googleUser->id,
                     'password' => Hash::make(Str::random(16)),
                 ]);
@@ -41,5 +42,10 @@ class GoogleController extends Controller
         } catch (\Exception $e) {
             return redirect('/login');
         }
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect('/login');
     }
 }

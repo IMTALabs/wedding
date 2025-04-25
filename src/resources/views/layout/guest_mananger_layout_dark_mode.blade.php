@@ -954,8 +954,12 @@ License: You must have a valid license purchased only from themeforest(the above
                         <hr class="dropdown-divider border-white/[0.08]">
                     </li>
                     <li>
-                        <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="toggle-right"
-                                                                              class="w-4 h-4 mr-2"></i> Logout </a>
+                        <form action="/logout" method="POST">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <button type="submit" class="dropdown-item hover:bg-white/5">
+                                <i data-lucide="toggle-right" class="w-4 h-4 mr-2"></i> Logout
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -1673,6 +1677,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <div class="dark-mode-switcher__toggle dark-mode-switcher__toggle--active border"></div>
 </div>
 <!-- END: Dark Mode Switcher-->
+@yield('js')
 <script>
     const darkModeSwitcher = document.querySelector('.dark-mode-switcher');
     if (darkModeSwitcher) {
