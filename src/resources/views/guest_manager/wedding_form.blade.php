@@ -6,7 +6,8 @@
             Thông tin cơ bản
         </h2>
     </div>
-    <form class="validate-form">
+    <form action="{{ route('guest_admin.groom_bride.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
         <div class="grid grid-cols-12 gap-6 mt-5">
             <div class="intro-y col-span-12 lg:col-span-6">
                 <!-- BEGIN: Input -->
@@ -48,20 +49,12 @@
                                 </div>
                             </div>
                             <div class="input-form mt-6">
-                                <label for="validation-form-1"
+                                <label for="bridegroom_avatar"
                                        class="form-label w-full flex flex-col sm:flex-row">
                                     Ảnh đại diện của chú rể
                                     <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Bắt buộc, nên chọn ảnh tỉ lệ 1:1</span>
                                 </label>
-                                <div data-single="true" action="/file-upload" class="dropzone">
-                                    <div class="fallback"><input name="file" type="file"/></div>
-                                    <div class="dz-message" data-dz-message>
-                                        <div class="text-lg font-medium">Thả tập tin vào đây hoặc nhấp để tải lên.</div>
-                                        <div class="text-slate-500"> Đây là hình ảnh xem trước. Các tệp đã chọn <span
-                                                class="font-medium">không</span> thực sự được tải lên.
-                                        </div>
-                                    </div>
-                                </div>
+                                <input type="file" class="filepond" name="groom-avatar" data-max-files="1" data-accepted-file-types="image/*">
                             </div>
                             <div class="input-form mt-6">
                                 <label for="validation-form-1"
@@ -134,15 +127,7 @@
                                     Ảnh đại diện của cô dâu
                                     <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Bắt buộc, nên chọn ảnh tỉ lệ 1:1</span>
                                 </label>
-                                <div data-single="true" action="/file-upload" class="dropzone">
-                                    <div class="fallback"><input name="file" type="file"/></div>
-                                    <div class="dz-message" data-dz-message>
-                                        <div class="text-lg font-medium">Thả tập tin vào đây hoặc nhấp để tải lên.</div>
-                                        <div class="text-slate-500"> Đây là hình ảnh xem trước. Các tệp đã chọn <span
-                                                class="font-medium">không</span> thực sự được tải lên.
-                                        </div>
-                                    </div>
-                                </div>
+                                <input type="file" class="filepond" name="bride-avatar" data-max-files="1" data-accepted-file-types="image/*">
                             </div>
                             <div class="input-form mt-6">
                                 <label for="validation-form-1"
@@ -199,3 +184,22 @@
     </div>
     <!-- END: Failed Notification Content -->
 @endsection
+
+@push('scripts')
+    <script>
+
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        FilePond.registerPlugin(FilePondPluginImageExifOrientation);
+        FilePond.registerPlugin(FilePondPluginFileValidateType);
+
+        const groomAvatarInput = document.querySelector('input[name="groom-avatar"]');
+        FilePond.create(groomAvatarInput);
+
+        const brideAvatarInput = document.querySelector('input[name="bride-avatar"]');
+        FilePond.create(brideAvatarInput);
+    </script>
+@endpush
+
+
+
+

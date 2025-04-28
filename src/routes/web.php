@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Admin\Guest\DashboardController;
 use App\Http\Controllers\Auth\GoogleController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
     return view('layout.layout');
@@ -25,4 +27,7 @@ Route::group([
 ], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/groom_bride', [\App\Http\Controllers\Admin\Guest\WeddingController::class, 'index'])->name('groom_bride');
+    Route::post('/groom_bride/post', [\App\Http\Controllers\Admin\Guest\WeddingController::class, 'store'])->name('groom_bride.store');
 });
+
+

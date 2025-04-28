@@ -19,10 +19,13 @@ License: You must have a valid license purchased only from themeforest(the above
     <meta name="keywords"
           content="admin template, Enigma Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dashboard - Enigma - Tailwind HTML Admin Template</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{asset('assets/enigma-template/dist/css/app.css')}}"/>
     <!-- END: CSS Assets-->
+    <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
 </head>
 <!-- END: Head -->
 <body class="py-5 md:py-0">
@@ -1054,9 +1057,9 @@ License: You must have a valid license purchased only from themeforest(the above
 </div>
 <!-- END: Dark Mode Switcher-->
 
-@yield('js')
 
 <script>
+
     const darkModeSwitcher = document.querySelector('.dark-mode-switcher');
     if (darkModeSwitcher) {
         const toggle = darkModeSwitcher.querySelector('.dark-mode-switcher__toggle');
@@ -1079,9 +1082,15 @@ License: You must have a valid license purchased only from themeforest(the above
 <!-- BEGIN: JS Assets-->
 <script
     src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=[" your-google-map-api
-"]&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=[' your-google-map-api ']&libraries=places"></script>
 <script src="{{asset('assets/enigma-template/dist/js/app.js')}}"></script>
+
+<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+@stack('scripts')
+
 <!-- END: JS Assets-->
 </body>
 </html>

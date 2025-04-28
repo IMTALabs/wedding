@@ -1677,7 +1677,6 @@ License: You must have a valid license purchased only from themeforest(the above
     <div class="dark-mode-switcher__toggle dark-mode-switcher__toggle--active border"></div>
 </div>
 <!-- END: Dark Mode Switcher-->
-@yield('js')
 <script>
     const darkModeSwitcher = document.querySelector('.dark-mode-switcher');
     if (darkModeSwitcher) {
