@@ -703,7 +703,7 @@ License: You must have a valid license purchased only from themeforest(the above
         <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
             <ol class="breadcrumb breadcrumb-light">
                 <li class="breadcrumb-item"><a href="#">Application</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
             </ol>
         </nav>
         <!-- END: Breadcrumb -->
@@ -978,8 +978,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 </a>
             </li>
             <li>
-                <a href="{{ route('guest_admin.groom_bride') }}"
-                   class="side-menu {{ request()->routeIs('guest_admin.groom_bride') ? 'side-menu--active' : '' }}">
+                <a href="{{ route('guest_admin.settings') }}"
+                   class="side-menu {{ request()->routeIs('guest_admin.settings') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"><i data-lucide="settings"></i></div>
                     <div class="side-menu__title">
                         Thiết lập trang web
@@ -1005,8 +1005,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 </a>
             </li>
             <li>
-                <a href="{{ route('guest_admin.groom_bride') }}"
-                   class="side-menu {{ request()->routeIs('guest_admin.groom_bride') ? 'side-menu--active' : '' }}">
+                <a href="{{ route('guest_admin.events') }}"
+                   class="side-menu {{ request()->routeIs('guest_admin.events') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"><i data-lucide="calendar"></i></div>
                     <div class="side-menu__title">
                         Các sự kiện

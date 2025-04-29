@@ -17,6 +17,7 @@ class BaseController extends Controller
      * @var string
      */
     protected $layout = 'guest_manager_layout'; // Layout mặc định
+    protected $title = 'Guest Manager'; // Tiêu đề mặc định
 
     public function __construct()
     {
@@ -26,6 +27,7 @@ class BaseController extends Controller
 //        }
 
         // Chia sẻ biến layout với tất cả các view kế thừa từ controller này
+        View::share('title', $this->title);
         View::share('layout', $this->layout);
     }
 }

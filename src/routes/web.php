@@ -28,6 +28,12 @@ Route::group([
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/groom_bride', [\App\Http\Controllers\Admin\Guest\WeddingController::class, 'index'])->name('groom_bride');
     Route::post('/groom_bride/post', [\App\Http\Controllers\Admin\Guest\WeddingController::class, 'store'])->name('groom_bride.store');
+
+    //settings
+    Route::get('/settings', [\App\Http\Controllers\Admin\Guest\SettingController::class, 'index'])->name('settings');
+
+    //envents
+    Route::get('/events', [\App\Http\Controllers\Admin\Guest\EventController::class, 'index'])->name('events');
 });
 
 

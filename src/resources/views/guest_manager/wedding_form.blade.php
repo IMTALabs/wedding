@@ -3,7 +3,7 @@
 @section('content')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            Thông tin cơ bản
+            Cô dâu & chú rể
         </h2>
     </div>
     <form action="{{ route('guest_admin.groom_bride.store') }}" method="POST" enctype="multipart/form-data">
@@ -193,10 +193,16 @@
         FilePond.registerPlugin(FilePondPluginFileValidateType);
 
         const groomAvatarInput = document.querySelector('input[name="groom-avatar"]');
-        FilePond.create(groomAvatarInput);
+        FilePond.create(groomAvatarInput,{
+            storeAsFile: true,
+            labelIdle: `Kéo và thả file của bạn hoặc <span class="filepond--label-action">Từ thư mục</span>`,
+        });
 
         const brideAvatarInput = document.querySelector('input[name="bride-avatar"]');
-        FilePond.create(brideAvatarInput);
+        FilePond.create(brideAvatarInput, {
+            storeAsFile: true,
+            labelIdle: `Kéo và thả file của bạn hoặc <span class="filepond--label-action">Từ thư mục</span>`,
+        });
     </script>
 @endpush
 

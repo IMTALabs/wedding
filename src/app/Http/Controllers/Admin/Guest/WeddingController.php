@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class WeddingController extends BaseController
 {
+    protected $title = 'Cô dâu chú rể';
+
     public function index()
     {
         return view('guest_manager.wedding_form');
@@ -22,6 +24,6 @@ class WeddingController extends BaseController
      */
     public function store(Request $request)
     {
-        dd($request);
+        dd($request->all());
     }
 }
