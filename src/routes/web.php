@@ -36,4 +36,6 @@ Route::group([
     Route::get('/events', [\App\Http\Controllers\Admin\Guest\EventController::class, 'index'])->name('events');
 });
 
+Route::get('/home', [\App\Http\Controllers\Home\HomePageController::class, 'index'])->name('home.home-page');;
+
 
