@@ -8,9 +8,22 @@ use Illuminate\Http\Request;
 
 class WeddingController extends BaseController
 {
+    protected $title = 'Cô dâu chú rể';
+
     public function index()
     {
         return view('guest_manager.wedding_form');
 
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        dd($request->all());
     }
 }
