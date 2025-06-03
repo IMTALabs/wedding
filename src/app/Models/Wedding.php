@@ -54,6 +54,7 @@ class Wedding extends Model
         'groom_image',
         'bride_birthday',
         'groom_birthday',
+        'sub_domain',
     ];
 
     /**
