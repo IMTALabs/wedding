@@ -28,6 +28,7 @@ return new class extends Migration
             $table->string('groom_father')->nullable();
             $table->foreignId('created_by')->nullable()->constrained('users');
             $table->foreignId('template_id')->nullable()->constrained('settup_templates');
+            $table->string('sub_domain')->unique()->nullable();
             $table->timestamps();
         });
     }

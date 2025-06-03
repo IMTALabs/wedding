@@ -501,6 +501,7 @@ All Js File
 
 <!-- Main Js File -->
 <script src="{{asset('assets/ovation-store-template/assets/js/main.js')}}"></script>
+@stack('js')
 </body>
 
 </html>

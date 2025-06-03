@@ -47,4 +47,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function weddings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Wedding::class, 'created_by');
+    }
 }

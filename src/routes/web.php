@@ -36,6 +36,7 @@ Route::group([
     Route::get('/events', [\App\Http\Controllers\Admin\Guest\EventController::class, 'index'])->name('events');
 });
 
-Route::get('/home', [\App\Http\Controllers\Home\HomePageController::class, 'index'])->name('home.home-page');;
+Route::get('/home', [\App\Http\Controllers\Home\HomePageController::class, 'index'])->name('home.home-page');
+Route::post('/home/register', [\App\Http\Controllers\Home\HomePageController::class, 'register'])->middleware('auth')->name('home.register');
 
 
