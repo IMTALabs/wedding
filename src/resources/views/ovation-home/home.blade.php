@@ -26,7 +26,7 @@
                                 <h1 class="hero-title" data-ani="slideindown" data-ani-delay="0.1s">WEBSITE CƯỚI</h1>
                                 <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.1s">ĐẲNG CẤP & SANG TRỌNG</h1>
                                 <div class="btn-group" data-ani="slideinup" data-ani-delay="0.4s">
-                                    <a href="#contact" class="btn style2">ĐĂNG KÝ NGAY</a>
+                                    <a href="{{ $is_registered ? route('guest_admin.dashboard') : '#' }}" class="btn style2 @if(!$is_registered) js-scroll-register @endif ">ĐĂNG KÝ NGAY</a>
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                 <h1 class="hero-title" data-ani="slideindown" data-ani-delay="0.1s">WEBSITE CƯỚI</h1>
                                 <h1 class="hero-title" data-ani="slideinup" data-ani-delay="0.1s">THIẾT KẾ HIỆN ĐẠI</h1>
                                 <div class="btn-group" data-ani="slideinup" data-ani-delay="0.4s">
-                                    <a href="#contact" class="btn style2">ĐĂNG KÝ NGAY</a>
+                                    <a href="{{ $is_registered ? route('guest_admin.dashboard') : '#' }}" class="btn style2 @if(!$is_registered) js-scroll-register @endif">ĐĂNG KÝ NGAY</a>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                             </p>
                         </div>
                         <div class="btn-wrap mt-40">
-                            <a href="#contact" class="btn">ĐĂNG KÝ NGAY</a>
+                            <a href="{{ $is_registered ? route('guest_admin.dashboard') : '#' }}" class="btn @if(!$is_registered) js-scroll-register @endif">ĐĂNG KÝ NGAY</a>
                         </div>
                     </div>
                 </div>
@@ -473,7 +473,7 @@
                     </div>
                     <div class="row">
                         <div class="col-lg-12">
-                            <form action="{{ route('home.register') }}" method="POST" class="contact-form">
+                            <form action="{{ route('home.register') }}" method="POST" class="contact-form" id="registerForm">
                                 @csrf
                                 <div class="row">
                                     <div class="col-lg-6">
@@ -755,6 +755,13 @@
                     }, 2000);
                     $firstError.focus();
                 }
+
+                $('.js-scroll-register').click(function () {
+                    $('html, body').animate({
+                        scrollTop: $('#registerForm').offset().top - 100
+                    }, 2000);
+                    $('#groom_name').focus();
+                })
             });
         </script>
     @endpush

@@ -13,7 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Favicons - Place favicon.ico in the root directory -->
-    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/ovation-store-template/assets/img/favicons/favicon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="{{asset('assets/ovation-store-template/assets/img/favicons/favicon.png')}}">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="assets/img/favicons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -23,7 +24,9 @@
 	============================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&family=Prompt:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700;800&family=Prompt:wght@100;200;300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
 
     <!--==============================
@@ -71,9 +74,11 @@
         <div class="widget footer-widget">
             <div class="widget-about">
                 <div class="footer-logo">
-                    <a href="index.html"><img src="{{asset('assets/ovation-store-template/assets/img/logo-white.svg')}}" alt="Ovation"></a>
+                    <a href="index.html"><img src="{{asset('assets/ovation-store-template/assets/img/logo-white.svg')}}"
+                                              alt="Ovation"></a>
                 </div>
-                <p class="about-text">Lorem ipsum dolor sit amet consectetur adipiscing elit sociosqu integer, suscipit nascetur aliquet posuere aptent vehicula ligula pulvinar praesent.</p>
+                <p class="about-text">Lorem ipsum dolor sit amet consectetur adipiscing elit sociosqu integer, suscipit
+                    nascetur aliquet posuere aptent vehicula ligula pulvinar praesent.</p>
                 <div class="social-btn style2">
                     <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
                     <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
@@ -101,7 +106,8 @@ Mobile Menu
     <div class="mobile-menu-area text-center">
         <button class="menu-toggle"><i class="fas fa-times"></i></button>
         <div class="mobile-logo">
-            <a href="index.html"><img src="{{asset('assets/ovation-store-template/assets/img/logo-white.svg')}}" alt="Ovation"></a>
+            <a href="index.html"><img src="{{asset('assets/ovation-store-template/assets/img/logo-white.svg')}}"
+                                      alt="Ovation"></a>
         </div>
         <div class="mobile-menu">
             <ul>
@@ -202,7 +208,8 @@ Header Area
                     <div class="header-links">
                         <ul>
                             <li><i class="far fa-clock"></i>Working: 8.00am - 5.00pm</li>
-                            <li><i class="far fa-envelope"></i><a href="mailto:info@gmail.com">wedding@ovation.com</a></li>
+                            <li><i class="far fa-envelope"></i><a href="mailto:info@gmail.com">wedding@ovation.com</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -238,7 +245,8 @@ Header Area
                 <div class="row align-items-center justify-content-between">
                     <div class="col-auto">
                         <div class="header-logo">
-                            <a href="index.html"><img src="{{asset('assets/ovation-store-template/assets/img/logo.svg')}}" alt="logo"></a>
+                            <a href="index.html"><img
+                                    src="{{asset('assets/ovation-store-template/assets/img/logo.svg')}}" alt="logo"></a>
                         </div>
                     </div>
                     <div class="col-auto">
@@ -332,16 +340,21 @@ Header Area
                             <button type="button" class="menu-toggle icon-btn"><i class="fas fa-bars"></i></button>
                         </div>
                     </div>
-                    <div class="col-auto d-none d-lg-block">
-                        <div class="header-button">
-                            <a href="contact.html" class="btn d-none d-xl-block">
-                                GET A QUOTATION
-                            </a>
-                            <button type="button" class="sidebar-btn sideMenuToggler">
-                                Menu
-                            </button>
+                    @if (auth()->check() && (isset($is_registered) && $is_registered))
+                        <div class="col-auto d-none d-lg-block">
+                            <div class="header-button">
+                                <a href="{{ route('guest_admin.dashboard') }}" class="btn d-none d-xl-block">
+                                    VÀO TRANG QUẢN TRỊ CỦA BẠN
+                                </a>
+                                <button type="button" class="sidebar-btn sideMenuToggler">
+                                    Menu
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        <div class="col-auto d-none d-lg-block">
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -353,7 +366,8 @@ Header Area
 <!--==============================
     Footer Area
 ==============================-->
-<footer class="footer-wrapper footer-layout1 overflow-hidden" data-bg-src="{{asset('assets/ovation-store-template/assets/img/bg/footer-1-bg.png')}}">
+<footer class="footer-wrapper footer-layout1 overflow-hidden"
+        data-bg-src="{{asset('assets/ovation-store-template/assets/img/bg/footer-1-bg.png')}}">
     <div class="shape-mockup footer1-shape1 jump" data-top="20%" data-left="-2%">
         <img src="{{asset('assets/ovation-store-template/assets/img/normal/footer-1-shape1.png')}}" alt="img">
     </div>
@@ -365,7 +379,8 @@ Header Area
             <div class="row align-items-center justify-content-between">
                 <div class="col-sm-auto">
                     <div class="footer-logo mb-40 mb-sm-0">
-                        <a href="index.html"><img src="{{asset('assets/ovation-store-template/assets/img/logo.svg')}}" alt="logo"></a>
+                        <a href="index.html"><img src="{{asset('assets/ovation-store-template/assets/img/logo.svg')}}"
+                                                  alt="logo"></a>
                     </div>
                 </div>
                 <div class="col-sm-auto">
@@ -467,7 +482,8 @@ Header Area
 <!-- Scroll To Top -->
 <div class="scroll-top">
     <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;"></path>
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+              style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;"></path>
     </svg>
 </div>
 

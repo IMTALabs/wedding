@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Guest\DashboardController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Middleware\RegisteredWeddingMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,7 @@ Route::get('/login/google/callback', [GoogleController::class, 'handleGoogleCall
 Route::group([
     'prefix' => 'guest_admin',
     'as' => 'guest_admin.',
-    'middleware' => 'auth'
+    'middleware' => ['auth', RegisteredWeddingMiddleware::class]
 ], function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/groom_bride', [\App\Http\Controllers\Admin\Guest\WeddingController::class, 'index'])->name('groom_bride');
