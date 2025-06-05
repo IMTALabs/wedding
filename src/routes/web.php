@@ -35,9 +35,19 @@ Route::group([
 
     //envents
     Route::get('/events', [\App\Http\Controllers\Admin\Guest\EventController::class, 'index'])->name('events');
+
+    Route::group(
+        [
+            'prefix' => 'album',
+            'as' => 'album.',
+        ],
+        function () {
+            Route::get('/', [\App\Http\Controllers\Admin\Guest\AlbumController::class, 'index'])->name('index');
+            Route::get('/create', [\App\Http\Controllers\Admin\Guest\AlbumController::class, 'create'])->name('create');
+        }
+    );
+
 });
 
 Route::get('/home', [\App\Http\Controllers\Home\HomePageController::class, 'index'])->name('home.home-page');
 Route::post('/home/register', [\App\Http\Controllers\Home\HomePageController::class, 'register'])->middleware('auth')->name('home.register');
-
-
