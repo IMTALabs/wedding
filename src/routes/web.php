@@ -47,6 +47,17 @@ Route::group([
         }
     );
 
+    Route::group(
+        [
+            'prefix' => 'love_story',
+            'as' => 'love_story.',
+        ],
+        function () {
+            Route::get('/', [\App\Http\Controllers\Admin\Guest\LoveStoryController::class, 'index'])->name('index');
+            Route::get('/create', [\App\Http\Controllers\Admin\Guest\LoveStoryController::class, 'create'])->name('create');
+            Route::post('/store', [\App\Http\Controllers\Admin\Guest\LoveStoryController::class, 'store'])->name('store');
+        }
+    );
 });
 
 Route::get('/home', [\App\Http\Controllers\Home\HomePageController::class, 'index'])->name('home.home-page');
