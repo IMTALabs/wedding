@@ -949,10 +949,10 @@ License: You must have a valid license purchased only from themeforest(the above
                     <li>
                         <hr class="dropdown-divider border-white/[0.08]">
                     </li>
-                    <li>
+                    <li class="hover:bg-white/5 py-1 px-2">
                         <form action="/logout" method="POST">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <button type="submit" class="dropdown-item hover:bg-white/5">
+                            <button type="submit" class="flex">
                                 <i data-lucide="toggle-right" class="w-4 h-4 mr-2"></i> Logout
                             </button>
                         </form>
@@ -1014,8 +1014,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 </a>
             </li>
             <li>
-                <a href="{{ route('guest_admin.groom_bride') }}"
-                   class="side-menu {{ request()->routeIs('guest_admin.groom_bride') ? 'side-menu--active' : '' }}">
+                <a href="{{ route('guest_admin.album.index') }}"
+                   class="side-menu {{ request()->routeIs('guest_admin.album*') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"><i data-lucide="image"></i></div>
                     <div class="side-menu__title">
                         Album ảnh
