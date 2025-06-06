@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('album_id')->constrained('gallery_albums')->onDelete('cascade');
             $table->text('caption')->nullable();
-            $table->integer('oposition')->nullable();
+            $table->integer('position')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();
         });
