@@ -505,6 +505,7 @@
                                                    placeholder="Enter full name of bride"
                                                    value="{{ old('bride_name') }}"
                                             >
+
                                             @error('bride_name')
                                             <div class="form-messages error">
                                                 {{ $message }}
