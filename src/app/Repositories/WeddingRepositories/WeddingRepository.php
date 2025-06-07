@@ -14,10 +14,11 @@ class WeddingRepository extends BaseRepository implements IWeddingRepository
         parent::__construct($model);
     }
 
-    public function getByUserId(int $userId) {
-        $entry = $this->model->query()->where("user_id", $userId)->first();
+    public function getByUserId(int $userId)
+    {
+        $entry = $this->model->query()->where('created_by', $userId)->first();
         if (!$entry) {
-            return abort(404, "Wedding not found");
+            return abort(404, 'Wedding not found');
         }
 
         return $entry;
