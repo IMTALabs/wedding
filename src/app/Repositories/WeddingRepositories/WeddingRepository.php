@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Repositories\WeedingRepositories;
+namespace App\Repositories\WeddingRepositories;
 
 use App\Models\Wedding;
 use App\Repositories\BaseRepository;
-use App\Repositories\WeedingRepositories\IWeedingRepository;
+use App\Repositories\WeddingRepositories\IWeddingRepository;
 use Illuminate\Database\Eloquent\Model;
 
-class WeedingRepository extends BaseRepository implements IWeedingRepository
+class WeddingRepository extends BaseRepository implements IWeddingRepository
 {
     public function __construct(Wedding $model)
     {
@@ -17,7 +17,7 @@ class WeedingRepository extends BaseRepository implements IWeedingRepository
     public function getByUserId(int $userId) {
         $entry = $this->model->query()->where("user_id", $userId)->first();
         if (!$entry) {
-            return abort(404, "Weeding not found");
+            return abort(404, "Wedding not found");
         }
 
         return $entry;
