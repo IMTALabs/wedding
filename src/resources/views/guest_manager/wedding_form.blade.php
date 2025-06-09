@@ -34,6 +34,41 @@
 
 @push('scripts')
     <script>
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+        FilePond.registerPlugin(FilePondPluginImageExifOrientation);
+        FilePond.registerPlugin(FilePondPluginFileValidateType);
+
+        // const groomAvatarInput = document.querySelector('input[name="groom-avatar"]');
+        // FilePond.create(groomAvatarInput,{
+        //     storeAsFile: true,
+        //     labelIdle: `Kéo và thả file của bạn hoặc <span class="filepond--label-action">Từ thư mục</span>`,
+        // });
+
+        const brideAvatarInput = document.querySelector('input[name="bride-avatar"]');
+        FilePond.create(brideAvatarInput, {
+            storeAsFile: true,
+            labelIdle: `Kéo và thả file của bạn hoặc <span class="filepond--label-action">Từ thư mục</span>`,
+        });
+
+        document.addEventListener('livewire:load', () => {
+            const groomAvatarInput = document.querySelector('input[name="groom-avatar"]');
+            FilePond.create(groomAvatarInput,{
+                storeAsFile: true,
+                labelIdle: `Kéo và thả file của bạn hoặc <span class="filepond--label-action">Từ thư mục</span>`,
+            });
+
+            FilePond.setOptions({
+                server: {
+                    process: (fieldName, file, metadata, load, error, progress, abort) => {
+                        @this.upload('file', file, load, error, progress);
+                    },
+                    revert: (uniqueFileId, load) => {
+                        @this.removeUpload('file', uniqueFileId, load);
+                    },
+                },
+            });
+        });
+
         // Listen for Livewire notifications
         document.addEventListener('livewire:init', function () {
             Livewire.on('show-success-notification', function() {

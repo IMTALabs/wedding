@@ -40,14 +40,14 @@ class GroomForm extends Component
         'about_groom' => 'nullable|string|min:10|max:1000',
         'groom_father' => 'nullable|string|max:100',
         'groom_mother' => 'nullable|string|max:100',
-        
+
         'bride_name' => 'required|string|max:100',
         'bride_birthday' => 'nullable|date|before:today',
         'bride_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
         'about_bride' => 'nullable|string|min:10|max:1000',
         'bride_father' => 'nullable|string|max:100',
         'bride_mother' => 'nullable|string|max:100',
-        
+
         'wedding_date' => 'nullable|date|after_or_equal:today',
     ];
 
@@ -61,7 +61,7 @@ class GroomForm extends Component
         'groom_image.max' => 'Ảnh chú rể không được lớn hơn 2MB.',
         'about_groom.min' => 'Giới thiệu về chú rể phải ít nhất 10 ký tự.',
         'about_groom.max' => 'Giới thiệu về chú rể không được quá 1000 ký tự.',
-        
+
         'bride_name.required' => 'Tên cô dâu là bắt buộc.',
         'bride_name.max' => 'Tên cô dâu không được quá 100 ký tự.',
         'bride_birthday.date' => 'Ngày sinh cô dâu phải là một ngày hợp lệ.',
@@ -71,7 +71,7 @@ class GroomForm extends Component
         'bride_image.max' => 'Ảnh cô dâu không được lớn hơn 2MB.',
         'about_bride.min' => 'Giới thiệu về cô dâu phải ít nhất 10 ký tự.',
         'about_bride.max' => 'Giới thiệu về cô dâu không được quá 1000 ký tự.',
-        
+
         'wedding_date.date' => 'Ngày cưới phải là một ngày hợp lệ.',
         'wedding_date.after_or_equal' => 'Ngày cưới phải từ hôm nay trở đi.',
     ];
@@ -80,7 +80,7 @@ class GroomForm extends Component
     {
         $userId = Auth::id();
         $this->wedding = $weddingRepository->getByUserId($userId);
-        
+
         // Initialize properties with existing data
         $this->initializeFormData();
     }
@@ -88,27 +88,28 @@ class GroomForm extends Component
     public function initializeFormData()
     {
         $this->groom_name = $this->wedding->groom_name ?? '';
-        $this->groom_birthday = $this->wedding->groom_birthday ? 
+        $this->groom_birthday = $this->wedding->groom_birthday ?
             \Carbon\Carbon::parse($this->wedding->groom_birthday)->format('Y-m-d') : '';
         $this->about_groom = $this->wedding->about_groom ?? '';
         $this->groom_father = $this->wedding->groom_father ?? '';
         $this->groom_mother = $this->wedding->groom_mother ?? '';
-        
+
         $this->bride_name = $this->wedding->bride_name ?? '';
-        $this->bride_birthday = $this->wedding->bride_birthday ? 
+        $this->bride_birthday = $this->wedding->bride_birthday ?
             \Carbon\Carbon::parse($this->wedding->bride_birthday)->format('Y-m-d') : '';
         $this->about_bride = $this->wedding->about_bride ?? '';
         $this->bride_father = $this->wedding->bride_father ?? '';
         $this->bride_mother = $this->wedding->bride_mother ?? '';
-        
-        $this->wedding_date = $this->wedding->wedding_date ? 
+
+        $this->wedding_date = $this->wedding->wedding_date ?
             \Carbon\Carbon::parse($this->wedding->wedding_date)->format('Y-m-d') : '';
     }
 
     public function save()
     {
+        dd($this->groom_image);
         $this->validate();
-        
+
         try {
             $updateData = [
                 'groom_name' => $this->groom_name,
@@ -116,13 +117,13 @@ class GroomForm extends Component
                 'about_groom' => $this->about_groom,
                 'groom_father' => $this->groom_father,
                 'groom_mother' => $this->groom_mother,
-                
+
                 'bride_name' => $this->bride_name,
                 'bride_birthday' => $this->bride_birthday ?: null,
                 'about_bride' => $this->about_bride,
                 'bride_father' => $this->bride_father,
                 'bride_mother' => $this->bride_mother,
-                
+
                 'wedding_date' => $this->wedding_date ?: null,
             ];
 
@@ -142,7 +143,7 @@ class GroomForm extends Component
 
             session()->flash('success', 'Thông tin cưới đã được cập nhật thành công!');
             $this->dispatch('show-success-notification');
-            
+
         } catch (\Exception $e) {
             session()->flash('error', 'Có lỗi xảy ra khi cập nhật thông tin: ' . $e->getMessage());
             $this->dispatch('show-error-notification');
