@@ -55,6 +55,19 @@ class Wedding extends Model
         'bride_birthday',
         'groom_birthday',
         'sub_domain',
+        'banner_image',
+        'website_url',
+        'template_id',
+        'background_music',
+        'animation_icon_type',
+        'animation_icon_height',
+        'animation_icon_width',
+        'show_names_and_wishes',
+        'show_money_box',
+        'play_background_music',
+        'show_animation',
+        'show_parents_names'
+
     ];
 
     /**
@@ -66,6 +79,10 @@ class Wedding extends Model
         'wedding_date' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
+        'wedding_time' => 'datetime',
+        'reception_date' => 'date',
+        'reception_time' => 'datetime',
+        'rsvp_deadline' => 'date',
     ];
 
     /**
