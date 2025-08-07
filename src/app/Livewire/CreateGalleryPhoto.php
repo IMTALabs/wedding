@@ -21,10 +21,14 @@ class CreateGalleryPhoto extends Component
 
     public function mount()
     {
-        $weddingId = Wedding::where('created_by', auth()->id())->value('id');
-        $this->albums = GalleryAlbum::where('wedding_id', $weddingId)->get();
         $this->photos = [];
         $this->album_id = null;
+        $this->getAlbum();
+    }
+
+    public function getAlbum() {
+        $weddingId = Wedding::where('created_by', auth()->id())->value('id');
+        $this->albums = GalleryAlbum::where('wedding_id', $weddingId)->get();
     }
 
     public function getPhotoOfAlbumProperty($album_id)
@@ -77,6 +81,32 @@ class CreateGalleryPhoto extends Component
     {
         $this->successMessage = null;
         $this->errorMessage = null;
+    }
+
+    public function deleteAlbum()
+    {
+        $album = GalleryAlbum::find($this->album_id);
+        if ($album) {
+            try {
+                \DB::beginTransaction();
+                $photos = $album->photos;
+                foreach ($photos as $photo) {
+                    \Storage::disk('public')->delete($photo->image);
+                    $photo->delete();
+                }
+                $album->delete();
+                $this->successMessage = 'Xóa album thành công!';
+                $this->albums = GalleryAlbum::where('wedding_id', Wedding::where('created_by', auth()->id())->value('id'))->get();
+                $this->photos = [];
+                $this->getAlbum();
+                \DB::commit();
+            }catch (\Exception $e) {
+                \DB::rollBack();
+                $this->errorMessage = 'Lỗi khi xóa album: ' . $e->getMessage();
+            }
+        } else {
+            $this->errorMessage = 'Không tìm thấy album!';
+        }
     }
 
     public function render()

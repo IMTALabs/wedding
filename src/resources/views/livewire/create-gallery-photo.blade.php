@@ -39,8 +39,24 @@
                         <img class="rounded-md" alt="Ảnh album"
                              src="{{ Storage::url($value->image) }}">
                         <div title="Xóa ảnh này? Hành động này là không thể hoàn tác!"
-                             class="tooltip w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-danger right-0 top-0 -mr-2 -mt-2" wire:click="deletePhoto({{ $value->id }})">
-                            <i data-lucide="x" class="w-4 h-4"></i>
+                             class="tooltip w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-danger right-0 top-0 -mr-2 -mt-2"
+                             wire:click="deletePhoto({{ $value->id }})"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="lucide lucide-x w-4 h-4"
+                            >
+                                <path d="M18 6 6 18"></path>
+                                <path d="m6 6 12 12"></path>
+                            </svg>
                         </div>
                     </div>
                 @endforeach
@@ -59,9 +75,9 @@
             </div>
         </div>
         <div class="mt-3">
-            <button type="submit" class="btn btn-primary ">Lưu thay đổi</button>
+            <button type="submit" class="btn btn-primary" wire:loading.disable>Lưu thay đổi</button>
             <button type="button" class="btn btn-success ">Sửa thông tin album</button>
-            <button type="button" class="btn btn-danger ">Xóa album</button>
+            <button type="button" class="btn btn-danger" wire:click="deleteAlbum">Xóa album</button>
         </div>
     </form>
 </div>
