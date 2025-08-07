@@ -41,7 +41,7 @@ import listPlugin from "@fullcalendar/list";
             dayMaxEvents: true,
             events: [
                 {
-                    title: "Vue Vixens Day",
+                    title: "KKKKKKKKKKK",
                     start: "2021-01-05",
                     end: "2021-01-08",
                 },
