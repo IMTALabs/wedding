@@ -1,4 +1,5 @@
-<div>
+
+<div >
     {{-- Hiển thị thông báo thành công --}}
     @if ($successMessage)
         <div class="alert alert-success mb-2">
@@ -12,8 +13,8 @@
         </div>
     @endif
 
-    <form wire:submit.prevent="save">
-        <div>
+    <form wire:submit.prevent="save" >
+        <div wire:ignore>
             <label for="post-form-7" class="form-label">Album</label>
             <select data-placeholder="Chọn album"
                     class="tom-select w-full"
@@ -38,9 +39,7 @@
                         <img class="rounded-md" alt="Ảnh album"
                              src="{{ Storage::url($value->image) }}">
                         <div title="Xóa ảnh này? Hành động này là không thể hoàn tác!"
-                             class="tooltip w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-danger right-0 top-0 -mr-2 -mt-2"
-                             wire:click="deletePhoto({{ $value->id }})"
-                        >
+                             class="tooltip w-5 h-5 flex items-center justify-center absolute rounded-full text-white bg-danger right-0 top-0 -mr-2 -mt-2" wire:click="deletePhoto({{ $value->id }})">
                             <i data-lucide="x" class="w-4 h-4"></i>
                         </div>
                     </div>

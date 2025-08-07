@@ -48,7 +48,7 @@ class CreateGalleryPhoto extends Component
         }
 
         foreach ($this->photo_update as $file) {
-            $photoUpdate = $this->photo_update->store('album', 'public');
+            $photoUpdate = $file->store('album', 'public');
             GalleryPhoto::create([
                 'album_id' => $this->album_id,
                 'image' => $photoUpdate,
