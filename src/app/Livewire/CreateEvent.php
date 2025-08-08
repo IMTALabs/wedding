@@ -18,6 +18,14 @@ class CreateEvent extends LivewireModal
     public $description = '';
     public $link_embed = '';
 
+    protected $rules = [
+        'event_name' => 'required|string|max:255',
+        'event_date' => 'required|date',
+        'event_location' => 'nullable|string|max:255',
+        'description' => 'nullable|string|max:1000',
+        'link_embed' => 'nullable|url|max:255',
+    ];
+
     public function render()
     {
         return view('livewire.create-event');
@@ -25,7 +33,6 @@ class CreateEvent extends LivewireModal
 
     public function save()
     {
-        dd(1);
         $this->validate();
 
         $user = Auth::user();
