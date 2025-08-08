@@ -21,6 +21,7 @@
                     wire:model="album_id"
                     wire:change="getPhotoOfAlbumProperty($event.target.value)"
             >
+                <option value="" selected></option>
                 @foreach($albums as $album)
                     <option value="{{ $album->id }}">{{ $album->album_name }}</option>
                 @endforeach
@@ -74,7 +75,7 @@
             </div>
         </div>
         <div class="mt-3">
-            <button type="submit" class="btn btn-primary" @if(empty($album_id)) disabled @endif wire:loading.disable>Lưu thay đổi</button>
+            <button type="submit" class="btn btn-primary" @if(empty($album_id)) disabled @endif wire:loading.disable wire:click="$refresh">Lưu thay đổi</button>
             <button type="button" class="btn btn-success" @if(empty($album_id)) disabled @endif wire:click="postAlbumId">Sửa thông tin album</button>
             <button type="button" class="btn btn-danger" @if(empty($album_id)) disabled @endif wire:click="deleteAlbum">Xóa album</button>
         </div>
