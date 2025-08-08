@@ -109,6 +109,10 @@ class CreateGalleryPhoto extends Component
         }
     }
 
+    public function postAlbumId() {
+        $this->dispatch('updateAlbum', albumId: $this->album_id);
+    }
+
     public function render()
     {
         return view('livewire.create-gallery-photo');

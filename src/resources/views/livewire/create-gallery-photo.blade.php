@@ -1,4 +1,3 @@
-
 <div >
     {{-- Hiển thị thông báo thành công --}}
     @if ($successMessage)
@@ -76,7 +75,7 @@
         </div>
         <div class="mt-3">
             <button type="submit" class="btn btn-primary" wire:loading.disable>Lưu thay đổi</button>
-            <button type="button" class="btn btn-success ">Sửa thông tin album</button>
+            <button type="button" class="btn btn-success" wire:click="postAlbumId">Sửa thông tin album</button>
             <button type="button" class="btn btn-danger" wire:click="deleteAlbum">Xóa album</button>
         </div>
     </form>

@@ -10,6 +10,7 @@ class CreateAlbum extends Component
 {
     public string $album_name;
     public string $album_description;
+    public $album;
 
     public $weddindId;
 
@@ -18,6 +19,7 @@ class CreateAlbum extends Component
         $this->album_name = '';
         $this->album_description = '';
         $this->weddindId = Wedding::where('created_by', auth()->id())->value('id');
+
         if (!$this->weddindId) {
             return abort(404);
         }
@@ -47,6 +49,17 @@ class CreateAlbum extends Component
         } catch (\Exception $e) {
             session()->flash('error', 'Có lỗi xảy ra khi cập nhật thông tin: ' . $e->getMessage());
             $this->dispatch('show-error-notification');
+        }
+    }
+
+    #[On('updateAlbum')]
+    public function updateAlbum($albumId) {
+        if($albumId) {
+            $this->album = GalleryAlbum::find($albumId);
+            if ($this->album) {
+                $this->album_name = $this->album->album_name;
+                $this->album_description = $this->album->description;
+            }
         }
     }
 
