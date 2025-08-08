@@ -1,4 +1,13 @@
 <div>
+    <div class="flex items-center px-2 py-2 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
+        <h2 class="font-medium text-base mr-auto">
+            @if(!empty($album))
+                Sửa thông tin tên album
+            @else
+                Tạo mới tên album
+            @endif
+        </h2>
+    </div>
     <div class="px-2 py-2">
         {{-- Hiển thị thông báo thành công --}}
         @if (session()->has('success_album'))
@@ -40,7 +49,13 @@
                     @enderror
                 </div>
                 <div class="mt-3 flex justify-center">
-                    <button type="submit" class="btn btn-primary ">Tạo mới</button>
+                    <button type="submit" class="btn btn-primary ">
+                        @if(!empty($album))
+                            Cập nhật
+                        @else
+                            Tạo mới
+                        @endif
+                    </button>
                 </div>
             </div>
         </form>

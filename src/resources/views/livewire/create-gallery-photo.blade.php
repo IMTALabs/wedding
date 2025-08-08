@@ -74,9 +74,9 @@
             </div>
         </div>
         <div class="mt-3">
-            <button type="submit" class="btn btn-primary" wire:loading.disable>Lưu thay đổi</button>
-            <button type="button" class="btn btn-success" wire:click="postAlbumId">Sửa thông tin album</button>
-            <button type="button" class="btn btn-danger" wire:click="deleteAlbum">Xóa album</button>
+            <button type="submit" class="btn btn-primary" @if(empty($album_id)) disabled @endif wire:loading.disable>Lưu thay đổi</button>
+            <button type="button" class="btn btn-success" @if(empty($album_id)) disabled @endif wire:click="postAlbumId">Sửa thông tin album</button>
+            <button type="button" class="btn btn-danger" @if(empty($album_id)) disabled @endif wire:click="deleteAlbum">Xóa album</button>
         </div>
     </form>
 </div>

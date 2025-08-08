@@ -26,11 +26,7 @@
         <div class="col-span-12 lg:col-span-4">
 
             <div class="intro-y box px-2">
-                <div class="flex items-center px-2 py-2 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                    <h2 class="font-medium text-base mr-auto">
-                        Tạo mới tên album
-                    </h2>
-                </div>
+
                 <livewire:create-album/>
             </div>
         </div>

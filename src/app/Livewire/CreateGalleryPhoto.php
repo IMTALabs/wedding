@@ -110,7 +110,7 @@ class CreateGalleryPhoto extends Component
     }
 
     public function postAlbumId() {
-        $this->dispatch('updateAlbum', albumId: $this->album_id);
+        $this->dispatch('updateAlbum', albumId: (int) $this->album_id);
     }
 
     public function render()
