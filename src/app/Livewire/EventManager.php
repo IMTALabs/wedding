@@ -15,16 +15,6 @@ class EventManager extends Component
     public $calendarGrid = [];
     public $legendEvents = [];
 
-    // Properties for event form
-    public $showEventModal = false;
-    public $isEditing = false;
-    public $eventId;
-    public $event_name = '';
-    public $event_date = '';
-    public $event_location = '';
-    public $description = '';
-    public $link_embed = '';
-
     // Event listeners
     protected $listeners = [
         'openEventModal' => 'handleOpenEventModal',
@@ -127,81 +117,6 @@ class EventManager extends Component
         }
     }
 
-    public function openEventModal($eventId = null)
-    {
-        $this->resetValidation();
-//        $this->resetExcept(['events', 'currentMonth', 'calendarGrid', 'legendEvents']);
-
-        if ($eventId) {
-            $this->isEditing = true;
-            $this->eventId = $eventId;
-            $event = Event::find($eventId);
-
-            if ($event) {
-                $this->event_name = $event->event_name;
-                $this->event_date = $event->event_date->format('Y-m-d');
-                $this->event_location = $event->event_location;
-                $this->description = $event->description;
-                $this->link_embed = $event->link_embed;
-            }
-        } else {
-            $this->isEditing = false;
-        }
-
-        $this->showEventModal = true;
-    }
-
-    public function closeEventModal()
-    {
-        $this->showEventModal = false;
-    }
-
-    public function save()
-    {
-        dd(1);
-        $this->validate();
-
-        $user = Auth::user();
-        $wedding = Wedding::where('created_by', $user->id)->first();
-
-        if (!$wedding) {
-            session()->flash('error', 'Không tìm thấy thông tin đám cưới.');
-            return;
-        }
-
-        try {
-            $eventData = [
-                'wedding_id' => $wedding->id,
-                'event_name' => $this->event_name,
-                'event_date' => $this->event_date,
-                'event_location' => $this->event_location,
-                'description' => $this->description,
-                'link_embed' => $this->link_embed,
-            ];
-
-            if ($this->isEditing) {
-                $event = Event::find($this->eventId);
-                if ($event) {
-                    $event->update($eventData);
-                    session()->flash('success', 'Sự kiện đã được cập nhật thành công!');
-                }
-            } else {
-                Event::create($eventData);
-                session()->flash('success', 'Sự kiện đã được tạo thành công!');
-            }
-
-            $this->closeEventModal();
-            $this->loadEvents();
-            $this->setupCalendar();
-
-            // Dispatch event to refresh calendar
-            $this->dispatch('refreshCalendar');
-
-        } catch (\Exception $e) {
-            session()->flash('error', 'Có lỗi xảy ra: ' . $e->getMessage());
-        }
-    }
-
     public function deleteEvent($eventId)
     {
         try {
@@ -226,16 +141,6 @@ class EventManager extends Component
             $this->openEventModal($data['eventId']);
         } else {
             $this->openEventModal();
-        }
-    }
-
-    /**
-     * Handle the setEventDate event from JavaScript
-     */
-    public function handleSetEventDate($data)
-    {
-        if (isset($data['date'])) {
-            $this->event_date = $data['date'];
         }
     }
 

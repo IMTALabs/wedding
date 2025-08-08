@@ -23,6 +23,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <title>Dashboard - Enigma - Tailwind HTML Admin Template</title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{asset('assets/enigma-template/dist/css/app.css')}}"/>
+    @vite(['resources/css/app.css'])
     <!-- END: CSS Assets-->
     <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet" />
     <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet" />
@@ -1092,5 +1093,7 @@ License: You must have a valid license purchased only from themeforest(the above
 @stack('scripts')
 
 <!-- END: JS Assets-->
+
+<livewire:modal />
 </body>
 </html>

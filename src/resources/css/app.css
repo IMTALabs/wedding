@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 @import "tailwindcss";
-@plugin "@tailwindcss/forms";
-@plugin "@tailwindcss/typography";
-@plugin "@tailwindcss/aspect-ratio";
-@source "../views";
+@import '../../vendor/cloudstudio/laravel-livewire-modal/dist/modal.css';
+/* @plugin "@tailwindcss/forms"; */
+/* @plugin "@tailwindcss/typography"; */
+/* @plugin "@tailwindcss/aspect-ratio"; */
+/* @source "../views"; */
+@source "../../resources/views/vendor/laravel-livewire-modal/modal.blade.php";
+@source "../../resources/views/vendor/laravel-livewire-modal/modal-content.blade.php";
