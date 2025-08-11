@@ -33,8 +33,11 @@ class CreateGalleryPhoto extends Component
 
     public function getPhotoOfAlbumProperty($album_id)
     {
-        $album = GalleryAlbum::find($this->album_id);
-        $this->photos = $album ? $album->photos()->get() : null;
+        if ($album_id) {
+            $album = GalleryAlbum::find($this->album_id);
+            $this->photos = $album ? $album->photos()->get() : null;
+            $this->dispatch('update-tom-select');
+        }
     }
 
     public function save()
@@ -100,6 +103,7 @@ class CreateGalleryPhoto extends Component
                 $this->photos = [];
                 $this->getAlbum();
                 \DB::commit();
+                $this->dispatch('album-deleted', $this->album_id)->self();
             }catch (\Exception $e) {
                 \DB::rollBack();
                 $this->errorMessage = 'Lỗi khi xóa album: ' . $e->getMessage();

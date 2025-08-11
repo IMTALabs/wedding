@@ -45,13 +45,15 @@ class CreateAlbum extends Component
                     'description' => $this->album_description,
                 ]);
                 session()->flash('success_album', 'Album updated successfully!');
+                $this->dispatch('album-updated', $this->album)->to(CreateGalleryPhoto::class);
             } else {
-                GalleryAlbum::create([
+                $newAlbum = GalleryAlbum::create([
                     'album_name' => $this->album_name,
                     'description' => $this->album_description,
                     'wedding_id' => $this->weddindId
                 ]);
                 session()->flash('success_album', 'Album created successfully!');
+                $this->dispatch('album-created', $newAlbum)->to(CreateGalleryPhoto::class);
             }
             $this->reset(['album_name', 'album_description', 'album']);
         } catch (\Exception $e) {
