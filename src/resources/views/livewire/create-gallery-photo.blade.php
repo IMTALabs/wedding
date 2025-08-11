@@ -81,3 +81,41 @@
         </div>
     </form>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
+@script
+<script>
+    $wire.on('album-created', (e) => {
+        const newAlbum = e[0];
+        const tomEl = document.querySelector('.tom-select');
+        if (tomEl.tomselect) {
+            tomEl.tomselect.addOption({
+                id: newAlbum.id,
+                value: newAlbum.id,
+                text: newAlbum.album_name,
+            });
+        }
+    });
+
+    $wire.on('album-updated', (e) => {
+        const updatedAlbum = e[0];
+        const value = updatedAlbum.id;
+        const tomEl = document.querySelector('.tom-select');
+        if (tomEl.tomselect) {
+            tomEl.tomselect.updateOption(updatedAlbum.id, {
+                id: updatedAlbum.id,
+                value: updatedAlbum.id,
+                text: updatedAlbum.album_name,
+            });
+        }
+    });
+
+    $wire.on('album-deleted', (e) => {
+        const deletedAlbumId = e[0];
+        const tomEl = document.querySelector('.tom-select');
+        if (tomEl.tomselect) {
+            tomEl.tomselect.removeOption(deletedAlbumId);
+        }
+    });
+</script>
+@endscript
