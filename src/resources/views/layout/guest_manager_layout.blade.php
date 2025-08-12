@@ -1032,8 +1032,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 </a>
             </li>
             <li>
-                <a href="{{ route('guest_admin.groom_bride') }}"
-                   class="side-menu {{ request()->routeIs('guest_admin.groom_bride') ? 'side-menu--active' : '' }}">
+                <a href="{{ route('guest_admin.notification.index') }}"
+                   class="side-menu {{ request()->routeIs('guest_admin.notification.index') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"><i data-lucide="alert-circle"></i></div>
                     <div class="side-menu__title">
                         Thông báo quan trọng

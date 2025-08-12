@@ -58,6 +58,7 @@ Route::group([
     );
 
     Route::get('/wedding-location', [WeddingLocationController::class, 'index'])->name('wedding_location.index');
+    Route::get('/notification', [\App\Http\Controllers\Admin\Guest\NotificationController::class, 'index'])->name('notification.index');
 });
 
 Route::get('/home', [\App\Http\Controllers\Home\HomePageController::class, 'index'])->name('home.home-page');
