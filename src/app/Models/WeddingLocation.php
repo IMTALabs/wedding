@@ -53,4 +53,44 @@ class WeddingLocation extends Model
     {
         return $this->belongsTo(Wedding::class);
     }
+
+    /**
+     * Get the location type label in Vietnamese.
+     */
+    public function getTypeLabel(): string
+    {
+        $types = [
+            'ceremony' => 'Lễ cưới',
+            'reception' => 'Tiệc cưới',
+            'bride_home' => 'Nhà cô dâu',
+            'groom_home' => 'Nhà chú rể',
+            'other' => 'Khác',
+        ];
+
+        return $types[$this->type] ?? $this->type;
+    }
+
+    /**
+     * Scope a query to only include visible locations.
+     */
+    public function scopeVisible($query)
+    {
+        return $query->where('is_hidden', false);
+    }
+
+    /**
+     * Scope a query to only include hidden locations.
+     */
+    public function scopeHidden($query)
+    {
+        return $query->where('is_hidden', true);
+    }
+
+    /**
+     * Scope a query to order locations by date.
+     */
+    public function scopeOrderByDate($query, $direction = 'asc')
+    {
+        return $query->orderBy('date', $direction);
+    }
 }

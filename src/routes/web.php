@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Guest\DashboardController;
+use App\Http\Controllers\Admin\Guest\WeddingLocationController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Middleware\RegisteredWeddingMiddleware;
 use Illuminate\Http\Request;
@@ -57,6 +58,9 @@ Route::group([
             Route::post('/store', [\App\Http\Controllers\Admin\Guest\LoveStoryController::class, 'store'])->name('store');
         }
     );
+
+    Route::get('/wedding-location', [WeddingLocationController::class, 'index'])->name('wedding_location.index');
+    Route::post('/wedding-location', [WeddingLocationController::class, 'store'])->name('wedding_location.store');
 });
 
 Route::get('/home', [\App\Http\Controllers\Home\HomePageController::class, 'index'])->name('home.home-page');
