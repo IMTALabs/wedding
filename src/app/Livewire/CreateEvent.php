@@ -26,6 +26,16 @@ class CreateEvent extends LivewireModal
         'link_embed' => 'nullable|url|max:255',
     ];
 
+    protected $messages = [
+        'event_name.required' => 'Tên sự kiện là bắt buộc.',
+        'event_date.required' => 'Ngày sự kiện là bắt buộc.',
+        'event_date.date' => 'Ngày sự kiện không hợp lệ.',
+        'event_location.max' => 'Địa điểm sự kiện không được vượt quá 255 ký tự.',
+        'description.max' => 'Mô tả không được vượt quá 1000 ký tự.',
+        'link_embed.url' => 'Liên kết nhúng không hợp lệ.',
+        'link_embed.max' => 'Liên kết nhúng không được vượt quá 255 ký tự.',
+    ];
+
     public function render()
     {
         return view('livewire.create-event');
@@ -64,13 +74,9 @@ class CreateEvent extends LivewireModal
                 session()->flash('success', 'Sự kiện đã được tạo thành công!');
             }
 
-            $this->closeEventModal();
-            $this->loadEvents();
-            $this->setupCalendar();
-
             // Dispatch event to refresh calendar
-            $this->dispatch('refreshCalendar');
-
+            $this->dispatch('refresh-calendar')->to(EventManager::class);
+            $this->closeModal();
         } catch (\Exception $e) {
             session()->flash('error', 'Có lỗi xảy ra: ' . $e->getMessage());
         }

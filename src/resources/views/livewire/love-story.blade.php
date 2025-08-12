@@ -22,9 +22,9 @@
                         Danh sách phần câu chuyện
                     </h2>
                 </div>
-                <div class="p-5">
+                <div class="p-5 space-y-4">
                     @foreach ($sections as $index => $section)
-                        <div class="rounded-md p-4 mb-4">
+                        <div class="rounded-md">
                             <div class="grid grid-cols-12 gap-4">
                                 <div class="col-span-12 sm:col-span-6">
                                     <label class="form-label">Tiêu đề</label>

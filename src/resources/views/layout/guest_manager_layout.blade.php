@@ -21,7 +21,9 @@ License: You must have a valid license purchased only from themeforest(the above
         content="admin template, Enigma Admin Template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="LEFT4CODE">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Dashboard - Enigma - Tailwind HTML Admin Template</title>
+    <title>
+        {{ $title ?? config('app.name') }}
+    </title>
     <!-- BEGIN: CSS Assets-->
     <link rel="stylesheet" href="{{asset('assets/enigma-template/dist/css/app.css')}}" />
     @vite(['resources/css/app.css'])
@@ -709,237 +711,20 @@ License: You must have a valid license purchased only from themeforest(the above
             <a href="" class="logo -intro-x hidden md:flex xl:w-[180px] block">
                 <img alt="Midone - HTML Admin Template" class="logo__image w-6"
                     src="{{asset('assets/enigma-template/dist/images/logo.svg')}}">
-                <span class="logo__text text-white text-lg ml-3"> Enigma </span>
+                <span class="logo__text text-white text-lg ml-3">
+                    {{ config('app.name') }}
+                </span>
             </a>
             <!-- END: Logo -->
+
             <!-- BEGIN: Breadcrumb -->
             <nav aria-label="breadcrumb" class="-intro-x h-[45px] mr-auto">
                 <ol class="breadcrumb breadcrumb-light">
-                    <li class="breadcrumb-item"><a href="#">Application</a></li>
+                    <li class="breadcrumb-item"><a href="{{ route('guest_admin.dashboard') }}">{{ config('app.name') }}</a></li>
                     <li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
                 </ol>
             </nav>
             <!-- END: Breadcrumb -->
-            <!-- BEGIN: Search -->
-            <div class="intro-x relative mr-3 sm:mr-6">
-                <div class="search hidden sm:block">
-                    <input type="text" class="search__input form-control border-transparent" placeholder="Search...">
-                    <i data-lucide="search" class="search__icon dark:text-slate-500"></i>
-                </div>
-                <a class="notification notification--light sm:hidden" href=""> <i data-lucide="search"
-                        class="notification__icon dark:text-slate-500"></i>
-                </a>
-                <div class="search-result">
-                    <div class="search-result__content">
-                        <div class="search-result__content__title">Pages</div>
-                        <div class="mb-5">
-                            <a href="" class="flex items-center">
-                                <div
-                                    class="w-8 h-8 bg-success/20 dark:bg-success/10 text-success flex items-center justify-center rounded-full">
-                                    <i class="w-4 h-4" data-lucide="inbox"></i>
-                                </div>
-                                <div class="ml-3">Mail Settings</div>
-                            </a>
-                            <a href="" class="flex items-center mt-2">
-                                <div
-                                    class="w-8 h-8 bg-pending/10 text-pending flex items-center justify-center rounded-full">
-                                    <i class="w-4 h-4" data-lucide="users"></i>
-                                </div>
-                                <div class="ml-3">Users & Permissions</div>
-                            </a>
-                            <a href="" class="flex items-center mt-2">
-                                <div
-                                    class="w-8 h-8 bg-primary/10 dark:bg-primary/20 text-primary/80 flex items-center justify-center rounded-full">
-                                    <i class="w-4 h-4" data-lucide="credit-card"></i>
-                                </div>
-                                <div class="ml-3">Transactions Report</div>
-                            </a>
-                        </div>
-                        <div class="search-result__content__title">Users</div>
-                        <div class="mb-5">
-                            <a href="" class="flex items-center mt-2">
-                                <div class="w-8 h-8 image-fit">
-                                    <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                                </div>
-                                <div class="ml-3">{{ Auth::user()->name }}</div>
-                                <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">
-                                    {{ Auth::user()->email }}</div>
-                            </a>
-                            <a href="" class="flex items-center mt-2">
-                                <div class="w-8 h-8 image-fit">
-                                    <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                                </div>
-                                <div class="ml-3">Johnny Depp</div>
-                                <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">
-                                    johnnydepp@left4code.com
-                                </div>
-                            </a>
-                            <a href="" class="flex items-center mt-2">
-                                <div class="w-8 h-8 image-fit">
-                                    <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                                </div>
-                                <div class="ml-3">Robert De Niro</div>
-                                <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">
-                                    robertdeniro@left4code.com
-                                </div>
-                            </a>
-                            <a href="" class="flex items-center mt-2">
-                                <div class="w-8 h-8 image-fit">
-                                    <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                                </div>
-                                <div class="ml-3">Morgan Freeman</div>
-                                <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">
-                                    morganfreeman@left4code.com
-                                </div>
-                            </a>
-                        </div>
-                        <div class="search-result__content__title">Products</div>
-                        <a href="" class="flex items-center mt-2">
-                            <div class="w-8 h-8 image-fit">
-                                <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                            </div>
-                            <div class="ml-3">Samsung Q90 QLED TV</div>
-                            <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">Electronic</div>
-                        </a>
-                        <a href="" class="flex items-center mt-2">
-                            <div class="w-8 h-8 image-fit">
-                                <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                            </div>
-                            <div class="ml-3">Sony A7 III</div>
-                            <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">Photography</div>
-                        </a>
-                        <a href="" class="flex items-center mt-2">
-                            <div class="w-8 h-8 image-fit">
-                                <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                            </div>
-                            <div class="ml-3">Dell XPS 13</div>
-                            <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">PC &amp; Laptop</div>
-                        </a>
-                        <a href="" class="flex items-center mt-2">
-                            <div class="w-8 h-8 image-fit">
-                                <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                            </div>
-                            <div class="ml-3">Nike Tanjun</div>
-                            <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">Sport &amp; Outdoor
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- END: Search -->
-            <!-- BEGIN: Notifications -->
-            <div class="intro-x dropdown mr-4 sm:mr-6">
-                <div class="dropdown-toggle notification notification--bullet cursor-pointer" role="button"
-                    aria-expanded="false" data-tw-toggle="dropdown"><i data-lucide="bell"
-                        class="notification__icon dark:text-slate-500"></i>
-                </div>
-                <div class="notification-content pt-2 dropdown-menu">
-                    <div class="notification-content__box dropdown-content">
-                        <div class="notification-content__title">Notifications</div>
-                        <div class="cursor-pointer relative flex items-center ">
-                            <div class="w-12 h-12 flex-none image-fit mr-1">
-                                <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                                <div
-                                    class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white">
-                                </div>
-                            </div>
-                            <div class="ml-2 overflow-hidden">
-                                <div class="flex items-center">
-                                    <a href="javascript:;"
-                                        class="font-medium truncate mr-5">{{ Auth::user()->name }}</a>
-                                    <div class="text-xs text-slate-400 ml-auto whitespace-nowrap">
-                                        {{ Auth::user()->email }}</div>
-                                </div>
-                                <div class="w-full truncate text-slate-500 mt-0.5">It is a long established fact that a
-                                    reader will be distracted by the readable content of a page when looking at its
-                                    layout.
-                                    The point of using Lorem
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cursor-pointer relative flex items-center mt-5">
-                            <div class="w-12 h-12 flex-none image-fit mr-1">
-                                <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                                <div
-                                    class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white">
-                                </div>
-                            </div>
-                            <div class="ml-2 overflow-hidden">
-                                <div class="flex items-center">
-                                    <a href="javascript:;" class="font-medium truncate mr-5">Johnny Depp</a>
-                                    <div class="text-xs text-slate-400 ml-auto whitespace-nowrap">06:05 AM</div>
-                                </div>
-                                <div class="w-full truncate text-slate-500 mt-0.5">Lorem Ipsum is simply dummy text of
-                                    the
-                                    printing and typesetting industry. Lorem Ipsum has been the industry&#039;s standard
-                                    dummy text ever since the 1500
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cursor-pointer relative flex items-center mt-5">
-                            <div class="w-12 h-12 flex-none image-fit mr-1">
-                                <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                                <div
-                                    class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white">
-                                </div>
-                            </div>
-                            <div class="ml-2 overflow-hidden">
-                                <div class="flex items-center">
-                                    <a href="javascript:;" class="font-medium truncate mr-5">Robert De Niro</a>
-                                    <div class="text-xs text-slate-400 ml-auto whitespace-nowrap">05:09 AM</div>
-                                </div>
-                                <div class="w-full truncate text-slate-500 mt-0.5">Contrary to popular belief, Lorem
-                                    Ipsum
-                                    is not simply random text. It has roots in a piece of classical Latin literature
-                                    from 45
-                                    BC, making it over 20
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cursor-pointer relative flex items-center mt-5">
-                            <div class="w-12 h-12 flex-none image-fit mr-1">
-                                <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                                <div
-                                    class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white">
-                                </div>
-                            </div>
-                            <div class="ml-2 overflow-hidden">
-                                <div class="flex items-center">
-                                    <a href="javascript:;" class="font-medium truncate mr-5">Morgan Freeman</a>
-                                    <div class="text-xs text-slate-400 ml-auto whitespace-nowrap">01:10 PM</div>
-                                </div>
-                                <div class="w-full truncate text-slate-500 mt-0.5">Contrary to popular belief, Lorem
-                                    Ipsum
-                                    is not simply random text. It has roots in a piece of classical Latin literature
-                                    from 45
-                                    BC, making it over 20
-                                </div>
-                            </div>
-                        </div>
-                        <div class="cursor-pointer relative flex items-center mt-5">
-                            <div class="w-12 h-12 flex-none image-fit mr-1">
-                                <img alt="Midone - HTML Admin Template" class="rounded-full" src="">
-                                <div
-                                    class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white">
-                                </div>
-                            </div>
-                            <div class="ml-2 overflow-hidden">
-                                <div class="flex items-center">
-                                    <a href="javascript:;" class="font-medium truncate mr-5">Russell Crowe</a>
-                                    <div class="text-xs text-slate-400 ml-auto whitespace-nowrap">06:05 AM</div>
-                                </div>
-                                <div class="w-full truncate text-slate-500 mt-0.5">Contrary to popular belief, Lorem
-                                    Ipsum
-                                    is not simply random text. It has roots in a piece of classical Latin literature
-                                    from 45
-                                    BC, making it over 20
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- END: Notifications -->
 
             <!-- BEGIN: Account Menu -->
             <div class="intro-x dropdown w-8 h-8">
@@ -952,7 +737,8 @@ License: You must have a valid license purchased only from themeforest(the above
                         class="dropdown-content bg-primary/80 before:block before:absolute before:bg-black before:inset-0 before:rounded-md before:z-[-1] text-white">
                         <li class="p-2">
                             <div class="font-medium">{{ Auth::user()->name }}</div>
-                            <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">{{ Auth::user()->email }}
+                            <div class="text-xs text-white/60 mt-0.5 dark:text-slate-500">
+                                {{ Auth::user()->email }}
                             </div>
                         </li>
                         <li>
@@ -970,10 +756,11 @@ License: You must have a valid license purchased only from themeforest(the above
                             <hr class="dropdown-divider border-white/[0.08]">
                         </li>
                         <li class="hover:bg-white/5 py-1 px-2">
-                            <form action="/logout" method="POST">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="flex">
-                                    <i data-lucide="toggle-right" class="w-4 h-4 mr-2"></i> Logout
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4m7 14l5-5l-5-5m5 5H9"/></svg>
+                                    Logout
                                 </button>
                             </form>
                         </li>
@@ -991,16 +778,20 @@ License: You must have a valid license purchased only from themeforest(the above
                 <li>
                     <a href="{{ route('guest_admin.dashboard') }}"
                         class="side-menu {{ request()->routeIs('guest_admin.dashboard') ? 'side-menu--active' : '' }}">
-                        <div class="side-menu__icon"><i data-lucide="home"></i></div>
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></g></svg>
+                        </div>
                         <div class="side-menu__title">
-                            Dashboard
+                            Bảng điều khiển
                         </div>
                     </a>
                 </li>
                 <li>
                     <a href="{{ route('guest_admin.settings') }}"
                         class="side-menu {{ request()->routeIs('guest_admin.settings') ? 'side-menu--active' : '' }}">
-                        <div class="side-menu__icon"><i data-lucide="settings"></i></div>
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2"/><circle cx="12" cy="12" r="3"/></g></svg>
+                        </div>
                         <div class="side-menu__title">
                             Thiết lập trang web
                         </div>
@@ -1009,7 +800,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 <li>
                     <a href="{{ route('guest_admin.groom_bride') }}"
                         class="side-menu {{ request()->routeIs('guest_admin.groom_bride') ? 'side-menu--active' : '' }}">
-                        <div class="side-menu__icon"><i data-lucide="users"></i></div>
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87m-3-12a4 4 0 0 1 0 7.75"/></g></svg>
+                        </div>
                         <div class="side-menu__title">
                             Cô dâu & chú rể
                         </div>
@@ -1018,7 +811,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 <li>
                     <a href="{{ route('guest_admin.wedding_location.index') }}"
                         class="side-menu {{ request()->routeIs('guest_admin.wedding_location.index') ? 'side-menu--active' : '' }}">
-                        <div class="side-menu__icon"><i data-lucide="map"></i></div>
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0zm.894.211v15M9 3.236v15"/></svg>
+                        </div>
                         <div class="side-menu__title">
                             Địa điểm tổ chức đám cưới
                         </div>
@@ -1027,7 +822,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 <li>
                     <a href="{{ route('guest_admin.events') }}"
                         class="side-menu {{ request()->routeIs('guest_admin.events') ? 'side-menu--active' : '' }}">
-                        <div class="side-menu__icon"><i data-lucide="calendar"></i></div>
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M8 2v4m8-4v4m5 11V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h11ZM3 10h18"/><path d="M15 22v-4a2 2 0 0 1 2-2h4"/></g></svg>
+                        </div>
                         <div class="side-menu__title">
                             Các sự kiện
                         </div>
@@ -1036,7 +833,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 <li>
                     <a href="{{ route('guest_admin.album.index') }}"
                         class="side-menu {{ request()->routeIs('guest_admin.album*') ? 'side-menu--active' : '' }}">
-                        <div class="side-menu__icon"><i data-lucide="image"></i></div>
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></g></svg>
+                        </div>
                         <div class="side-menu__title">
                             Album ảnh
                         </div>
@@ -1045,7 +844,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 <li>
                     <a href="{{ route('guest_admin.love_story.index') }}"
                         class="side-menu {{ request()->routeIs('guest_admin.love_story.index') ? 'side-menu--active' : '' }}">
-                        <div class="side-menu__icon"><i data-lucide="heart"></i></div>
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M16 8.2A2.22 2.22 0 0 0 13.8 6q-1.2 0-1.8.9q-.6-.9-1.8-.9A2.22 2.22 0 0 0 8 8.2c0 .6.3 1.2.7 1.6A227 227 0 0 0 12 13a404 404 0 0 0 3.3-3.1a2.4 2.4 0 0 0 .7-1.7"/><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></g></svg>
+                        </div>
                         <div class="side-menu__title">
                             Câu chuyện tình yêu
                         </div>
@@ -1054,7 +855,9 @@ License: You must have a valid license purchased only from themeforest(the above
                 <li>
                     <a href="{{ route('guest_admin.notification.index') }}"
                         class="side-menu {{ request()->routeIs('guest_admin.notification.index') ? 'side-menu--active' : '' }}">
-                        <div class="side-menu__icon"><i data-lucide="alert-circle"></i></div>
+                        <div class="side-menu__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></g></svg>
+                        </div>
                         <div class="side-menu__title">
                             Thông báo quan trọng
                         </div>

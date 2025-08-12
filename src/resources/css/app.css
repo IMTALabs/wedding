@@ -2,9 +2,13 @@
 
 @import "tailwindcss";
 @import '../../vendor/cloudstudio/laravel-livewire-modal/dist/modal.css';
-/* @plugin "@tailwindcss/forms"; */
-/* @plugin "@tailwindcss/typography"; */
-/* @plugin "@tailwindcss/aspect-ratio"; */
-/* @source "../views"; */
+@plugin "@tailwindcss/forms";
+@plugin "@tailwindcss/typography";
+@plugin "@tailwindcss/aspect-ratio";
+@source "../views";
 @source "../../resources/views/vendor/laravel-livewire-modal/modal.blade.php";
 @source "../../resources/views/vendor/laravel-livewire-modal/modal-content.blade.php";
+
+.fc-toolbar-title {
+    @apply capitalize;
+}

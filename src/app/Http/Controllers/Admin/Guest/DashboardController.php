@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 class DashboardController extends BaseController
 {
     public function index() {
+        $this->setTitle('Bảng điều khiển');
+
         return view('guest_manager.dashboard');
     }
 }
