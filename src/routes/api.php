@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Guest\EventController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
@@ -21,3 +22,5 @@ Route::post('/upload/bridegroom/avatar', function (Request $request) {
 
     return response()->json(['error' => 'Không có tệp nào được tải lên.'], 400);
 })->name('upload.bridegroom.avatar');
+
+Route::get('/events', [EventController::class, 'list'])->name('events.index');

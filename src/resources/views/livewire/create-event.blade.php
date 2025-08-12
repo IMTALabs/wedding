@@ -39,7 +39,7 @@
         <div class="modal-footer text-right">
             @if($isEditing)
                 <button type="button" class="btn btn-outline-danger mr-1"
-                    wire:click="deleteEvent({{ $eventId }})">Xóa</button>
+                    wire:click="delete">Xóa</button>
             @endif
             <button type="button" class="btn btn-outline-secondary w-24 mr-1" wire:click="$dispatch('closeModal')">Hủy</button>
             <button type="submit" class="btn btn-primary mr-2 mb-2" wire:loading.attr="disabled">

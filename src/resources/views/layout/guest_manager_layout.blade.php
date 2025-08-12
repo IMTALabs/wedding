@@ -25,6 +25,9 @@ License: You must have a valid license purchased only from themeforest(the above
         {{ $title ?? config('app.name') }}
     </title>
     <!-- BEGIN: CSS Assets-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">   
     <link rel="stylesheet" href="{{asset('assets/enigma-template/dist/css/app.css')}}" />
     @vite(['resources/css/app.css'])
     <!-- END: CSS Assets-->
@@ -815,7 +818,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0zm.894.211v15M9 3.236v15"/></svg>
                         </div>
                         <div class="side-menu__title">
-                            Địa điểm tổ chức đám cưới
+                            Địa điểm
                         </div>
                     </a>
                 </li>

@@ -16,7 +16,7 @@
                     id="calendar-events">
                     @if(count($events) > 0)
                         @foreach($events as $event)
-                            <div class="relative">
+                            <div class="relative" onclick="Livewire.dispatch('openModal', { component: 'create-event', arguments: { eventId: {{ $event['id'] }}, isEditing: true } })">
                                 <div
                                     class="event p-3 -mx-3 cursor-pointer transition duration-300 ease-in-out hover:bg-slate-100 dark:hover:bg-darkmode-400 rounded-md flex items-center">
                                     <div class="w-2 h-2 bg-primary rounded-full mr-3"></div>
@@ -30,9 +30,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a class="flex items-center absolute top-0 bottom-0 my-auto right-0" href="javascript:;"
-                                    wire:click="openEventModal({{ $event['id'] }})">
-                                    <i data-lucide="edit" class="w-4 h-4 text-slate-500"></i>
+                                <a class="flex items-center absolute top-0 bottom-0 my-auto right-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-slate-500" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></g></svg>
                                 </a>
                             </div>
                         @endforeach
@@ -71,16 +70,25 @@
                     navLinks: true,
                     editable: true,
                     dayMaxEvents: true,
-                    events: @json($events),
+                    eventSources: [
+                        {
+                            url: '{{ route('events.index') }}',
+                            method: 'GET',
+                            extraParams: {
+                                user_id: {{ Auth::id() }}
+                            }
+                        }
+                    ],
                     eventClick: function (info) {
                         const eventId = info.event.id;
-                        Livewire.dispatch('openEventModal', { eventId: eventId });
+                        Livewire.dispatch('openModal', { component: 'create-event', arguments: { eventId, isEditing: true } });
                     },
                     dateClick: function (info) {
-                        Livewire.dispatch('setEventDate', { date: info.dateStr });
-                        Livewire.dispatch('openEventModal');
+                        Livewire.dispatch('openModal', { component: 'create-event', arguments: { event_date: info.dateStr } });
                     }
                 });
+
+                window.calendar = calendar; // Make calendar accessible globally
 
                 calendar.render();
 
@@ -88,12 +96,6 @@
                     Livewire.on('refreshCalendar', () => {
                         calendar.refetchEvents();
                     });
-                });
-
-                document.addEventListener('click', function (e) {
-                    if (e.target.classList.contains('modal-backdrop')) {
-                        Livewire.dispatch('closeEventModal');
-                    }
                 });
             });
         </script>
@@ -104,6 +106,7 @@
 <script>
     $wire.on('refresh-calendar', (e) => {
         $wire.loadEvents();
+        calendar.refetchEvents();
     });
 </script>
 @endscript

@@ -128,7 +128,7 @@ class Setting extends Component
 
             session()->flash('success', 'Thiết lập đã được cập nhật thành công!');
             $this->dispatch('show-success-notification');
-
+            $this->dispatch('filepond-reset-banner_image');
         } catch (\Exception $e) {
             session()->flash('error', 'Có lỗi xảy ra khi cập nhật thiết lập: ' . $e->getMessage());
             $this->dispatch('show-error-notification');

@@ -36,6 +36,23 @@ class CreateEvent extends LivewireModal
         'link_embed.max' => 'Liên kết nhúng không được vượt quá 255 ký tự.',
     ];
 
+    public function mount($eventId = null, $isEditing = false)
+    {
+        $this->isEditing = $isEditing;
+        $this->eventId = $eventId;
+
+        if ($this->isEditing && $eventId) {
+            $event = Event::find($eventId);
+            if ($event) {
+                $this->event_name = $event->event_name;
+                $this->event_date = $event->event_date->format('Y-m-d');
+                $this->event_location = $event->event_location;
+                $this->description = $event->description;
+                $this->link_embed = $event->link_embed;
+            }
+        }
+    }
+
     public function render()
     {
         return view('livewire.create-event');
@@ -79,6 +96,25 @@ class CreateEvent extends LivewireModal
             $this->closeModal();
         } catch (\Exception $e) {
             session()->flash('error', 'Có lỗi xảy ra: ' . $e->getMessage());
+        }
+    }
+
+    public function delete()
+    {
+        if ($this->isEditing && $this->eventId) {
+            try {
+                $event = Event::find($this->eventId);
+                if ($event) {
+                    $event->delete();
+                    session()->flash('success', 'Sự kiện đã được xóa thành công!');
+                    $this->dispatch('refresh-calendar')->to(EventManager::class);
+                    $this->closeModal();
+                }
+            } catch (\Exception $e) {
+                session()->flash('error', 'Có lỗi xảy ra khi xóa sự kiện: ' . $e->getMessage());
+            }
+        } else {
+            session()->flash('error', 'Không có sự kiện nào để xóa.');
         }
     }
 }

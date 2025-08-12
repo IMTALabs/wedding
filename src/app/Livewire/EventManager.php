@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\Event;
 use App\Models\Wedding;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -54,6 +55,14 @@ class EventManager extends Component
             $this->events = Event::where('wedding_id', $wedding->id)
                 ->orderBy('event_date')
                 ->get()
+                ->map(function ($event) {
+                    $event->title = $event->event_name;
+                    $event->start = Carbon::parse($event->event_date)->format('Y-m-d');
+                    $event->end = $event->start;
+                    $event->allDay = true;
+
+                    return $event;
+                })
                 ->toArray();
         } else {
             $this->events = [];

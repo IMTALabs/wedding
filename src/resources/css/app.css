@@ -9,6 +9,10 @@
 @source "../../resources/views/vendor/laravel-livewire-modal/modal.blade.php";
 @source "../../resources/views/vendor/laravel-livewire-modal/modal-content.blade.php";
 
+* {
+    font-family: "Nunito", sans-serif;
+}
+
 .fc-toolbar-title {
     @apply capitalize;
 }
