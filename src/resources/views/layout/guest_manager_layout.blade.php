@@ -744,7 +744,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <a href="" class="flex items-center mt-2">
                             <div class="w-8 h-8 image-fit">
                                 <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                     src="dist/images/profile-15.jpg">
+                                     src="">
                             </div>
                             <div class="ml-3">{{ Auth::user()->name }}</div>
                             <div
@@ -753,7 +753,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <a href="" class="flex items-center mt-2">
                             <div class="w-8 h-8 image-fit">
                                 <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                     src="dist/images/profile-7.jpg">
+                                     src="">
                             </div>
                             <div class="ml-3">Johnny Depp</div>
                             <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">
@@ -763,7 +763,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <a href="" class="flex items-center mt-2">
                             <div class="w-8 h-8 image-fit">
                                 <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                     src="dist/images/profile-12.jpg">
+                                     src="">
                             </div>
                             <div class="ml-3">Robert De Niro</div>
                             <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">
@@ -773,7 +773,7 @@ License: You must have a valid license purchased only from themeforest(the above
                         <a href="" class="flex items-center mt-2">
                             <div class="w-8 h-8 image-fit">
                                 <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                     src="dist/images/profile-1.jpg">
+                                     src="">
                             </div>
                             <div class="ml-3">Morgan Freeman</div>
                             <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">
@@ -785,7 +785,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <a href="" class="flex items-center mt-2">
                         <div class="w-8 h-8 image-fit">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                 src="dist/images/preview-1.jpg">
+                                 src="">
                         </div>
                         <div class="ml-3">Samsung Q90 QLED TV</div>
                         <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">Electronic</div>
@@ -793,7 +793,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <a href="" class="flex items-center mt-2">
                         <div class="w-8 h-8 image-fit">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                 src="dist/images/preview-14.jpg">
+                                 src="">
                         </div>
                         <div class="ml-3">Sony A7 III</div>
                         <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">Photography</div>
@@ -801,7 +801,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <a href="" class="flex items-center mt-2">
                         <div class="w-8 h-8 image-fit">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                 src="dist/images/preview-3.jpg">
+                                 src="">
                         </div>
                         <div class="ml-3">Dell XPS 13</div>
                         <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">PC &amp; Laptop</div>
@@ -809,7 +809,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <a href="" class="flex items-center mt-2">
                         <div class="w-8 h-8 image-fit">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                 src="dist/images/preview-11.jpg">
+                                 src="">
                         </div>
                         <div class="ml-3">Nike Tanjun</div>
                         <div class="ml-auto w-48 truncate text-slate-500 text-xs text-right">Sport &amp; Outdoor</div>
@@ -830,7 +830,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="cursor-pointer relative flex items-center ">
                         <div class="w-12 h-12 flex-none image-fit mr-1">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                 src="dist/images/profile-15.jpg">
+                                 src="">
                             <div
                                 class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
                         </div>
@@ -849,7 +849,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="cursor-pointer relative flex items-center mt-5">
                         <div class="w-12 h-12 flex-none image-fit mr-1">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                 src="dist/images/profile-7.jpg">
+                                 src="">
                             <div
                                 class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
                         </div>
@@ -867,7 +867,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="cursor-pointer relative flex items-center mt-5">
                         <div class="w-12 h-12 flex-none image-fit mr-1">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                 src="dist/images/profile-12.jpg">
+                                 src="">
                             <div
                                 class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
                         </div>
@@ -885,7 +885,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="cursor-pointer relative flex items-center mt-5">
                         <div class="w-12 h-12 flex-none image-fit mr-1">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                 src="dist/images/profile-1.jpg">
+                                 src="">
                             <div
                                 class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
                         </div>
@@ -903,7 +903,7 @@ License: You must have a valid license purchased only from themeforest(the above
                     <div class="cursor-pointer relative flex items-center mt-5">
                         <div class="w-12 h-12 flex-none image-fit mr-1">
                             <img alt="Midone - HTML Admin Template" class="rounded-full"
-                                 src="dist/images/profile-11.jpg">
+                                 src="">
                             <div
                                 class="w-3 h-3 bg-success absolute right-0 bottom-0 rounded-full border-2 border-white"></div>
                         </div>
@@ -1023,8 +1023,8 @@ License: You must have a valid license purchased only from themeforest(the above
                 </a>
             </li>
             <li>
-                <a href="{{ route('guest_admin.groom_bride') }}"
-                   class="side-menu {{ request()->routeIs('guest_admin.groom_bride') ? 'side-menu--active' : '' }}">
+                <a href="{{ route('guest_admin.love_story.index') }}"
+                   class="side-menu {{ request()->routeIs('guest_admin.love_story.index') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"><i data-lucide="heart"></i></div>
                     <div class="side-menu__title">
                         Câu chuyện tình yêu
@@ -1080,9 +1080,9 @@ License: You must have a valid license purchased only from themeforest(the above
     }
 </script>
 <!-- BEGIN: JS Assets-->
-<script
+{{-- <script
     src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=[' your-google-map-api ']&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=[' your-google-map-api ']&libraries=places"></script> --}}
 <script src="{{asset('assets/enigma-template/dist/js/app.js')}}"></script>
 
 <script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
