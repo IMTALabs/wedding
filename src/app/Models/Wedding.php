@@ -148,4 +148,12 @@ class Wedding extends Model
     {
         return $this->hasMany(WeddingGiftBox::class);
     }
+
+    /**
+     * Get the notification associated with the wedding.
+     */
+    public function notification()
+    {
+        return $this->hasOne(Notification::class);
+    }
 }
