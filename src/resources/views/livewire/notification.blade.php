@@ -39,13 +39,13 @@
                     </div>
                 </div>
                 <div class="px-5 pb-5 flex gap-2">
-                    <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">
+                    <button type="submit" class="btn btn-primary" wire:loading.delay.attr="disabled">
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7v14"/></svg>
-                        <span wire:loading.remove>Lưu thông báo</span>
-                        <span wire:loading>Đang lưu...</span>
+                        <span wire:loading.delay.remove>Lưu thông báo</span>
+                        <span wire:loading.delay>Đang lưu...</span>
                     </button>
                     @if($notificationId)
-                        <button type="button" class="btn btn-secondary" wire:click="toggleActive" wire:loading.attr="disabled">
+                        <button type="button" class="btn btn-secondary" wire:click="toggleActive" wire:loading.delay.attr="disabled">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m2 12l9 9 11-18"/></g></svg>
                             {{ $is_active ? 'Ẩn thông báo' : 'Hiển thị thông báo' }}
                         </button>
