@@ -1,17 +1,39 @@
 @extends('layout.guest')
 
 @section('content')
-    <div class="bg-gradient-to-br from-pink-100 to-rose-200 flex justify-center items-center min-h-screen">
-        <div class="bg-white p-10 rounded-xl shadow-2xl w-96 text-center">
-            <h2 class="text-3xl font-semibold text-gray-800 mb-8">RSVP with Google</h2>
+    <div class="min-h-screen bg-slate-100 flex items-center justify-center p-4">
+        <div class="w-full max-w-md">
+            <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                <!-- Header -->
+                <div class="bg-primary px-6 py-4">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded flex items-center justify-center">
+                            <img alt="Midone - HTML Admin Template" class="logo__image w-6"
+                                src="{{ asset('assets/enigma-template/dist/images/logo.svg') }}">
+                        </div>
+                        <h1 class="text-white text-xl font-semibold">{{ config('app.name') }}</h1>
+                    </div>
+                </div>
 
-            <p class="text-gray-600 mb-4">Sign in with your Google account to RSVP and view wedding details.</p>
+                <!-- Login Form -->
+                <div class="p-6">
+                    <div class="text-center mb-6">
+                        <h2 class="text-2xl font-bold text-slate-800 mb-2">
+                            Đăng nhập
+                        </h2>
+                        <p class="text-slate-600 italic">
+                            Đăng nhập vào tài khoản của bạn để sử dụng dịch vụ.
+                        </p>
+                    </div>
 
-            <a href="{{ route('login.google') }}"
-               class="w-full bg-red-300 hover:bg-red-400 text-white py-3 rounded-lg transition-colors duration-300 ease-in-out flex justify-center items-center space-x-4">
-                <svg width="30px" height="30px" viewBox="0 0 262.00 262.00" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027" fill="#4285F4"></path><path d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1" fill="#34A853"></path><path d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782" fill="#FBBC05"></path><path d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251" fill="#EB4335"></path></g></svg>
-                <span class="font-medium">Sign in with Google</span>
-            </a>
+                    <a href="{{ route('login.google') }}">
+                        <button class="btn btn-primary w-full mb-4 gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="size-5" viewBox="0 0 128 128"><path fill="#fff" d="M44.59 4.21a63.28 63.28 0 0 0 4.33 120.9a67.6 67.6 0 0 0 32.36.35a57.13 57.13 0 0 0 25.9-13.46a57.44 57.44 0 0 0 16-26.26a74.3 74.3 0 0 0 1.61-33.58H65.27v24.69h34.47a29.72 29.72 0 0 1-12.66 19.52a36.2 36.2 0 0 1-13.93 5.5a41.3 41.3 0 0 1-15.1 0A37.2 37.2 0 0 1 44 95.74a39.3 39.3 0 0 1-14.5-19.42a38.3 38.3 0 0 1 0-24.63a39.25 39.25 0 0 1 9.18-14.91A37.17 37.17 0 0 1 76.13 27a34.3 34.3 0 0 1 13.64 8q5.83-5.8 11.64-11.63c2-2.09 4.18-4.08 6.15-6.22A61.2 61.2 0 0 0 87.2 4.59a64 64 0 0 0-42.61-.38"/><path fill="#e33629" d="M44.59 4.21a64 64 0 0 1 42.61.37a61.2 61.2 0 0 1 20.35 12.62c-2 2.14-4.11 4.14-6.15 6.22Q95.58 29.23 89.77 35a34.3 34.3 0 0 0-13.64-8a37.17 37.17 0 0 0-37.46 9.74a39.25 39.25 0 0 0-9.18 14.91L8.76 35.6A63.53 63.53 0 0 1 44.59 4.21"/><path fill="#f8bd00" d="M3.26 51.5a63 63 0 0 1 5.5-15.9l20.73 16.09a38.3 38.3 0 0 0 0 24.63q-10.36 8-20.73 16.08a63.33 63.33 0 0 1-5.5-40.9"/><path fill="#587dbd" d="M65.27 52.15h59.52a74.3 74.3 0 0 1-1.61 33.58a57.44 57.44 0 0 1-16 26.26c-6.69-5.22-13.41-10.4-20.1-15.62a29.72 29.72 0 0 0 12.66-19.54H65.27c-.01-8.22 0-16.45 0-24.68"/><path fill="#319f43" d="M8.75 92.4q10.37-8 20.73-16.08A39.3 39.3 0 0 0 44 95.74a37.2 37.2 0 0 0 14.08 6.08a41.3 41.3 0 0 0 15.1 0a36.2 36.2 0 0 0 13.93-5.5c6.69 5.22 13.41 10.4 20.1 15.62a57.13 57.13 0 0 1-25.9 13.47a67.6 67.6 0 0 1-32.36-.35a63 63 0 0 1-23-11.59A63.7 63.7 0 0 1 8.75 92.4"/></svg>
+                            Đăng nhập bằng Google
+                        </button>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

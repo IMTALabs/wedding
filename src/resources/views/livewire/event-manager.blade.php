@@ -4,6 +4,7 @@
             Quản lý sự kiện
         </h2>
     </div>
+    @include('common.alert')
     <div class="grid grid-cols-12 gap-5 mt-5">
         <!-- BEGIN: Calendar Side Menu -->
         <div class="col-span-12 xl:col-span-4 2xl:col-span-3">

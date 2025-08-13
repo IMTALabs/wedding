@@ -2,8 +2,14 @@
 
 @section('content')
     <div class="mt-5 grid grid-cols-12 gap-6">
-        <div class="col-span-12 sm:col-span-6 xl:col-span-3">
+        <div class="col-span-12 font-semibold text-xl">
             Chào mừng quay trở lại, {{ Auth::user()->name }}!
         </div>
+
+        @if (isset($wedding))
+            <div class="col-span-12">
+                <iframe class="w-full h-[calc(100vh-11rem)]" src="https://nguyenban.thieptraotay.com/" frameborder="0"></iframe>
+            </div>
+        @endif
     </div>
 @endsection

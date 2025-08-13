@@ -13,6 +13,12 @@
     font-family: "Nunito", sans-serif;
 }
 
+
+/* FullCalendar */
 .fc-toolbar-title {
     @apply capitalize;
+}
+
+.full-calendar .fc-daygrid-event-harness {
+    @apply mx-1;
 }

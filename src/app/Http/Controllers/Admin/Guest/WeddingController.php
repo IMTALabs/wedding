@@ -8,11 +8,10 @@ use Illuminate\Http\Request;
 
 class WeddingController extends BaseController
 {
-    protected $title = 'Cô dâu chú rể';
+    protected $title = 'Cô dâu & Chú rể';
 
     public function index()
     {
         return view('guest_manager.wedding_form');
-
     }
 }

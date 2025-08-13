@@ -2,28 +2,46 @@
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
         <a href="{{ route('guest_admin.album.create') }}" class="btn btn-primary shadow-md mr-2">Thêm mới ảnh</a>
         <div class="ml-2">
-            <button wire:click="sortAlbumBy('album_name')" class="btn btn-outline-secondary mr-1">
+            <button wire:click="sortAlbumBy('album_name')" class="btn btn-outline-secondary mr-1 gap-2">
                 Sắp xếp album theo tên
                 @if($sortAlbum === 'album_name')
-                    <span>{{ $sortAlbumDirection === 'asc' ? '▲' : '▼' }}</span>
+                    <span>
+                        @if($sortAlbumDirection === 'asc')
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7l-7 7l-7-7"/></svg>
+                        @else
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l7-7l7 7m-7 7V5"/></svg>
+                        @endif
+                    </span>
                 @endif
             </button>
-            <button wire:click="sortAlbumBy('created_at')" class="btn btn-outline-secondary mr-1">
+            <button wire:click="sortAlbumBy('created_at')" class="btn btn-outline-secondary mr-1 gap-2">
                 Sắp xếp album theo ngày tạo
                 @if($sortAlbum === 'created_at')
-                    <span>{{ $sortAlbumDirection === 'asc' ? '▲' : '▼' }}</span>
+                    @if($sortAlbumDirection === 'asc')
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7l-7 7l-7-7"/></svg>
+                    @else
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l7-7l7 7m-7 7V5"/></svg>
+                    @endif
                 @endif
             </button>
-            <button wire:click="sortPhotoBy('created_at')" class="btn btn-outline-secondary mr-1">
+            <button wire:click="sortPhotoBy('created_at')" class="btn btn-outline-secondary mr-1 gap-2">
                 Sắp xếp ảnh theo ngày tạo
                 @if($sortPhoto === 'created_at')
-                    <span>{{ $sortPhotoDirection === 'asc' ? '▲' : '▼' }}</span>
+                    @if($sortPhotoDirection === 'asc')
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7l-7 7l-7-7"/></svg>
+                    @else
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l7-7l7 7m-7 7V5"/></svg>
+                    @endif
                 @endif
             </button>
-            <button wire:click="sortPhotoBy('caption')" class="btn btn-outline-secondary mr-1">
+            <button wire:click="sortPhotoBy('caption')" class="btn btn-outline-secondary mr-1 gap-2">
                 Sắp xếp ảnh theo tên
                 @if($sortPhoto === 'caption')
-                    <span>{{ $sortPhotoDirection === 'asc' ? '▲' : '▼' }}</span>
+                    @if($sortPhotoDirection === 'asc')
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7l-7 7l-7-7"/></svg>
+                    @else
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-1" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l7-7l7 7m-7 7V5"/></svg>
+                    @endif
                 @endif
             </button>
         </div>
@@ -31,7 +49,7 @@
     <!-- BEGIN: Albums Layout -->
     @forelse($albums as $album)
         <div class="intro-y col-span-12">
-            <div class="box mb-5">
+            <div class="box">
                 <div class="p-5 border-b flex justify-start items-center cursor-pointer" wire:click="toggleAlbum({{ $album->id }})">
                     <div class="flex-1">
                         <div class="font-bold text-lg">{{ $album->album_name }}</div>
@@ -41,9 +59,9 @@
                     <div class="ml-4">
                         <span>
                             @if(!empty($expandedAlbums[$album->id]))
-                                ▼
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7l-7 7l-7-7"/></svg>
                             @else
-                                ▶
+                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7l7 7l-7 7"/></svg>
                             @endif
                         </span>
                     </div>

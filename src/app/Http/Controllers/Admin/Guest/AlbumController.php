@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class AlbumController extends BaseController
 {
+    protected $title = 'Album ảnh';
+
     public function index() {
         return view('guest_manager.album.index');
     }

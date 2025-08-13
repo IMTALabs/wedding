@@ -1,17 +1,5 @@
 <div class="mt-4">
-    @if (session('success'))
-        <div class="alert alert-success-soft show flex items-center mb-2" role="alert">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11l3 3L22 4"/></g></svg>
-            {{ session('success') }}
-        </div>
-    @endif
-
-    @if (session('error'))
-        <div class="alert alert-danger-soft show flex items-center mb-2" role="alert">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></g></svg>
-            {{ session('error') }}
-        </div>
-    @endif
+    @include('common.alert')
 
     {{-- Existing Story Sections --}}
     @if (count($sections) > 0)
@@ -22,7 +10,7 @@
                         Danh sách phần câu chuyện
                     </h2>
                 </div>
-                <div class="p-5 space-y-4">
+                <div class="p-5 space-y-8">
                     @foreach ($sections as $index => $section)
                         <div class="rounded-md">
                             <div class="grid grid-cols-12 gap-4">
@@ -41,22 +29,15 @@
                                     @enderror
                                 </div>
                                 <div class="col-span-12 sm:col-span-6">
-                                    <label class="form-label">Ảnh hiện tại</label>
-                                    @if($section['image'])
-                                        <div class="mb-2">
-                                            <img src="{{ Storage::url($section['image']) }}" alt="Story image" class="rounded-md w-full object-contain">
-                                        </div>
-                                    @else
-                                        <div class="text-slate-500 mb-2 text-xs">Chưa có ảnh</div>
-                                    @endif
-                                    <div class="mb-2">
-                                        <x-filepond::upload wire:model="sectionImages.{{ $index }}" :multiple="false" />
-                                        <div class="text-xs text-slate-500 mt-1">Chọn ảnh mới để thay thế hoặc để trống để giữ nguyên.</div>
+                                    <label class="form-label">Ảnh</label>
+                                    <div class="mb-2 flex items-start gap-2">
+                                        <x-filepond::upload wire:model="sectionImages.{{ $index }}" :multiple="false" class="grow" accept="image/*" />
+                                        @if($section['image'])
+                                            <div class="mb-2">
+                                                <img src="{{ Storage::url($section['image']) }}" alt="Story image" class="rounded-md h-24 object-cover">
+                                            </div>
+                                        @endif
                                     </div>
-                                    <input type="text" class="form-control" wire:model.defer="sections.{{ $index }}.image" placeholder="Hoặc dán URL ảnh">
-                                    @error("sections.{$index}.image")
-                                        <div class="text-danger mt-2">{{ $message }}</div>
-                                    @enderror
                                 </div>
                                 <div class="col-span-12 sm:col-span-6">
                                     <label class="form-label">Nội dung</label>

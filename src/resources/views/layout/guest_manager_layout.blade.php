@@ -733,7 +733,7 @@ License: You must have a valid license purchased only from themeforest(the above
             <div class="intro-x dropdown w-8 h-8">
                 <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110"
                     role="button" aria-expanded="false" data-tw-toggle="dropdown">
-                    <img alt="Midone - HTML Admin Template" src="{{Auth::user()->avatar}}">
+                    <img alt="Midone - HTML Admin Template" src="https://api.dicebear.com/9.x/notionists-neutral/svg?seed={{ Auth::id() }}">
                 </div>
                 <div class="dropdown-menu w-56">
                     <ul
@@ -807,7 +807,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87m-3-12a4 4 0 0 1 0 7.75"/></g></svg>
                         </div>
                         <div class="side-menu__title">
-                            Cô dâu & chú rể
+                            Cô dâu & Chú rể
                         </div>
                     </a>
                 </li>
@@ -875,36 +875,7 @@ License: You must have a valid license purchased only from themeforest(the above
         </div>
         <!-- END: Content -->
     </div>
-    <!-- BEGIN: Dark Mode Switcher-->
-    <div data-url=""
-        class="dark-mode-switcher cursor-pointer shadow-md fixed bottom-0 right-0 box dark:bg-dark-2 border rounded-full w-40 h-12 flex items-center justify-center z-50 mb-10 mr-10">
-        <div class="mr-4 text-gray-700 dark:text-gray-300">Dark Mode</div>
-        <div class="dark-mode-switcher__toggle border"></div>
-    </div>
-    <!-- END: Dark Mode Switcher-->
 
-
-    <script>
-
-        const darkModeSwitcher = document.querySelector('.dark-mode-switcher');
-        if (darkModeSwitcher) {
-            const toggle = darkModeSwitcher.querySelector('.dark-mode-switcher__toggle');
-
-            darkModeSwitcher.addEventListener('click', function () {
-                document.documentElement.classList.toggle('dark'); // Thêm/xóa class 'dark' trên thẻ html
-
-                const isDarkModeActive = document.documentElement.classList.contains('dark');
-                localStorage.setItem('guest_mananger_layout_dark_mode', isDarkModeActive); // Lưu trạng thái vào localStorage
-
-            });
-
-            const storedDarkMode = localStorage.getItem('guest_mananger_layout_dark_mode');
-            if (storedDarkMode === 'true') {
-                document.documentElement.classList.add('dark');
-                toggle.classList.add('dark-mode-switcher__toggle--active');
-            }
-        }
-    </script>
     <!-- BEGIN: JS Assets-->
     <script src="{{asset('assets/enigma-template/dist/js/app.js')}}"></script>
 

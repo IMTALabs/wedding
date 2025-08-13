@@ -1,18 +1,5 @@
 <div>
-    <!-- Success/Error Notifications -->
-    @if (session('success'))
-        <div class="alert alert-success-soft show flex items-center my-2" role="alert">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11l3 3L22 4"/></g></svg>
-            {{ session('success') }}
-        </div>
-    @endif
-
-    @if (session('error'))
-        <div class="alert alert-danger-soft show flex items-center my-2" role="alert">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></g></svg>
-            {{ session('error') }}
-        </div>
-    @endif
+    @include('common.alert')
 
     <form wire:submit.prevent="save">
         <div class="grid grid-cols-12 gap-6 mt-5">
@@ -25,42 +12,42 @@
                                     Banner
                                     <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Bắt buộc, là ảnh</span>
                                 </label>
-                                <x-filepond::upload wire:model="banner_image" />
-                                @error('banner_image')
-                                    <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                                @enderror
-
-                                <!-- Image Preview -->
-                                @if($banner_image)
-                                    <div class="mt-2">
-                                        <img src="{{ $banner_image->temporaryUrl() }}"
-                                            class="w-full object-cover rounded-lg">
-                                    </div>
-                                @elseif($existing_banner_image)
-                                    <div class="mt-2">
-                                        <img src="{{ asset('storage/' . $existing_banner_image) }}"
-                                            class="w-full object-cover rounded-lg cursor-pointer"
-                                            onclick="showBannerImage()">
-                                    </div>
-
-                                    <!-- Banner Image Modal -->
-                                    <div id="banner-image-modal" class="modal" tabindex="-1" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg">
-                                            <div class="modal-content">
-                                                <div class="modal-body p-0">
-                                                    <div class="p-5 text-center">
-                                                        <img src="{{ asset('storage/' . $existing_banner_image) }}"
-                                                            class="w-full object-contain">
+                                <div class="flex items-start gap-4">
+                                    <x-filepond::upload wire:model="banner_image" class="grow" />
+                                    @error('banner_image')
+                                        <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                                    @enderror
+                                    <!-- Image Preview -->
+                                    @if($banner_image)
+                                        <div>
+                                            <img src="{{ $banner_image->temporaryUrl() }}"
+                                                class="w-full h-24 object-cover rounded-lg">
+                                        </div>
+                                    @elseif($existing_banner_image)
+                                        <div>
+                                            <img src="{{ asset('storage/' . $existing_banner_image) }}"
+                                                class="w-full h-24 object-cover rounded-lg cursor-pointer"
+                                                onclick="showBannerImage()">
+                                        </div>
+                                        <!-- Banner Image Modal -->
+                                        <div id="banner-image-modal" class="modal" tabindex="-1" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-body p-0">
+                                                        <div class="p-5 text-center">
+                                                            <img src="{{ asset('storage/' . $existing_banner_image) }}"
+                                                                class="w-full object-contain">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="modal-footer text-right">
-                                                    <button type="button" data-tw-dismiss="modal"
-                                                        class="btn btn-outline-secondary w-20 mr-1">Đóng</button>
+                                                    <div class="modal-footer text-right">
+                                                        <button type="button" data-tw-dismiss="modal"
+                                                            class="btn btn-outline-secondary w-20 mr-1">Đóng</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endif
+                                    @endif
+                                </div>
                             </div>
                             <div class="input-form col-span-12 lg:col-span-3 mt-4">
                                 <label for="wedding-countdown-date" class="form-label w-full flex flex-col sm:flex-row">

@@ -1,25 +1,13 @@
 <div>
-    <!-- Success/Error Notifications -->
-    @if (session('success'))
-        <div class="alert alert-success-soft show flex items-center mb-2" role="alert">
-            <i data-lucide="check-circle" class="w-6 h-6 mr-2"></i>
-            {{ session('success') }}
-        </div>
-    @endif
-
-    @if (session('error'))
-        <div class="alert alert-danger-soft show flex items-center mb-2" role="alert">
-            <i data-lucide="alert-circle" class="w-6 h-6 mr-2"></i>
-            {{ session('error') }}
-        </div>
-    @endif
+    @include('common.alert')
 
     <form wire:submit.prevent="save">
         <div class="grid grid-cols-12 gap-6 mt-5">
             <!-- Groom Information -->
             <div class="intro-y col-span-12 lg:col-span-6">
                 <div class="intro-y box">
-                    <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                    <div
+                        class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                         <h2 class="font-medium text-base mr-auto">
                             Thông tin chú rể
                         </h2>
@@ -31,10 +19,9 @@
                                 Tên chú rể
                                 <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Bắt buộc</span>
                             </label>
-                            <input type="text"
-                                   wire:model="groom_name"
-                                   class="form-control @error('groom_name') border-red-500 @enderror"
-                                   placeholder="Nhập tên chú rể">
+                            <input type="text" wire:model="groom_name"
+                                class="form-control @error('groom_name') border-red-500 @enderror"
+                                placeholder="Nhập tên chú rể">
                             @error('groom_name')
                                 <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                             @enderror
@@ -46,9 +33,8 @@
                                 Ngày sinh
                                 <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Không bắt buộc</span>
                             </label>
-                            <input type="date"
-                                   wire:model="groom_birthday"
-                                   class="form-control @error('groom_birthday') border-red-500 @enderror">
+                            <input type="date" wire:model="groom_birthday"
+                                class="form-control @error('groom_birthday') border-red-500 @enderror">
                             @error('groom_birthday')
                                 <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                             @enderror
@@ -58,43 +44,45 @@
                         <div class="input-form mt-6">
                             <label class="form-label w-full flex flex-col sm:flex-row">
                                 Ảnh đại diện chú rể
-                                <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Nên chọn ảnh tỉ lệ 1:1</span>
+                                <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Nên chọn ảnh tỉ lệ
+                                    1:1</span>
                             </label>
-                            <x-filepond::upload wire:model="groom_image" />
-{{--                            <input type="file" --}}
-{{--                                   wire:model="groom_image" --}}
-{{--                                   class="form-control @error('groom_image') border-red-500 @enderror"--}}
-{{--                                   accept="image/*">--}}
-                            @error('groom_image')
-                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                            @enderror
-
-                            <!-- Image Preview -->
-                            @if($groom_image)
-                                <div class="mt-2">
-                                    <img src="{{ $groom_image->temporaryUrl() }}" class="w-20 h-20 object-cover object-top rounded-lg">
-                                </div>
-                            @elseif($wedding->groom_image)
-                                <div class="mt-2">
-                                    <img src="{{ asset('storage/' . $wedding->groom_image) }}" class="w-20 h-20 object-cover rounded-lg cursor-pointer" onclick="showGroomImage()">
-                                </div>
-
-                                <!-- Groom Image Modal -->
-                                <div id="groom-image-modal" class="modal" tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-body p-0">
-                                                <div class="p-5 text-center">
-                                                    <img src="{{ asset('storage/' . $wedding->groom_image) }}" class="w-full object-contain">
+                            <div class="flex items-start gap-2">
+                                <x-filepond::upload wire:model="groom_image" class="grow" />
+                                @error('groom_image')
+                                    <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                                @enderror
+                                <!-- Image Preview -->
+                                @if($groom_image)
+                                    <div>
+                                        <img src="{{ $groom_image->temporaryUrl() }}"
+                                            class="!size-24 object-cover object-top rounded-lg">
+                                    </div>
+                                @elseif($wedding->groom_image)
+                                    <div>
+                                        <img src="{{ asset('storage/' . $wedding->groom_image) }}"
+                                            class="!size-24 object-cover rounded-lg cursor-pointer"
+                                            onclick="showGroomImage()">
+                                    </div>
+                                    <!-- Groom Image Modal -->
+                                    <div id="groom-image-modal" class="modal" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-body p-0">
+                                                    <div class="p-5 text-center">
+                                                        <img src="{{ asset('storage/' . $wedding->groom_image) }}"
+                                                            class="w-full object-contain">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer text-right">
-                                                <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Đóng</button>
+                                                <div class="modal-footer text-right">
+                                                    <button type="button" data-tw-dismiss="modal"
+                                                        class="btn btn-outline-secondary w-20 mr-1">Đóng</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endif
+                                @endif
+                            </div>
                         </div>
 
                         <!-- Groom About -->
@@ -104,9 +92,8 @@
                                 <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Tối thiểu 10 ký tự</span>
                             </label>
                             <textarea wire:model="about_groom"
-                                      class="form-control @error('about_groom') border-red-500 @enderror"
-                                      placeholder="Giới thiệu về chú rể..."
-                                      rows="4"></textarea>
+                                class="form-control @error('about_groom') border-red-500 @enderror"
+                                placeholder="Giới thiệu về chú rể..." rows="4"></textarea>
                             @error('about_groom')
                                 <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                             @enderror
@@ -119,10 +106,9 @@
                             </label>
                             <div class="form-inline">
                                 <label class="form-label sm:w-20">Tên bố</label>
-                                <input type="text"
-                                       wire:model="groom_father"
-                                       class="form-control @error('groom_father') border-red-500 @enderror"
-                                       placeholder="Tên bố chú rể">
+                                <input type="text" wire:model="groom_father"
+                                    class="form-control @error('groom_father') border-red-500 @enderror"
+                                    placeholder="Tên bố chú rể">
                             </div>
                             @error('groom_father')
                                 <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
@@ -130,10 +116,9 @@
 
                             <div class="form-inline mt-4">
                                 <label class="form-label sm:w-20">Tên mẹ</label>
-                                <input type="text"
-                                       wire:model="groom_mother"
-                                       class="form-control @error('groom_mother') border-red-500 @enderror"
-                                       placeholder="Tên mẹ chú rể">
+                                <input type="text" wire:model="groom_mother"
+                                    class="form-control @error('groom_mother') border-red-500 @enderror"
+                                    placeholder="Tên mẹ chú rể">
                             </div>
                             @error('groom_mother')
                                 <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
@@ -146,7 +131,8 @@
             <!-- Bride Information -->
             <div class="intro-y col-span-12 lg:col-span-6">
                 <div class="intro-y box">
-                    <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+                    <div
+                        class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                         <h2 class="font-medium text-base mr-auto">
                             Thông tin cô dâu
                         </h2>
@@ -158,10 +144,9 @@
                                 Tên cô dâu
                                 <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Bắt buộc</span>
                             </label>
-                            <input type="text"
-                                   wire:model="bride_name"
-                                   class="form-control @error('bride_name') border-red-500 @enderror"
-                                   placeholder="Nhập tên cô dâu">
+                            <input type="text" wire:model="bride_name"
+                                class="form-control @error('bride_name') border-red-500 @enderror"
+                                placeholder="Nhập tên cô dâu">
                             @error('bride_name')
                                 <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                             @enderror
@@ -173,9 +158,8 @@
                                 Ngày sinh
                                 <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Không bắt buộc</span>
                             </label>
-                            <input type="date"
-                                   wire:model="bride_birthday"
-                                   class="form-control @error('bride_birthday') border-red-500 @enderror">
+                            <input type="date" wire:model="bride_birthday"
+                                class="form-control @error('bride_birthday') border-red-500 @enderror">
                             @error('bride_birthday')
                                 <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                             @enderror
@@ -185,39 +169,47 @@
                         <div class="input-form mt-6">
                             <label class="form-label w-full flex flex-col sm:flex-row">
                                 Ảnh đại diện cô dâu
-                                <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Nên chọn ảnh tỉ lệ 1:1</span>
+                                <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Nên chọn ảnh tỉ lệ
+                                    1:1</span>
                             </label>
-                            <x-filepond::upload wire:model="bride_image" />
-                            @error('bride_image')
-                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
-                            @enderror
+                            <div class="flex items-start gap-2">
+                                <x-filepond::upload wire:model="bride_image" class="grow" />
+                                @error('bride_image')
+                                    <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                                @enderror
 
-                            <!-- Image Preview -->
-                            @if($bride_image)
-                                <div class="mt-2">
-                                    <img src="{{ $bride_image->temporaryUrl() }}" class="w-20 h-20 object-cover object-top rounded-lg">
-                                </div>
-                            @elseif($wedding->bride_image)
-                                <div class="mt-2">
-                                    <img src="{{ asset('storage/' . $wedding->bride_image) }}" class="w-20 h-20 object-cover rounded-lg cursor-pointer" onclick="showBrideImage()">
-                                </div>
+                                <!-- Image Preview -->
+                                @if($bride_image)
+                                    <div>
+                                        <img src="{{ $bride_image->temporaryUrl() }}"
+                                            class="!size-24 object-cover object-top rounded-lg">
+                                    </div>
+                                @elseif($wedding->bride_image)
+                                    <div>
+                                        <img src="{{ asset('storage/' . $wedding->bride_image) }}"
+                                            class="!size-24 object-cover rounded-lg cursor-pointer"
+                                            onclick="showBrideImage()">
+                                    </div>
 
-                                <!-- Bride Image Modal -->
-                                <div id="bride-image-modal" class="modal" tabindex="-1" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content">
-                                            <div class="modal-body p-0">
-                                                <div class="p-5 text-center">
-                                                    <img src="{{ asset('storage/' . $wedding->bride_image) }}" class="w-full object-contain">
+                                    <!-- Bride Image Modal -->
+                                    <div id="bride-image-modal" class="modal" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-body p-0">
+                                                    <div class="p-5 text-center">
+                                                        <img src="{{ asset('storage/' . $wedding->bride_image) }}"
+                                                            class="w-full object-contain">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="modal-footer text-right">
-                                                <button type="button" data-tw-dismiss="modal" class="btn btn-outline-secondary w-20 mr-1">Đóng</button>
+                                                <div class="modal-footer text-right">
+                                                    <button type="button" data-tw-dismiss="modal"
+                                                        class="btn btn-outline-secondary w-20 mr-1">Đóng</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            @endif
+                                @endif
+                            </div>
                         </div>
 
                         <!-- Bride About -->
@@ -227,9 +219,8 @@
                                 <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Tối thiểu 10 ký tự</span>
                             </label>
                             <textarea wire:model="about_bride"
-                                      class="form-control @error('about_bride') border-red-500 @enderror"
-                                      placeholder="Giới thiệu về cô dâu..."
-                                      rows="4"></textarea>
+                                class="form-control @error('about_bride') border-red-500 @enderror"
+                                placeholder="Giới thiệu về cô dâu..." rows="4"></textarea>
                             @error('about_bride')
                                 <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                             @enderror
@@ -242,10 +233,9 @@
                             </label>
                             <div class="form-inline">
                                 <label class="form-label sm:w-20">Tên bố</label>
-                                <input type="text"
-                                       wire:model="bride_father"
-                                       class="form-control @error('bride_father') border-red-500 @enderror"
-                                       placeholder="Tên bố cô dâu">
+                                <input type="text" wire:model="bride_father"
+                                    class="form-control @error('bride_father') border-red-500 @enderror"
+                                    placeholder="Tên bố cô dâu">
                             </div>
                             @error('bride_father')
                                 <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
@@ -253,10 +243,9 @@
 
                             <div class="form-inline mt-4">
                                 <label class="form-label sm:w-20">Tên mẹ</label>
-                                <input type="text"
-                                       wire:model="bride_mother"
-                                       class="form-control @error('bride_mother') border-red-500 @enderror"
-                                       placeholder="Tên mẹ cô dâu">
+                                <input type="text" wire:model="bride_mother"
+                                    class="form-control @error('bride_mother') border-red-500 @enderror"
+                                    placeholder="Tên mẹ cô dâu">
                             </div>
                             @error('bride_mother')
                                 <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
@@ -269,7 +258,8 @@
 
         <!-- Wedding Date -->
         <div class="intro-y box mt-5">
-            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
+            <div
+                class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                 <h2 class="font-medium text-base mr-auto">
                     Thông tin đám cưới
                 </h2>
@@ -280,9 +270,8 @@
                         Ngày cưới
                         <span class="sm:ml-auto mt-1 sm:mt-0 text-xs text-slate-500">Không bắt buộc</span>
                     </label>
-                    <input type="date"
-                           wire:model="wedding_date"
-                           class="form-control @error('wedding_date') border-red-500 @enderror">
+                    <input type="date" wire:model="wedding_date"
+                        class="form-control @error('wedding_date') border-red-500 @enderror">
                     @error('wedding_date')
                         <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                     @enderror

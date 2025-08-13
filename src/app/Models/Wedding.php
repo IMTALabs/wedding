@@ -83,6 +83,12 @@ class Wedding extends Model
         'reception_date' => 'date',
         'reception_time' => 'datetime',
         'rsvp_deadline' => 'date',
+
+        'show_names_and_wishes' => 'boolean',
+        'show_money_box' => 'boolean',
+        'play_background_music' => 'boolean',
+        'show_animation' => 'boolean',
+        'show_parents_names' => 'boolean',
     ];
 
     /**

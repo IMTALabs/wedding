@@ -3,7 +3,7 @@
 @section('content')
     <div class="intro-y flex items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            Cô dâu & chú rể
+            Cô dâu & Chú rể
         </h2>
     </div>
     <livewire:groom-form />
