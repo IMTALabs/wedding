@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\Guest\DashboardController;
 use App\Http\Controllers\Admin\Guest\WeddingLocationController;
 use App\Http\Controllers\Auth\GoogleController;
+use App\Http\Controllers\TemplatePreviewController;
 use App\Http\Middleware\RegisteredWeddingMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -63,3 +64,12 @@ Route::group([
 
 Route::get('/home', [\App\Http\Controllers\Home\HomePageController::class, 'index'])->name('home.home-page');
 Route::post('/home/register', [\App\Http\Controllers\Home\HomePageController::class, 'register'])->middleware('auth')->name('home.register');
+
+// Template preview
+Route::prefix('/template/preview')
+    ->as('template.preview.')
+    ->group(function () {
+        Route::get('/{template}', [TemplatePreviewController::class, 'show'])
+            ->name('show')
+            ->where('template', '[a-zA-Z0-9_-]+');
+    });
