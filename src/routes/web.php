@@ -63,3 +63,5 @@ Route::group([
 
 Route::get('/home', [\App\Http\Controllers\Home\HomePageController::class, 'index'])->name('home.home-page');
 Route::post('/home/register', [\App\Http\Controllers\Home\HomePageController::class, 'register'])->middleware('auth')->name('home.register');
+
+Route::get('/wedding/{sub_domain}', [\App\Http\Controllers\Wedding\TheWeddingController::class, 'index']);

@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-lg-6 align-self-end">
                             <div class="hero-thumb1" data-ani="slideinleft" data-ani-delay="0.1s">
-                                <img src="{{asset('assets/ovation-store-template/assets/img/hero/hero_1_1.png')}}"
+                                <img src="{{asset('assets/ovation-store-template/assets/img/hero/hero_1_3.png')}}"
                                      alt="img">
                             </div>
                         </div>
@@ -65,7 +65,7 @@
                         </div>
                         <div class="col-lg-6 align-self-end">
                             <div class="hero-thumb1" data-ani="slideinleft" data-ani-delay="0.1s">
-                                <img src="{{asset('assets/ovation-store-template/assets/img/hero/hero_1_2.png')}}"
+                                <img src="{{asset('assets/ovation-store-template/assets/img/hero/hero_1_3.png')}}"
                                      alt="img">
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                 <div class="col-lg-7 ">
                     <div class="about-thumb mb-5 mb-lg-0 text-lg-end fade_left">
                         <img class="about-img-1"
-                             src="{{asset('assets/ovation-store-template/assets/img/normal/about_1-1.png')}}" alt="img">
+                             src="{{asset('assets/ovation-store-template/assets/img/normal/about_1-1-1-1.png')}}" alt="img">
                     </div>
                 </div>
                 <div class="col-lg-5">
@@ -202,7 +202,7 @@
     <!--==============================
     Counter Area
     ==============================-->
-    <div class="counter-area-1" data-bg-src="{{asset('assets/ovation-store-template/assets/img/bg/counter-1-bg.png')}}">
+    <div class="counter-area-1" data-bg-src="{{asset('assets/ovation-store-template/assets/img/bg/counter-1-bg-1.png')}}">
         <div class="counter-wrap1 space counter-item">
             <div class="container">
                 <div class="row gy-40 justify-content-lg-between justify-content-center">
@@ -456,7 +456,7 @@
     ==============================-->
     @if(!$is_registered)
         <div class="contact-area-1 space overflow-hidden"
-             data-bg-src="{{asset('assets/ovation-store-template/assets/img/bg/contact-1-bg.png')}}">
+             data-bg-src="{{asset('assets/ovation-store-template/assets/img/bg/contact-1-bg-1.png')}}">
             <div class="contact-shape1_1 shape-mockup jump d-lg-block d-none" data-top="0%" data-right="-8%">
                 <img src="{{asset('assets/ovation-store-template/assets/img/normal/contact-shape_1-1.png')}}" alt="img">
             </div>

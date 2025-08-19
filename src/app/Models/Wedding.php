@@ -31,6 +31,8 @@ class Wedding extends Model
 {
     use HasFactory;
 
+    protected $table = 'weddings';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -90,6 +92,11 @@ class Wedding extends Model
         'show_animation' => 'boolean',
         'show_parents_names' => 'boolean',
     ];
+
+    public function getRouteKeyName()
+    {
+        return 'sub_domain';
+    }
 
     /**
      * Get the user that created the wedding.
