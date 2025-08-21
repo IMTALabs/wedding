@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Wedding &mdash; 100% Free Fully Responsive HTML5 Template by FREEHTML5.co</title>
+    <title>Wedding &mdash; {{$wedding->groom_name}} & {{$wedding->bride_name}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
     <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -70,43 +70,17 @@
 <div class="fh5co-loader"></div>
 
 <div id="page">
-    <nav class="fh5co-nav" role="navigation">
+    <div class="fh5co-nav">
         <div class="container">
             <div class="row">
                 <div class="col-xs-2">
-                    <div id="fh5co-logo"><a href="index.html">Wedding<strong>.</strong></a></div>
-                </div>
-                <div class="col-xs-10 text-right menu-1">
-                    <ul>
-                        <li class="active"><a href="index.html">Home</a></li>
-                        <li><a href="about.html">Story</a></li>
-                        <li class="has-dropdown">
-                            <a href="services.html">Services</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Web Design</a></li>
-                                <li><a href="#">eCommerce</a></li>
-                                <li><a href="#">Branding</a></li>
-                                <li><a href="#">API</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-dropdown">
-                            <a href="gallery.html">Gallery</a>
-                            <ul class="dropdown">
-                                <li><a href="#">HTML5</a></li>
-                                <li><a href="#">CSS3</a></li>
-                                <li><a href="#">Sass</a></li>
-                                <li><a href="#">jQuery</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
+                    <div id="fh5co-logo">Wedding<strong>.</strong></div>
                 </div>
             </div>
-
         </div>
-    </nav>
+    </div>
 
-    <header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url({{\Illuminate\Support\Facades\Storage::url($wedding->banner_image)}});" data-stellar-background-ratio="0.5">
+    <header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url({{\Illuminate\Support\Facades\Storage::url($wedding->banner_image)}}); background-position: center !important;">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -169,39 +143,23 @@
             <div class="row">
                 <div class="display-t">
                     <div class="display-tc">
-                        <div class="col-md-10 col-md-offset-1">
-                            <div class="col-md-6 col-sm-6 text-center">
-                                <div class="event-wrap animate-box">
-                                    <h3>Main Ceremony</h3>
-                                    <div class="event-col">
-                                        <i class="icon-clock"></i>
-                                        <span>4:00 PM</span>
-                                        <span>6:00 PM</span>
+                        <div class="col-md-10 col-md-offset-1 animate-box">
+                            @foreach($events as $key => $event)
+                                <div class="col-md-6 col-sm-6 text-center event-gap-row">
+                                    <div class="event-wrap animate-box">
+                                        <h3>{{$event->event_name}}</h3>
+                                        <div class="event-col">
+                                            <i class="icon-clock"></i>
+                                            <span>{{\Carbon\Carbon::make($event->event_date)->format('H:i')}}</span>
+                                        </div>
+                                        <div class="event-col">
+                                            <i class="icon-calendar"></i>
+                                            <span>{{\Carbon\Carbon::parse($event->event_date)->format('F j, Y')}}</span>
+                                        </div>
+                                        <p>{{$event->description}}</p>
                                     </div>
-                                    <div class="event-col">
-                                        <i class="icon-calendar"></i>
-                                        <span>Monday 28</span>
-                                        <span>November, 2016</span>
-                                    </div>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
                                 </div>
-                            </div>
-                            <div class="col-md-6 col-sm-6 text-center">
-                                <div class="event-wrap animate-box">
-                                    <h3>Wedding Party</h3>
-                                    <div class="event-col">
-                                        <i class="icon-clock"></i>
-                                        <span>7:00 PM</span>
-                                        <span>12:00 AM</span>
-                                    </div>
-                                    <div class="event-col">
-                                        <i class="icon-calendar"></i>
-                                        <span>Monday 28</span>
-                                        <span>November, 2016</span>
-                                    </div>
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
