@@ -34,6 +34,7 @@ class StorySection extends Model
         'image',
         'created_at',
         'updated_at',
+        'timeline',
     ];
 
     /**

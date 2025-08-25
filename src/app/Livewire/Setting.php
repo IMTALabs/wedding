@@ -29,6 +29,8 @@ class Setting extends Component
     public $play_background_music = true;
     public $show_animation = true;
     public $show_parents_names = true;
+    public $groom_first_name;
+    public $bride_first_name;
 
     // For existing banner image
     public $existing_banner_image;
@@ -49,6 +51,8 @@ class Setting extends Component
             'play_background_music' => 'boolean',
             'show_animation' => 'boolean',
             'show_parents_names' => 'boolean',
+            'groom_first_name' => 'nullable|string|max:100',
+            'bride_first_name' => 'nullable|string|max:100',
         ];
     }
 
@@ -64,6 +68,8 @@ class Setting extends Component
         'animation_icon_width.numeric' => 'Chiều rộng icon phải là một số.',
         'animation_icon_width.min' => 'Chiều rộng icon phải lớn hơn hoặc bằng 1.',
         'animation_icon_width.max' => 'Chiều rộng icon không được quá 100.',
+        'bride_first_name.max' => 'Tên cô dâu không được quá 100 ký tự.',
+        'groom_first_name.max' => 'Tên chú rể không được quá 100 ký tự.',
     ];
 
     public function mount()
@@ -93,6 +99,8 @@ class Setting extends Component
         $this->play_background_music = $this->settings->play_background_music ?? true;
         $this->show_animation = $this->settings->show_animation ?? true;
         $this->show_parents_names = $this->settings->show_parents_names ?? true;
+        $this->bride_first_name = $this->settings->bride_first_name ?? '';
+        $this->groom_first_name = $this->settings->groom_first_name ?? '';
     }
 
     public function save()
@@ -113,6 +121,8 @@ class Setting extends Component
                 'play_background_music' => $this->play_background_music,
                 'show_animation' => $this->show_animation,
                 'show_parents_names' => $this->show_parents_names,
+                'groom_first_name' => $this->groom_first_name ?? null,
+                'bride_first_name' => $this->bride_first_name ?? null
             ];
 
             // Handle banner image upload

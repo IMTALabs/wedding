@@ -68,8 +68,9 @@ class Wedding extends Model
         'show_money_box',
         'play_background_music',
         'show_animation',
-        'show_parents_names'
-
+        'show_parents_names',
+        'bride_first_name',
+        'groom_first_name',
     ];
 
     /**

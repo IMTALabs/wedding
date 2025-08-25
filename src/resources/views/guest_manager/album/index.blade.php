@@ -7,7 +7,5 @@
         </h2>
     </div>
 
-
-
     <livewire:list-album />
 @endsection

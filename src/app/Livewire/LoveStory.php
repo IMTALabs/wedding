@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Models\StorySection;
 use App\Models\Wedding;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -18,6 +19,7 @@ class LoveStory extends Component
         'title' => '',
         'content' => '',
         'position' => 0,
+        'timeline' => null
     ];
     // FilePond temporary upload (single file) for new section
     public $newImage = null;
@@ -75,6 +77,7 @@ class LoveStory extends Component
                 'content' => $section->content,
                 'position' => $section->position,
                 'image' => $section->image,
+                'timeline' => $section->timeline ? \Carbon\Carbon::parse($section->timeline)->format('Y-m-d') : null,
             ];
         })->toArray();
 
@@ -100,12 +103,14 @@ class LoveStory extends Component
             'content' => $this->newSection['content'],
             'position' => $this->newSection['position'] ?? 0,
             'image' => $imagePath,
+            'timeline' => $this->newSection['timeline'] ?? null,
         ]);
 
         $this->newSection = [
             'title' => '',
             'content' => '',
             'position' => 0,
+            'timeline' => null,
         ];
         $this->newImage = null;
         $this->newImageResetKey++;
@@ -131,6 +136,7 @@ class LoveStory extends Component
                 'content' => $this->sections[$index]['content'],
                 'position' => $this->sections[$index]['position'],
                 'image' => $this->sections[$index]['image'],
+                'timeline' => $this->sections[$index]['timeline'] ?? null,
             ];
 
             $sectionFile = null;

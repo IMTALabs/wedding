@@ -51,18 +51,19 @@
                             </div>
                             <div class="input-form col-span-12 lg:col-span-3 mt-4">
                                 <label for="wedding-countdown-date" class="form-label w-full flex flex-col sm:flex-row">
-                                    Đếm ngược ngày cưới
+                                    Tên couple
                                 </label>
-                                <div class="relative w-full">
-                                    <div
-                                        class="absolute rounded-l w-10 h-full flex items-center justify-center bg-slate-100 border text-slate-500 dark:bg-darkmode-700 dark:border-darkmode-800 dark:text-slate-400">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M8 2v4m8-4v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></g></svg>
-                                    </div>
-                                    <input type="date" wire:model="wedding_countdown_date"
-                                        class="form-control pl-12 @error('wedding_countdown_date') border-red-500 @enderror">
+                                <div class="relative w-full flex gap-2">
+                                    <input type="text" wire:model="groom_first_name" placeholder="Tên chú rể. VD: Tien"
+                                        class="form-control @error('wedding_countdown_date') border-red-500 @enderror">
+                                    <input type="text" wire:model="bride_first_name" placeholder="Tên cô dâu. VD: Van"
+                                           class="form-control @error('wedding_countdown_date') border-red-500 @enderror">
                                 </div>
-                                @error('wedding_countdown_date')
+                                @error('groom_first_name')
                                     <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
+                                @enderror
+                                @error('bride_first_name')
+                                <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="input-form col-span-12 lg:col-span-6 mt-4">

@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Wedding &mdash; {{$wedding->groom_name}} & {{$wedding->bride_name}}</title>
+    <title>Wedding &mdash; {{$wedding->groom_first_name}} & {{$wedding->bride_first_name}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
     <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
@@ -39,6 +39,7 @@
 
     <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 
     <!-- Animate.css -->
     <link rel="stylesheet" href="{{asset('assets/wedding-master-template/css/animate.css')}}">
@@ -55,7 +56,7 @@
     <link rel="stylesheet" href="{{asset('assets/wedding-master-template/css/owl.theme.default.min.css')}}">
 
     <!-- Theme style  -->
-    <link rel="stylesheet" href="{{asset('assets/wedding-master-template/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/wedding-master-template/css/style.css')}}?v={{ time() }}">
 
     <!-- Modernizr JS -->
     <script src="{{asset('assets/wedding-master-template/js/modernizr-2.6.2.min.js')}}"></script>
@@ -87,7 +88,7 @@
                 <div class="col-md-8 col-md-offset-2 text-center">
                     <div class="display-t">
                         <div class="display-tc animate-box" data-animate-effect="fadeIn">
-                            <h1>Joefrey &amp; Sheila</h1>
+                            <h1>{{$wedding->groom_first_name}} &amp; {{$wedding->bride_first_name}}</h1>
                             <h2>We Are Getting Married</h2>
                             <div class="simply-countdown simply-countdown-one"></div>
                             <p><a href="#" class="btn btn-default btn-sm">Save the date</a></p>
@@ -114,7 +115,7 @@
                     </div>
                     <div class="desc-groom">
                         <h3>{{$wedding->groom_name}}</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove</p>
+                        <p>{{$wedding->about_groom}}</p>
                     </div>
                 </div>
                 <p class="heart text-center"><i class="icon-heart2"></i></p>
@@ -124,14 +125,14 @@
                     </div>
                     <div class="desc-bride">
                         <h3>{{$wedding->bride_name}}</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove</p>
+                        <p>{{$wedding->about_bride}}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="fh5co-event" class="fh5co-bg" style="background-image:url({{asset('assets/wedding-master-template/images/img_bg_3.jpg')}});">
+    <div id="fh5co-event" class="fh5co-bg" style="background-image:url({{asset('assets/wedding-master-template/images/img_bg_3.jpg')}}); padding: 0;">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -145,7 +146,7 @@
                     <div class="display-tc">
                         <div class="col-md-10 col-md-offset-1 animate-box">
                             @foreach($events as $key => $event)
-                                <div class="col-md-6 col-sm-6 text-center event-gap-row">
+                                <div class="col-md-6 col-sm-6 text-center event-gap-row" style="margin-bottom: 20px;">
                                     <div class="event-wrap animate-box">
                                         <h3>{{$event->event_name}}</h3>
                                         <div class="event-col">
@@ -179,42 +180,20 @@
             <div class="row">
                 <div class="col-md-12 col-md-offset-0">
                     <ul class="timeline animate-box">
-                        <li class="animate-box">
-                            <div class="timeline-badge" style="background-image:url({{asset('assets/wedding-master-template/images/couple-1.jpg')}});"></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h3 class="timeline-title">First We Meet</h3>
-                                    <span class="date">December 25, 2015</span>
+                        @foreach($love_stories as $key => $value)
+                            <li class="@if(!($key % 2 ==0)) timeline-inverted @endif animate-box">
+                                <div class="timeline-badge" style="background-image:url({{\Illuminate\Support\Facades\Storage::url($value->image)}});"></div>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h3 class="timeline-title">{{$value->title}}</h3>
+                                        <span class="date">{{\Carbon\Carbon::parse($value->timeline)->format('F j, Y') }}</span>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>{{$value->content}}</p>
+                                    </div>
                                 </div>
-                                <div class="timeline-body">
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted animate-box">
-                            <div class="timeline-badge" style="background-image:url({{asset('assets/wedding-master-template/images/couple-2.jpg')}});"></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h3 class="timeline-title">First Date</h3>
-                                    <span class="date">December 28, 2015</span>
-                                </div>
-                                <div class="timeline-body">
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="animate-box">
-                            <div class="timeline-badge" style="background-image:url({{asset('assets/wedding-master-template/images/couple-3.jpg')}});"></div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h3 class="timeline-title">In A Relationship</h3>
-                                    <span class="date">January 1, 2016</span>
-                                </div>
-                                <div class="timeline-body">
-                                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -233,84 +212,39 @@
             <div class="row row-bottom-padded-md">
                 <div class="col-md-12">
                     <ul id="fh5co-gallery-list">
+                        @foreach($gallery as $key => $value)
+                            {{-- Chỉ hiển thị album nếu có ít nhất một ảnh --}}
+                            @if(!empty($value['photos']) && count($value['photos']) > 0)
 
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/wedding-master-template/images/gallery-1.jpg')}}); ">
-                            <a href="{{asset('assets/wedding-master-template/images/gallery-1.jpg')}}">
-                                <div class="case-studies-summary">
-                                    <span>14 Photos</span>
-                                    <h2>Two Glas of Juice</h2>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/wedding-master-template/images/gallery-2.jpg')}}); ">
-                            <a href="#" class="color-2">
-                                <div class="case-studies-summary">
-                                    <span>30 Photos</span>
-                                    <h2>Timer starts now!</h2>
-                                </div>
-                            </a>
-                        </li>
+                                {{-- Lấy ảnh đầu tiên làm ảnh bìa --}}
+                                @php
+                                    $coverImage = \Illuminate\Support\Facades\Storage::url($value['photos'][0]['image']);
+                                @endphp
 
+                                <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ $coverImage }}); ">
 
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/wedding-master-template/images/gallery-3.jpg')}}); ">
-                            <a href="#" class="color-3">
-                                <div class="case-studies-summary">
-                                    <span>90 Photos</span>
-                                    <h2>Beautiful sunset</h2>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/wedding-master-template/images/gallery-4.jpg')}}); ">
-                            <a href="#" class="color-4">
-                                <div class="case-studies-summary">
-                                    <span>12 Photos</span>
-                                    <h2>Company's Conference Room</h2>
-                                </div>
-                            </a>
-                        </li>
+                                    {{-- Liên kết hiển thị: đây là ảnh bìa album và là điểm kích hoạt gallery --}}
+                                    <a href="{{ $coverImage }}" data-fancybox="gallery-{{$key}}" data-caption="{{$value['album_name']}}">
+                                        <div class="case-studies-summary">
+                                            <span>{{ count($value['photos']) }} Photos</span>
+                                            <h2>{{ $value['album_name'] }}</h2>
+                                        </div>
+                                    </a>
 
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/wedding-master-template/images/gallery-5.jpg')}}); ">
-                            <a href="#" class="color-3">
-                                <div class="case-studies-summary">
-                                    <span>50 Photos</span>
-                                    <h2>Useful baskets</h2>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/wedding-master-template/images/gallery-6.jpg')}}); ">
-                            <a href="#" class="color-4">
-                                <div class="case-studies-summary">
-                                    <span>45 Photos</span>
-                                    <h2>Skater man in the road</h2>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/wedding-master-template/images/gallery-7.jpg')}}); ">
-                            <a href="#" class="color-4">
-                                <div class="case-studies-summary">
-                                    <span>35 Photos</span>
-                                    <h2>Two Glas of Juice</h2>
-                                </div>
-                            </a>
-                        </li>
-
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/wedding-master-template/images/gallery-8.jpg')}}); ">
-                            <a href="#" class="color-5">
-                                <div class="case-studies-summary">
-                                    <span>90 Photos</span>
-                                    <h2>Timer starts now!</h2>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{asset('assets/wedding-master-template/images/gallery-9.jpg')}}); ">
-                            <a href="#" class="color-6">
-                                <div class="case-studies-summary">
-                                    <span>56 Photos</span>
-                                    <h2>Beautiful sunset</h2>
-                                </div>
-                            </a>
-                        </li>
+                                    {{-- Các liên kết ẩn: Dùng để Fancybox thu thập và tạo gallery --}}
+                                    {{-- Vòng lặp bắt đầu từ ảnh thứ hai (chỉ số 1) vì ảnh đầu tiên đã được dùng ở trên --}}
+                                    @foreach($value['photos'] as $index => $photo)
+                                        @if($index > 0)
+                                            <a href="{{ \Illuminate\Support\Facades\Storage::url($photo['image']) }}"
+                                               data-fancybox="gallery-{{$key}}"
+                                               data-caption="Album: {{$value['album_name']}}"
+                                               style="display: none;">
+                                            </a>
+                                        @endif
+                                    @endforeach
+                                </li>
+                            @endif
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -564,7 +498,9 @@
 <!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script> -->
 <script src="{{asset('assets/wedding-master-template/js/simplyCountdown.js')}}"></script>
 <!-- Main -->
-<script src="{{asset('assets/wedding-master-template/js/main.js')}}"></script>
+<script src="{{asset('assets/wedding-master-template/js/main.js')}}?v={{ time() }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
 
 <script>
     const d = new Date("{{ \Carbon\Carbon::parse($wedding->wedding_date)->toIso8601String() }}");
@@ -583,6 +519,16 @@
         month: d.getMonth() + 1,
         day: d.getDate(),
         enableUtc: false
+    });
+
+    document.addEventListener("DOMContentLoaded", function() {
+        Fancybox.bind("[data-fancybox]", {
+            loop: true,
+            buttons: ["zoom", "slideShow", "thumbs", "close"],
+            thumbs: {
+                autoStart: false,
+            },
+        });
     });
 </script>
 

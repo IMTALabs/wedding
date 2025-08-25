@@ -1,4 +1,14 @@
 <div class="mt-4">
+    <div class="alert alert-warning-soft show flex items-center my-2" role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" viewBox="0 0 24 24">
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 8v4m0 4h.01"/>
+            </g>
+        </svg>
+        <span class="font-medium">Các mục nhập là không bắt buộc hết, nhưng chúng tôi khuyên bạn nên nhập đầy đủ thông tin để có trang website của bạn đẹp nhất</span>
+    </div>
+
     @include('common.alert')
 
     {{-- Existing Story Sections --}}
@@ -16,50 +26,102 @@
                             <div class="grid grid-cols-12 gap-4">
                                 <div class="col-span-12 sm:col-span-6">
                                     <label class="form-label">Tiêu đề</label>
-                                    <input type="text" class="form-control" wire:model.defer="sections.{{ $index }}.title" placeholder="VD: Lần đầu gặp gỡ">
+                                    <input type="text" class="form-control"
+                                           wire:model.defer="sections.{{ $index }}.title"
+                                           placeholder="VD: Lần đầu gặp gỡ">
                                     @error("sections.{$index}.title")
-                                        <div class="text-danger mt-2">{{ $message }}</div>
+                                    <div class="text-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <div class="col-span-12 sm:col-span-6">
-                                    <label class="form-label">Vị trí</label>
-                                    <input type="number" class="form-control" wire:model.defer="sections.{{ $index }}.position" placeholder="0">
-                                    @error("sections.{$index}.position")
+                                <div class="col-span-12 sm:col-span-6 grid grid-cols-6 gap-4">
+                                    <div class="col-span-2 sm:col-span-2 flex gap-2 items-end">
+                                        <div>
+                                            <label class="form-label">Vị trí</label>
+                                            <input type="number" class="form-control"
+                                                   wire:model.defer="sections.{{ $index }}.position" placeholder="0">
+                                            @error('sections.{$index}.position')
+                                            <div class="text-danger mt-2">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                        <div class="mb-2">
+                                            <a href="javascript:;" data-theme="light" class="tooltip"
+                                               title="Những sự kiện trên trang của bạn sẽ sắp xếp theo số thứ tự từ bé đến lớn!">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2"
+                                                     viewBox="0 0 24 24">
+                                                    <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                       stroke-linejoin="round" stroke-width="2">
+                                                        <circle cx="12" cy="12" r="10"/>
+                                                        <path d="M12 8v4m0 4h.01"/>
+                                                    </g>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="col-span-4 sm:col-span-4 ">
+                                        <label class="form-label">Mốc thời gian</label>
+                                        <input type="date" class="form-control"
+                                               wire:model="sections.{{ $index }}.timeline" placeholder="0">
+                                        @error('sections.{$index}.timeline')
                                         <div class="text-danger mt-2">{{ $message }}</div>
-                                    @enderror
+                                        @enderror
+                                    </div>
                                 </div>
                                 <div class="col-span-12 sm:col-span-6">
                                     <label class="form-label">Ảnh</label>
                                     <div class="mb-2 flex items-start gap-2">
-                                        <x-filepond::upload wire:model="sectionImages.{{ $index }}" :multiple="false" class="grow" accept="image/*" />
+                                        <x-filepond::upload wire:model="sectionImages.{{ $index }}" :multiple="false"
+                                                            class="grow" accept="image/*"/>
                                         @if($section['image'])
                                             <div class="mb-2">
-                                                <img src="{{ Storage::url($section['image']) }}" alt="Story image" class="rounded-md h-24 object-cover">
+                                                <img src="{{ Storage::url($section['image']) }}" alt="Story image"
+                                                     class="rounded-md h-24 object-cover">
                                             </div>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="col-span-12 sm:col-span-6">
                                     <label class="form-label">Nội dung</label>
-                                    <textarea class="form-control" rows="4" wire:model.defer="sections.{{ $index }}.content" placeholder="Kể về kỷ niệm..." ></textarea>
+                                    <textarea class="form-control" rows="4"
+                                              wire:model.defer="sections.{{ $index }}.content"
+                                              placeholder="Kể về kỷ niệm..."></textarea>
                                     @error("sections.{$index}.content")
-                                        <div class="text-danger mt-2">{{ $message }}</div>
+                                    <div class="text-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="col-span-12">
                                     <div class="flex gap-2">
-                                        <button type="button" class="btn btn-primary" wire:click="updateSection({{ $index }})">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7M7 3v4a1 1 0 0 0 1 1h7"/></g></svg>
+                                        <button type="button" class="btn btn-primary"
+                                                wire:click="updateSection({{ $index }})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2"
+                                                 viewBox="0 0 24 24">
+                                                <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                                   stroke-linejoin="round" stroke-width="2">
+                                                    <path
+                                                        d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>
+                                                    <path
+                                                        d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7M7 3v4a1 1 0 0 0 1 1h7"/>
+                                                </g>
+                                            </svg>
                                             Cập nhật
                                         </button>
-                                        <button type="button" class="btn btn-danger" wire:click="deleteSection({{ $index }})" wire:confirm="Bạn có chắc chắn muốn xóa phần này?">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6m3 0V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2m-6 5v6m4-6v6"/></svg>
+                                        <button type="button" class="btn btn-danger"
+                                                wire:click="deleteSection({{ $index }})"
+                                                wire:confirm="Bạn có chắc chắn muốn xóa phần này?">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2"
+                                                 viewBox="0 0 24 24">
+                                                <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                                      stroke-linejoin="round" stroke-width="2"
+                                                      d="M3 6h18m-2 0v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6m3 0V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2m-6 5v6m4-6v6"/>
+                                            </svg>
                                             Xóa
                                         </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        @if($index < count($sections) - 1)
+                            <hr class="my-4">
+                        @endif
                     @endforeach
                 </div>
             </div>
@@ -79,40 +141,71 @@
                     <div class="grid grid-cols-12 gap-4">
                         <div class="col-span-12 sm:col-span-6">
                             <label class="form-label">Tiêu đề *</label>
-                            <input type="text" class="form-control" wire:model.defer="newSection.title" placeholder="VD: Lần đầu gặp gỡ">
+                            <input type="text" class="form-control" wire:model.defer="newSection.title"
+                                   placeholder="VD: Lần đầu gặp gỡ">
                             @error('newSection.title')
-                                <div class="text-danger mt-2">{{ $message }}</div>
+                            <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
                         </div>
-                        <div class="col-span-12 sm:col-span-6">
-                            <label class="form-label">Vị trí</label>
-                            <input type="number" class="form-control" wire:model.defer="newSection.position" placeholder="0">
-                            @error('newSection.position')
+                        <div class="col-span-12 sm:col-span-6 grid grid-cols-6 gap-4">
+                            <div class="col-span-2 sm:col-span-2 flex gap-2 items-end">
+                                <div>
+                                    <label class="form-label">Vị trí</label>
+                                    <input type="number" class="form-control" wire:model.defer="newSection.position"
+                                           placeholder="0">
+                                    @error('newSection.position')
+                                    <div class="text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mb-2">
+                                    <a href="javascript:;" data-theme="light" class="tooltip"
+                                       title="Những sự kiện trên trang của bạn sẽ sắp xếp theo số thứ tự từ bé đến lớn!">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2"
+                                             viewBox="0 0 24 24">
+                                            <g fill="none" stroke="currentColor" stroke-linecap="round"
+                                               stroke-linejoin="round" stroke-width="2">
+                                                <circle cx="12" cy="12" r="10"/>
+                                                <path d="M12 8v4m0 4h.01"/>
+                                            </g>
+                                        </svg>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="col-span-4 sm:col-span-4 ">
+                                <label class="form-label">Mốc thời gian</label>
+                                <input type="date" wire:model="timeline"
+                                       class="form-control @error('timeline') border-red-500 @enderror">
+                                @error('newSection.timeline')
                                 <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
+                                @enderror
+                            </div>
                         </div>
                         <div class="col-span-12 sm:col-span-6">
                             <label class="form-label">Ảnh</label>
                             <div class="mt-1">
-                                <x-filepond::upload :key="$newImageResetKey" wire:model="newImage" :multiple="false" />
+                                <x-filepond::upload :key="$newImageResetKey" wire:model="newImage" :multiple="false"/>
                             </div>
                             @error('newImage')
-                                <div class="text-danger mt-2">{{ $message }}</div>
+                            <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-span-12 sm:col-span-6">
                             <label class="form-label">Nội dung</label>
-                            <textarea class="form-control" rows="4" wire:model.defer="newSection.content" placeholder="Kể về kỷ niệm..." ></textarea>
+                            <textarea class="form-control" rows="4" wire:model.defer="newSection.content"
+                                      placeholder="Kể về kỷ niệm..."></textarea>
                             @error('newSection.content')
-                                <div class="text-danger mt-2">{{ $message }}</div>
+                            <div class="text-danger mt-2">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
                 </div>
                 <div class="px-5 pb-5">
                     <button type="submit" class="btn btn-primary" wire:loading.attr="disabled">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7-7v14"/></svg>
-                        <span wire:loading.remove">Thêm</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 mr-2" viewBox="0 0 24 24">
+                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                  stroke-width="2" d="M5 12h14m-7-7v14"/>
+                        </svg>
+                        <span wire:loading.remove>Thêm</span>
                         <span wire:loading>Đang thêm...</span>
                     </button>
                 </div>
