@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Wedding;
 use Livewire\Component;
 use App\Models\GalleryAlbum;
 use App\Models\GalleryPhoto;
@@ -66,9 +67,11 @@ class ListAlbum extends Component
 
     public function render()
     {
+        $wedding_id = Wedding::where('created_by', auth()->id())->first()->id;
         $albums = GalleryAlbum::with(['photos' => function ($query) {
             $query->orderBy($this->sortPhoto, $this->sortPhotoDirection);
         }])
+            ->where('wedding_id', $wedding_id)
         ->orderBy($this->sortAlbum, $this->sortAlbumDirection)
         ->get();
 
