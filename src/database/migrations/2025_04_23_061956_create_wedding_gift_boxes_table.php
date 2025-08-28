@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('type')->nullable(); // 'bride' hoặc 'groom'
             $table->string('bank_name')->nullable();
             $table->string('bank_number')->nullable();
-            $table->string('name')->nullable(); // Tên người hưởng thụ
+            $table->string('name')->nullable();
             $table->timestamps();
         });
     }

@@ -21,6 +21,8 @@ class WeddingGiftBox extends Model
 {
     use HasFactory;
 
+    protected $table = 'wedding_gift_boxs';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -32,6 +34,7 @@ class WeddingGiftBox extends Model
         'bank_name',
         'bank_number',
         'name',
+        'image_qr',
     ];
 
     /**
