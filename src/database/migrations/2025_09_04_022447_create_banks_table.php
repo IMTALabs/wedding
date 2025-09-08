@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('wedding_gift_boxs', function (Blueprint $table) {
-            $table->string('image_qr')->nullable();
-			$table->bigInteger('bank_id')->nullable();
+        Schema::create('banks', function (Blueprint $table) {
+	        $table->id();
+	        $table->string('name');
+	        $table->string('code')->unique()->nullable();
+	        $table->timestamps();
         });
     }
 
@@ -22,8 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('wedding_gift_boxs', function (Blueprint $table) {
-            $table->dropColumn(['image_qr', 'bank_id']);
-        });
+        Schema::dropIfExists('banks');
     }
 };

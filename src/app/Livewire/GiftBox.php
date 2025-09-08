@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Bank;
 use App\Models\Wedding;
 use App\Models\WeddingGiftBox;
 use Illuminate\Support\Facades\Auth;
@@ -13,13 +14,10 @@ class GiftBox extends Component
     use WithFileUploads;
 
     public $giftBoxes = [];
-    public $bankNames = [
-        'Vietcombank', 'Techcombank', 'VietinBank', 'BIDV', 'Agribank', 'ACB', 'Sacombank', 'MB Bank', 'VPBank', 'TPBank',
-        'SHB', 'Eximbank', 'HDBank', 'OceanBank', 'SCB', 'NCB', 'VIB', 'SeABank', 'LienVietPostBank', 'PG Bank', 'Nam A Bank',
-        'ABBANK', 'BaoVietBank', 'CIMB', 'KienlongBank', 'Public Bank', 'VietBank', 'Saigonbank', 'Co-opBank'
-    ];
+    public $banks = [];
 
     public $type = '';
+	public $bankId = '';
     public $bankName = '';
     public $bankNumber = '';
     public $name = '';
@@ -30,9 +28,9 @@ class GiftBox extends Component
     {
         return [
             'type' => 'required|in:bride,groom',
-            'bankName' => 'required|string',
             'bankNumber' => 'required|string|max:30',
             'name' => 'required|string|max:100',
+	        'bankId' => 'nullable|exists:banks,id',
             'imageQr' => 'nullable|image|max:2048',
         ];
     }
@@ -40,6 +38,7 @@ class GiftBox extends Component
     public function mount()
     {
         $weddingId = Wedding::where('created_by', Auth::id())->first()->id ?? null;
+		$this->banks = Bank::all();
         $this->giftBoxes = WeddingGiftBox::where('wedding_id', $weddingId)->get() ?? [];
     }
 
@@ -53,24 +52,24 @@ class GiftBox extends Component
         $data = [
             'wedding_id' => $weddingId,
             'type' => $this->type,
-            'bank_name' => $this->bankName,
             'bank_number' => $this->bankNumber,
             'name' => $this->name,
+            'bank_id' => $this->bankId,
         ];
 
         if ($this->imageQr) {
             $data['image_qr'] = $this->imageQr->store('gift_box_qr', 'public');
         }
 
-        if ($this->editingId) {
-            $box = WeddingGiftBox::find($this->editingId);
-            if ($box) {
-                $box->update($data);
-            }
-        } else {
-            WeddingGiftBox::create($data);
-        }
+        WeddingGiftBox::updateOrCreate(
+            [
+                'wedding_id' => $weddingId,
+                'type' => $this->type,
+            ],
+            $data
+        );
 
+        session()->flash('message', 'Gift box information updated successfully!');
         $this->resetForm();
         $this->refreshGiftBoxes();
     }
@@ -81,7 +80,7 @@ class GiftBox extends Component
         if ($box) {
             $this->editingId = $box->id;
             $this->type = $box->type;
-            $this->bankName = $box->bank_name;
+            $this->bankId = $box->bank_id;
             $this->bankNumber = $box->bank_number;
             $this->name = $box->name;
             $this->imageQr = null;
