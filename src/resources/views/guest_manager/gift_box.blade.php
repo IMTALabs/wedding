@@ -8,4 +8,5 @@
     </div>
 
     <livewire:gift-box />
+    @filepondScripts
 @endsection

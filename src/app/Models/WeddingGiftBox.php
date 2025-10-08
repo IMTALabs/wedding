@@ -35,6 +35,7 @@ class WeddingGiftBox extends Model
         'bank_number',
         'name',
         'image_qr',
+        'bank_id',
     ];
 
     /**
