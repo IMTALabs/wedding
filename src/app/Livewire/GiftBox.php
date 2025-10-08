@@ -85,6 +85,14 @@ class GiftBox extends Component
         DB::beginTransaction();
         try {
             foreach (['bride', 'groom'] as $type) {
+                $data = [
+                    'wedding_id' => $this->weddingId,
+                    'type' => $type,
+                    'bank_id' => $this->{"bank_id_{$type}"},
+                    'bank_number' => $this->{"bank_number_{$type}"},
+                    'name' => $this->{"name_bank_{$type}"},
+                ];
+
                 // Handle groom image upload
                 if ($this->{"image_qr_{$type}"}) {
                     $path = $this->{"image_qr_{$type}"}->store('wedding/image_qr_' . $type, 'public');
@@ -95,11 +103,6 @@ class GiftBox extends Component
                     return;
                 }
 
-                $data['wedding_id'] = $this->weddingId;
-                $data['type'] = $type;
-                $data['bank_id'] = $this->{"bank_id_{$type}"};
-                $data['bank_number'] = $this->{"bank_number_{$type}"};
-                $data['name'] = $this->{"name_bank_{$type}"};
                 if ($this->{"gift_box_id_{$type}"}) {
                     WeddingGiftBox::where('id', $this->{"gift_box_id_{$type}"})->update($data);
                 } else {
