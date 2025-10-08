@@ -1,7 +1,7 @@
 <div>
-    @if (session()->has('success_album'))
+    @if (session()->has('success_gift_box'))
         <div class="alert alert-success mb-2">
-            {{ session('success_album') }}
+            {{ session('success_gift_box') }}
         </div>
     @endif
     {{-- Hiển thị thông báo lỗi chung --}}

@@ -6,6 +6,7 @@ use App\Models\Bank;
 use App\Models\Wedding;
 use App\Models\WeddingGiftBox;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -81,6 +82,7 @@ class GiftBox extends Component
     {
         $this->validate();
         if (!$this->weddingId) return;
+        DB::beginTransaction();
         try {
             foreach (['bride', 'groom'] as $type) {
                 // Handle groom image upload
@@ -92,29 +94,28 @@ class GiftBox extends Component
                     $this->addError('image_qr_' . $type, 'Vui lòng tải lên mã QR ngân hàng cho ' . ($type === 'bride' ? 'cô dâu' : 'chú rể') . '.');
                     return;
                 }
-                $data = [
-                    'wedding_id' => $this->weddingId,
-                    'type' => $type,
-                    'bank_id' => $this->{"bank_id_{$type}"},
-                    'bank_number' => $this->{"bank_number_{$type}"},
-                    'name' => $this->{"name_bank_{$type}"},
-                ];
 
+                $data['wedding_id'] = $this->weddingId;
+                $data['type'] = $type;
+                $data['bank_id'] = $this->{"bank_id_{$type}"};
+                $data['bank_number'] = $this->{"bank_number_{$type}"};
+                $data['name'] = $this->{"name_bank_{$type}"};
                 if ($this->{"gift_box_id_{$type}"}) {
                     WeddingGiftBox::where('id', $this->{"gift_box_id_{$type}"})->update($data);
                 } else {
                     WeddingGiftBox::create($data);
                 }
-                session()->flash('message', 'Gift box information updated successfully!');
-                $this->resetForm();
-                $this->refreshGiftBoxes();
-
             }
+            DB::commit();
         } catch (Exception $e) {
+            DB::rollBack();
             dd($e);
             session()->flash('error', 'An error occurred while saving gift box information.');
             return;
         }
+
+        session()->flash('success_gift_box', 'Gift box information updated successfully!');
+        $this->refreshGiftBoxes();
     }
 
     public function refreshGiftBoxes()
