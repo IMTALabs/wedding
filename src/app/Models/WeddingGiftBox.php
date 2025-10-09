@@ -45,4 +45,10 @@ class WeddingGiftBox extends Model
     {
         return $this->belongsTo(Wedding::class);
     }
+
+    //banks relationship
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class);
+    }
 }

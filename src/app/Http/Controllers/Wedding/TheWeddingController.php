@@ -8,6 +8,7 @@ use App\Models\GalleryAlbum;
 use App\Models\Notification;
 use App\Models\StorySection;
 use App\Models\Wedding;
+use App\Models\WeddingGiftBox;
 use Illuminate\Http\Request;
 
 class TheWeddingController extends Controller
@@ -20,6 +21,12 @@ class TheWeddingController extends Controller
         $love_stories = StorySection::where('wedding_id', $sub_domain->id)->orderBy('position')->get() ?? [];
         $gallery = GalleryAlbum::where('wedding_id', $sub_domain->id)->with('photos')->get()->toArray() ?? [];
         $notification = Notification::where('wedding_id', $sub_domain->id)->where('is_active', true)->first() ?? null;
+        $giftBoxes = WeddingGiftBox::query()->with('bank')->where('wedding_id', $sub_domain->id)->get();
+//        group bỏi type và lấy ra cái đầu tiên của cái type đó, key là typedđó
+        $giftBoxes = $giftBoxes->groupBy('type')->map(function ($item) {
+            return $item->first();
+        });
+
 
         return view('wedding.wedding-master', [
             'wedding' => $sub_domain,
@@ -27,6 +34,7 @@ class TheWeddingController extends Controller
             'love_stories' => $love_stories,
             'gallery' => $gallery,
             'notification' => $notification,
+            'giftBoxes' => $giftBoxes,
         ]);
     }
 }

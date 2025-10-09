@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Wedding &mdash; {{$wedding->groom_first_name}} & {{$wedding->bride_first_name}}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
-    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-    <meta name="author" content="FREEHTML5.CO" />
+    <meta name="description" content="Free HTML5 Template by FREEHTML5.CO"/>
+    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive"/>
+    <meta name="author" content="FREEHTML5.CO"/>
 
     <!--
       //////////////////////////////////////////////////////
@@ -32,14 +36,15 @@
     <meta property="og:url" content=""/>
     <meta property="og:site_name" content=""/>
     <meta property="og:description" content=""/>
-    <meta name="twitter:title" content="" />
-    <meta name="twitter:image" content="" />
-    <meta name="twitter:url" content="" />
-    <meta name="twitter:card" content="" />
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:url" content=""/>
+    <meta name="twitter:card" content=""/>
 
-    <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet'
+          type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
 
     <!-- Animate.css -->
     <link rel="stylesheet" href="{{asset('assets/wedding-master-template/css/animate.css')}}">
@@ -57,6 +62,7 @@
 
     <!-- Theme style  -->
     <link rel="stylesheet" href="{{asset('assets/wedding-master-template/css/style.css')}}?v={{ time() }}">
+    <link href="{{ asset("assets/css/css-template/animate.css")}}" rel="stylesheet">
 
     <!-- Modernizr JS -->
     <script src="{{asset('assets/wedding-master-template/js/modernizr-2.6.2.min.js')}}"></script>
@@ -68,7 +74,13 @@
 </head>
 <body>
 
+<link href="{{ asset("assets/css/css-template/animate.css")}}" rel="stylesheet">
+<div class="snowflakes" id="snowflakes"></div>
+<script src="{{ asset("assets/js/js-template/animate.js")}}"></script>
+
+
 <div class="fh5co-loader"></div>
+{{--<div class="snowflakes" id="snowflakes"></div>--}}
 
 <div id="page">
     <div class="fh5co-nav">
@@ -81,7 +93,8 @@
         </div>
     </div>
 
-    <header id="fh5co-header" class="fh5co-cover" role="banner" style="background-image:url({{\Illuminate\Support\Facades\Storage::url($wedding->banner_image)}}); background-position: center !important;">
+    <header id="fh5co-header" class="fh5co-cover" role="banner"
+            style="background-image:url({{\Illuminate\Support\Facades\Storage::url($wedding->banner_image)}}); background-position: center !important;">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -111,7 +124,8 @@
             <div class="couple-wrap animate-box">
                 <div class="couple-half">
                     <div class="groom">
-                        <img src="{{\Illuminate\Support\Facades\Storage::url($wedding->groom_image)}}" alt="groom" class="img-responsive">
+                        <img src="{{\Illuminate\Support\Facades\Storage::url($wedding->groom_image)}}" alt="groom"
+                             class="img-responsive">
                     </div>
                     <div class="desc-groom">
                         <h3>{{$wedding->groom_name}}</h3>
@@ -121,7 +135,8 @@
                 <p class="heart text-center"><i class="icon-heart2"></i></p>
                 <div class="couple-half">
                     <div class="bride">
-                        <img src="{{\Illuminate\Support\Facades\Storage::url($wedding->bride_image)}}" alt="groom" class="img-responsive">
+                        <img src="{{\Illuminate\Support\Facades\Storage::url($wedding->bride_image)}}" alt="groom"
+                             class="img-responsive">
                     </div>
                     <div class="desc-bride">
                         <h3>{{$wedding->bride_name}}</h3>
@@ -132,7 +147,8 @@
         </div>
     </div>
 
-    <div id="fh5co-event" class="fh5co-bg" style="background-image:url({{asset('assets/wedding-master-template/images/img_bg_3.jpg')}}); padding: 0;">
+    <div id="fh5co-event" class="fh5co-bg"
+         style="background-image:url({{asset('assets/wedding-master-template/images/img_bg_3.jpg')}}); padding: 0;">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -174,7 +190,8 @@
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
                     <span>We Love Each Other</span>
                     <h2>Our Story</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
+                        live the blind texts.</p>
                 </div>
             </div>
             <div class="row">
@@ -182,11 +199,13 @@
                     <ul class="timeline animate-box">
                         @foreach($love_stories as $key => $value)
                             <li class="@if(!($key % 2 ==0)) timeline-inverted @endif animate-box">
-                                <div class="timeline-badge" style="background-image:url({{\Illuminate\Support\Facades\Storage::url($value->image)}});"></div>
+                                <div class="timeline-badge"
+                                     style="background-image:url({{\Illuminate\Support\Facades\Storage::url($value->image)}});"></div>
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
                                         <h3 class="timeline-title">{{$value->title}}</h3>
-                                        <span class="date">{{\Carbon\Carbon::parse($value->timeline)->format('F j, Y') }}</span>
+                                        <span
+                                            class="date">{{\Carbon\Carbon::parse($value->timeline)->format('F j, Y') }}</span>
                                     </div>
                                     <div class="timeline-body">
                                         <p>{{$value->content}}</p>
@@ -206,7 +225,8 @@
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
                     <span>Our Memories</span>
                     <h2>Wedding Gallery</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there
+                        live the blind texts.</p>
                 </div>
             </div>
             <div class="row row-bottom-padded-md">
@@ -221,10 +241,12 @@
                                     $coverImage = \Illuminate\Support\Facades\Storage::url($value['photos'][0]['image']);
                                 @endphp
 
-                                <li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url({{ $coverImage }}); ">
+                                <li class="one-third animate-box" data-animate-effect="fadeIn"
+                                    style="background-image: url({{ $coverImage }}); ">
 
                                     {{-- Liên kết hiển thị: đây là ảnh bìa album và là điểm kích hoạt gallery --}}
-                                    <a href="{{ $coverImage }}" data-fancybox="gallery-{{$key}}" data-caption="{{$value['album_name']}}">
+                                    <a href="{{ $coverImage }}" data-fancybox="gallery-{{$key}}"
+                                       data-caption="{{$value['album_name']}}">
                                         <div class="case-studies-summary">
                                             <span>{{ count($value['photos']) }} Photos</span>
                                             <h2>{{ $value['album_name'] }}</h2>
@@ -251,7 +273,8 @@
         </div>
     </div>
 
-    <div id="fh5co-counter" class="fh5co-bg fh5co-counter" style="background-image:url({{asset('assets/wedding-master-template/images/img_bg_5.jpg')}});">
+    <div id="fh5co-counter" class="fh5co-bg fh5co-counter"
+         style="background-image:url({{asset('assets/wedding-master-template/images/img_bg_5.jpg')}});">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
@@ -263,7 +286,8 @@
 									<i class="icon-users"></i>
 								</span>
 
-                                <span class="counter js-counter" data-from="0" data-to="500" data-speed="5000" data-refresh-interval="50">1</span>
+                                <span class="counter js-counter" data-from="0" data-to="500" data-speed="5000"
+                                      data-refresh-interval="50">1</span>
                                 <span class="counter-label">Estimated Guest</span>
 
                             </div>
@@ -274,7 +298,8 @@
 									<i class="icon-user"></i>
 								</span>
 
-                                <span class="counter js-counter" data-from="0" data-to="1000" data-speed="5000" data-refresh-interval="50">1</span>
+                                <span class="counter js-counter" data-from="0" data-to="1000" data-speed="5000"
+                                      data-refresh-interval="50">1</span>
                                 <span class="counter-label">We Catter</span>
                             </div>
                         </div>
@@ -283,7 +308,8 @@
 								<span class="icon">
 									<i class="icon-calendar"></i>
 								</span>
-                                <span class="counter js-counter" data-from="0" data-to="402" data-speed="5000" data-refresh-interval="50">1</span>
+                                <span class="counter js-counter" data-from="0" data-to="402" data-speed="5000"
+                                      data-refresh-interval="50">1</span>
                                 <span class="counter-label">Events Done</span>
                             </div>
                         </div>
@@ -293,7 +319,8 @@
 									<i class="icon-clock"></i>
 								</span>
 
-                                <span class="counter js-counter" data-from="0" data-to="2345" data-speed="5000" data-refresh-interval="50">1</span>
+                                <span class="counter js-counter" data-from="0" data-to="2345" data-speed="5000"
+                                      data-refresh-interval="50">1</span>
                                 <span class="counter-label">Hours Spent</span>
 
                             </div>
@@ -320,33 +347,42 @@
                                 <div class="item">
                                     <div class="testimony-slide active text-center">
                                         <figure>
-                                            <img src="{{asset('assets/wedding-master-template/images/couple-1.jpg')}}" alt="user">
+                                            <img src="{{asset('assets/wedding-master-template/images/couple-1.jpg')}}"
+                                                 alt="user">
                                         </figure>
                                         <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
                                         <blockquote>
-                                            <p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics"</p>
+                                            <p>"Far far away, behind the word mountains, far from the countries Vokalia
+                                                and Consonantia, there live the blind texts. Separated they live in
+                                                Bookmarksgrove right at the coast of the Semantics"</p>
                                         </blockquote>
                                     </div>
                                 </div>
                                 <div class="item">
                                     <div class="testimony-slide active text-center">
                                         <figure>
-                                            <img src="{{asset('assets/wedding-master-template/images/couple-2.jpg')}}" alt="user">
+                                            <img src="{{asset('assets/wedding-master-template/images/couple-2.jpg')}}"
+                                                 alt="user">
                                         </figure>
                                         <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
                                         <blockquote>
-                                            <p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, at the coast of the Semantics, a large language ocean."</p>
+                                            <p>"Far far away, behind the word mountains, far from the countries Vokalia
+                                                and Consonantia, at the coast of the Semantics, a large language
+                                                ocean."</p>
                                         </blockquote>
                                     </div>
                                 </div>
                                 <div class="item">
                                     <div class="testimony-slide active text-center">
                                         <figure>
-                                            <img src="{{asset('assets/wedding-master-template/images/couple-3.jpg')}}" alt="user">
+                                            <img src="{{asset('assets/wedding-master-template/images/couple-3.jpg')}}"
+                                                 alt="user">
                                         </figure>
                                         <span>John Doe, via <a href="#" class="twitter">Twitter</a></span>
                                         <blockquote>
-                                            <p>"Far far away, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p>
+                                            <p>"Far far away, far from the countries Vokalia and Consonantia, there live
+                                                the blind texts. Separated they live in Bookmarksgrove right at the
+                                                coast of the Semantics, a large language ocean."</p>
                                         </blockquote>
                                     </div>
                                 </div>
@@ -358,89 +394,92 @@
         </div>
     </div>
 
+    {{--    @if(!empty($giftBoxes))--}}
     <div id="fh5co-services" class="fh5co-section-gray">
         <div class="container">
-
             <div class="row animate-box">
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                    <h2>We Offer Services</h2>
-                    <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p>
+                    <h2>Wedding card bo</h2>
+                    <p>Thay vì quà mừng, chúng tôi rất vui nếu nhận được sự hiện diện của bạn trong ngày trọng đại của
+                        chúng tôi. Tuy nhiên, nếu bạn muốn gửi lời chúc mừng, một món quà nhỏ sẽ được chúng tôi trân
+                        trọng và sử dụng để bắt đầu cuộc sống mới cùng nhau.</p>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-md-6">
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-calendar"></i>
-						</span>
-                        <div class="feature-copy">
-                            <h3>We Organized Events</h3>
-                            <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
+                @foreach($giftBoxes as $key => $box)
+                    <div class="col-md-6 text-center animate-box timeline-panel event-gap-row">
+                        <div class="services"
+                             style="background-color: #ffffff;border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                            <span class="icon">
+                                <i class="icon-gift"></i>
+                            </span>
+                            <div class="desc">
+                                <h3 style="font-style: italic;">{{$key == 'bride' ? 'Cô dâu' : 'Chú dể'}}</h3>
+                                <p>Tên ngân hàng: {{ $box->bank->code }}</p>
+                                <p>Số tài khoản: {{$box->bank_number}}</p>
+                                <p>Tên người hưởng thụ: {{$box->name}}</p>
+                                @if(!empty($box->image_qr))
+                                    <p><img src="{{ asset('storage/' . $box->image_qr) }}" alt="QR Code"
+                                            style="max-width: 150px; height: 230px;" onclick="showQR('{{$box->image_qr}}')"></p>
+                                @endif
+                            </div>
                         </div>
                     </div>
-
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-image"></i>
-						</span>
-                        <div class="feature-copy">
-                            <h3>Photoshoot</h3>
-                            <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
-                        </div>
-                    </div>
-
-                    <div class="feature-left animate-box" data-animate-effect="fadeInLeft">
-						<span class="icon">
-							<i class="icon-video"></i>
-						</span>
-                        <div class="feature-copy">
-                            <h3>Video Editing</h3>
-                            <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta adipisci architecto culpa amet.</p>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-md-6 animate-box">
-                    <div class="fh5co-video fh5co-bg" style="background-image: url({{asset('assets/wedding-master-template/images/img_bg_3.jpg')}}); ">
-                        <a href="https://vimeo.com/channels/staffpicks/93951774" class="popup-vimeo"><i class="icon-video2"></i></a>
-                        <div class="overlay"></div>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
 
         </div>
     </div>
 
+{{--   Modal--}}
+    <div id="groom-image-modal" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body p-0">
+                    <div class="p-5 text-center">
+                        <img src="" alt="QR Code" id="qr-code" width="300" height="600"
+                             class="object-contain" >
+                    </div>
+                </div>
+                <div class="modal-footer text-right">
+                    <button type="button" data-tw-dismiss="modal"
+                            class="btn btn-outline-secondary w-20 mr-1" onclick="closeMD()">Đóng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <div id="fh5co-started" class="fh5co-bg" style="background-image:url({{asset('assets/wedding-master-template/images/img_bg_4.jpg')}});">
+
+    <div id="fh5co-started" class="fh5co-bg"
+         style="background-image:url({{asset('assets/wedding-master-template/images/img_bg_4.jpg')}});">
         <div class="overlay"></div>
         <div class="container">
             <div class="row animate-box">
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
                     <h2>Are You Attending?</h2>
-                    <p>Please Fill-up the form to notify you that you're attending. Thanks.</p>
+                    <p>Hãy cho chúng tôi 1 lời chúc tốt đẹp nhé. Cảm ơn</p>
                 </div>
             </div>
             <div class="row animate-box">
                 <div class="col-md-10 col-md-offset-1">
                     <form class="form-inline">
-                        <div class="col-md-4 col-sm-4">
+                        <div class="col-md-3 col-sm-4">
                             <div class="form-group">
-                                <label for="name" class="sr-only">Name</label>
-                                <input type="name" class="form-control" id="name" placeholder="Name">
+                                <label for="name" class="sr-only">Tên</label>
+                                <input type="text" class="form-control" id="name" placeholder="Tên của bạn">
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-4">
+                            <div class="form-group">
+                                <label for="email" class="sr-only">Lời chúc</label>
+                                <textarea placeholder="Lời chúc từ bạn" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="col-md-4 col-sm-4">
-                            <div class="form-group">
-                                <label for="email" class="sr-only">Email</label>
-                                <input type="email" class="form-control" id="email" placeholder="Email">
-                            </div>
-                        </div>
-                        <div class="col-md-4 col-sm-4">
-                            <button type="submit" class="btn btn-default btn-block">I am Attending</button>
+                            <button type="submit" class="btn btn-default btn-block">Chúc mừng</button>
                         </div>
                     </form>
                 </div>
@@ -520,7 +559,7 @@
         enableUtc: false
     });
 
-    document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("DOMContentLoaded", function () {
         Fancybox.bind("[data-fancybox]", {
             loop: true,
             buttons: ["zoom", "slideShow", "thumbs", "close"],
@@ -529,6 +568,28 @@
             },
         });
     });
+
+    function showQR(path) {
+        const modal = document.getElementById('groom-image-modal');
+        const qrCodeImage = document.getElementById('qr-code');
+        qrCodeImage.src = `/storage/${path}`;
+
+        if (modal) {
+            modal.classList.add('show');
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+        }
+
+    }
+
+    function closeMD(){
+        const modal = document.getElementById('groom-image-modal');
+        if (modal) {
+            modal.classList.remove('show');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+        }
+    }
 </script>
 
 @include('common.notification', ['notification' => $notification])

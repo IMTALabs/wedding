@@ -10,13 +10,13 @@
     top: 0;
     z-index: 9999;
     position: fixed;
-    width: 20px; /* Kích thước bông tuyết */
+    width: 20px;
     height: 20px;
     background-image: url('https://dl.glitter-graphics.com/pub/1015/1015869ai2a70c4wr.gif');
     background-size: contain;
     background-repeat: no-repeat;
     background-color: transparent;
-    opacity: 0; /* Độ trong suốt của bông tuyết */
+    opacity: 0;
     animation: fall linear infinite;
 }
 
