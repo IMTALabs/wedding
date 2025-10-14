@@ -71,6 +71,8 @@
     <script src="{{asset('assets/wedding-master-template/js/respond.min.js')}}"></script>
     <![endif]-->
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -439,7 +441,7 @@
             <div class="modal-content">
                 <div class="modal-body p-0">
                     <div class="p-5 text-center">
-                        <img src="" alt="QR Code" id="qr-code" width="300" height="600"
+                        <img src="" alt="QR Code" id="qr-code" width="300" height="500"
                              class="object-contain" >
                     </div>
                 </div>
@@ -465,18 +467,28 @@
             </div>
             <div class="row animate-box">
                 <div class="col-md-10 col-md-offset-1">
-                    <form class="form-inline">
+                    <form class="form-inline" method="POST" action="{{route('wedding.wish.store')}}">
+                        @csrf
+                        <input type="hidden" name="wedding_id" value="{{$wedding->id}}">
                         <div class="col-md-3 col-sm-4">
                             <div class="form-group">
                                 <label for="name" class="sr-only">Tên</label>
-                                <input type="text" class="form-control" id="name" placeholder="Tên của bạn">
+                                <input type="text" name="name" class="form-control @error('name') scroll-errors @enderror" id="name" placeholder="Tên để cho cô dâu, chú rể dễ biết">
+                                @error('name')
+                                    <div class="text-danger">{{ $errors->first('name') }}</div>
+                                @enderror
                             </div>
+
                         </div>
                         <div class="col-md-5 col-sm-4">
                             <div class="form-group">
                                 <label for="email" class="sr-only">Lời chúc</label>
-                                <textarea placeholder="Lời chúc từ bạn" class="form-control"></textarea>
+                                <textarea placeholder="Lời chúc từ bạn" name="wish" class="form-control @error('name') scroll-errors @enderror"></textarea>
+                                @if ($errors->has('wish'))
+                                    <div class="text-danger">{{ $errors->first('wish') }}</div>
+                                @endif
                             </div>
+
                         </div>
                         <div class="col-md-4 col-sm-4">
                             <button type="submit" class="btn btn-default btn-block">Chúc mừng</button>
@@ -486,6 +498,19 @@
             </div>
         </div>
     </div>
+
+    @if(session('success'))
+        <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+            <div id="successToast" class="toast align-items-center text-bg-success border-0 shadow-lg" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        {{ session('success') }}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        </div>
+    @endif
 
     <footer id="fh5co-footer" role="contentinfo">
         <div class="container">
@@ -538,6 +563,7 @@
 <!-- Main -->
 <script src="{{asset('assets/wedding-master-template/js/main.js')}}?v={{ time() }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
 
 
 <script>
@@ -590,6 +616,25 @@
             modal.setAttribute('aria-hidden', 'true');
         }
     }
+
+    @if ($errors->any())
+        setTimeout(function() {
+            const firstErrorElement = document.querySelector('.scroll-errors');
+            if (firstErrorElement) {
+                firstErrorElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 2000);
+    @endif
+
+    @if(session('success'))
+        document.addEventListener('DOMContentLoaded', function () {
+            const toastEl = document.getElementById('successToast');
+            if (toastEl) {
+                const toast = new bootstrap.Toast(toastEl, { delay: 5000 });
+                toast.show();
+            }
+        });
+    @endif
 </script>
 
 @include('common.notification', ['notification' => $notification])

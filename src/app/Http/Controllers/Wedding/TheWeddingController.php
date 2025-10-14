@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Wedding;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateWishRequest;
 use App\Models\Event;
 use App\Models\GalleryAlbum;
 use App\Models\Notification;
+use App\Models\RsvpForm;
 use App\Models\StorySection;
 use App\Models\Wedding;
 use App\Models\WeddingGiftBox;
@@ -22,10 +24,10 @@ class TheWeddingController extends Controller
         $gallery = GalleryAlbum::where('wedding_id', $sub_domain->id)->with('photos')->get()->toArray() ?? [];
         $notification = Notification::where('wedding_id', $sub_domain->id)->where('is_active', true)->first() ?? null;
         $giftBoxes = WeddingGiftBox::query()->with('bank')->where('wedding_id', $sub_domain->id)->get();
-//        group bỏi type và lấy ra cái đầu tiên của cái type đó, key là typedđó
         $giftBoxes = $giftBoxes->groupBy('type')->map(function ($item) {
             return $item->first();
         });
+        $wishes = RsvpForm::where('wedding_id', $sub_domain->id)->get() ?? [];
 
 
         return view('wedding.wedding-master', [
@@ -35,6 +37,18 @@ class TheWeddingController extends Controller
             'gallery' => $gallery,
             'notification' => $notification,
             'giftBoxes' => $giftBoxes,
+            'wishes' => $wishes,
         ]);
+    }
+
+    public function wish(CreateWishRequest $request)
+    {
+        RsvpForm::create([
+            'wedding_id' => $request->wedding_id,
+            'guest_name' => $request->name,
+            'guest_message' => $request->wish,
+        ]);
+        return redirect()->back()->with('success', 'Đã gửi thành công. Chúng tôi rất chân trọng những lời chúc này!');
+
     }
 }
