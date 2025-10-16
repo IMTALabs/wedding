@@ -7,7 +7,7 @@
 }
 /* =======================================================
 *
-* 	Template Style 
+* 	Template Style
 *
 * ======================================================= */
 body {
@@ -1510,7 +1510,7 @@ form label {
 
 .gototop {
   position: fixed;
-  bottom: 20px;
+  bottom: 80px;
   right: 20px;
   z-index: 999;
   opacity: 0;
@@ -1519,6 +1519,36 @@ form label {
   -o-transition: 0.5s;
   transition: 0.5s;
 }
+.music {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.music span {
+    width: 50px;
+    height: 50px;
+    display: table;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    text-align: center;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    visibility: visible;
+}
+
+.music span i {
+    height: 50px;
+    display: table-cell;
+    vertical-align: middle;
+}
+
 .gototop.active {
   opacity: 1;
   visibility: visible;
@@ -1863,6 +1893,30 @@ form label {
   font-family: "Fuzzy Bubbles", sans-serif;
   font-weight: 700;
   font-style: normal;
+}
+
+.big-date {
+    color: #F14E95 !important;
+    font-size: 100px !important;
+    font-weight: 700;
+    font-family: "Corinthia", cursive;
+
+}
+
+.before-big-date {
+    font-size: 50px !important;
+    color: #F14E95 !important;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .big-date {
+        font-size: 50px !important;
+    }
+
+    .before-big-date {
+        font-size: 25px !important;
+    }
 }
 
 /*# sourceMappingURL=style.css.map */

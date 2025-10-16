@@ -27,7 +27,7 @@ class TheWeddingController extends Controller
         $giftBoxes = $giftBoxes->groupBy('type')->map(function ($item) {
             return $item->first();
         });
-        $wishes = RsvpForm::where('wedding_id', $sub_domain->id)->get() ?? [];
+        $wishes = RsvpForm::where('wedding_id', $sub_domain->id)->where('is_hidden', 0)->get() ?? [];
 
 
         return view('wedding.wedding-master', [

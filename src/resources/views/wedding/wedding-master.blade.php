@@ -80,9 +80,11 @@
 </head>
 <body>
 
-<link href="{{ asset("assets/css/css-template/animate.css")}}" rel="stylesheet">
-<div class="snowflakes" id="snowflakes"></div>
-<script src="{{ asset("assets/js/js-template/animate.js")}}"></script>
+@if($wedding->show_animation)
+    <link href="{{ asset("assets/css/css-template/animate.css")}}" rel="stylesheet">
+    <div class="snowflakes" id="snowflakes"></div>
+    <script src="{{ asset("assets/js/js-template/animate.js")}}"></script>
+@endif
 
 
 <div class="fh5co-loader"></div>
@@ -136,6 +138,10 @@
                     <div class="desc-groom">
                         <h3>{{$wedding->groom_name}}</h3>
                         <p>{{$wedding->about_groom}}</p>
+                        @if($wedding->show_parents_names)
+                            <p class="mb-0"><strong>Con ông:</strong> {{$wedding->groom_father ?? 'Đang cập nhật'}}</p>
+                            <p><strong>Con bà:</strong> {{$wedding->groom_mother ?? 'Đang cập nhật'}}</p>
+                        @endif
                     </div>
                 </div>
                 <p class="heart text-center"><i class="icon-heart2"></i></p>
@@ -147,6 +153,10 @@
                     <div class="desc-bride">
                         <h3>{{$wedding->bride_name}}</h3>
                         <p>{{$wedding->about_bride}}</p>
+                        @if($wedding->show_parents_names)
+                            <p class="mb-0"><strong>Con ông:</strong> {{$wedding->bride_father ?? 'Đang cập nhật'}}</p>
+                            <p><strong>Con bà:</strong> {{$wedding->bride_mother ?? 'Đang cập nhật'}}</p>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -166,7 +176,7 @@
             <div class="row">
                 <div class="display-t">
                     <div class="display-tc">
-                        <div class="col-md-10 col-md-offset-1 animate-box d-flex flex-wrap">
+                        <div class="col-md-10 col-ms-12 col-md-offset-1 animate-box d-flex flex-wrap">
                             @foreach($events as $key => $event)
                                 <div class="col-md-6 col-sm-6 text-center event-gap-row" style="margin-bottom: 20px;">
                                     <div class="event-wrap animate-box">
@@ -281,63 +291,21 @@
 
     <div id="fh5co-counter" class="fh5co-bg fh5co-counter"
          style="background-image:url({{asset('assets/wedding-master-template/images/img_bg_5.jpg')}});background-attachment: fixed;background-position: center;background-repeat: no-repeat;background-size: cover;">
-        <div class="overlay"></div>
         <div class="container">
             <div class="row">
                 <div class="display-t">
                     <div class="display-tc">
-                        <div class="col-md-3 col-sm-6 animate-box">
-                            <div class="feature-center">
-								<span class="icon">
-									<i class="icon-users"></i>
-								</span>
-
-                                <span class="counter js-counter" data-from="0" data-to="500" data-speed="5000"
-                                      data-refresh-interval="50">1</span>
-                                <span class="counter-label">Khách mời dự kiến</span>
-
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 animate-box">
-                            <div class="feature-center">
-								<span class="icon">
-									<i class="icon-user"></i>
-								</span>
-
-                                <span class="counter js-counter" data-from="0" data-to="1000" data-speed="5000"
-                                      data-refresh-interval="50">1</span>
-                                <span class="counter-label">Dịch vụ phục vụ</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 animate-box">
-                            <div class="feature-center">
-								<span class="icon">
-									<i class="icon-calendar"></i>
-								</span>
-                                <span class="counter js-counter" data-from="0" data-to="402" data-speed="5000"
-                                      data-refresh-interval="50">1</span>
-                                <span class="counter-label">Sự kiện đã tổ chức</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3 col-sm-6 animate-box">
-                            <div class="feature-center">
-								<span class="icon">
-									<i class="icon-clock"></i>
-								</span>
-
-                                <span class="counter js-counter" data-from="0" data-to="2345" data-speed="5000"
-                                      data-refresh-interval="50">1</span>
-                                <span class="counter-label">Giờ chuẩn bị</span>
-
-                            </div>
-                        </div>
+                        <h1 class="big-date">The Big Date</h1>
+                        <h2 class="corinthia-bold before-big-date">{{$wedding->groom_first_name}} &amp; {{$wedding->bride_first_name}}</h2>
+                        <h2 class="corinthia-bold before-big-date">{{ \Carbon\Carbon::parse($wedding->wedding_date)->locale('vi')->translatedFormat('d F, Y') }}</h2>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div id="fh5co-testimonial">
+    @if($wedding->show_names_and_wishes)
+        <div id="fh5co-testimonial">
         <div class="container">
             <div class="row">
                 <div class="row animate-box">
@@ -350,42 +318,33 @@
                     <div class="col-md-12 animate-box">
                         <div class="wrap-testimony">
                             <div class="owl-carousel-fullwidth">
-                                <div class="item">
-                                    <div class="testimony-slide active text-center">
-                                        <figure>
-                                            <img src="{{asset('assets/wedding-master-template/images/couple-1.jpg')}}"
-                                                 alt="khách mời">
-                                        </figure>
-                                        <span>Nguyễn Minh, qua <a href="#" class="twitter">Twitter</a></span>
-                                        <blockquote>
-                                            <p>"Ở nơi xa xôi, phía sau những dãy núi chữ, cách xa miền Vokalia và Consonantia, những con chữ vô danh vẫn sống và gửi gắm lời chúc phúc cho đôi bạn. Chúng tụ họp bên bờ biển Semantics để kể về tình yêu của hai bạn."</p>
-                                        </blockquote>
+                                @forelse($wishes as $wish)
+                                    <div class="item">
+                                        <div class="testimony-slide active text-center">
+                                            <figure>
+                                                <img src="{{asset('assets/wedding-master-template/images/couple-' . rand(1, 3) . '.jpg')}}"
+                                                     alt="khách mời">
+                                            </figure>
+                                            <span>{{ $wish->guest_name }}</span>
+                                            <blockquote>
+                                                <p>"{{ $wish->guest_message }}"</p>
+                                            </blockquote>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="item">
-                                    <div class="testimony-slide active text-center">
-                                        <figure>
-                                            <img src="{{asset('assets/wedding-master-template/images/couple-2.jpg')}}"
-                                                 alt="khách mời">
-                                        </figure>
-                                        <span>Trần Lan, qua <a href="#" class="twitter">Twitter</a></span>
-                                        <blockquote>
-                                            <p>"Ở nơi xa xôi, phía sau những dãy núi chữ, cách xa miền Vokalia và Consonantia, sát bên bờ biển Semantics là đại dương ngôn ngữ, nơi những lời chúc yêu thương luôn dạt dào."</p>
-                                        </blockquote>
+                                @empty
+                                    <div class="item">
+                                        <div class="testimony-slide active text-center">
+                                            <figure>
+                                                <img src="{{asset('assets/wedding-master-template/images/couple-1.jpg')}}"
+                                                     alt="khách mời">
+                                            </figure>
+                                            <span>Khách mời</span>
+                                            <blockquote>
+                                                <p>"Hãy là người đầu tiên gửi lời chúc mừng đến chúng tôi!"</p>
+                                            </blockquote>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="item">
-                                    <div class="testimony-slide active text-center">
-                                        <figure>
-                                            <img src="{{asset('assets/wedding-master-template/images/couple-3.jpg')}}"
-                                                 alt="khách mời">
-                                        </figure>
-                                        <span>Phạm Khánh, qua <a href="#" class="twitter">Twitter</a></span>
-                                        <blockquote>
-                                            <p>"Ở nơi xa xôi, cách xa miền Vokalia và Consonantia, những dòng chữ vô danh vẫn sinh sống. Chúng quây quần tại Bookmarksgrove, ngay bờ biển Semantics, giữa đại dương ngôn ngữ mênh mông, để gửi lời yêu thương đến hai bạn."</p>
-                                        </blockquote>
-                                    </div>
-                                </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -393,97 +352,99 @@
             </div>
         </div>
     </div>
+    @endif
 
-    {{--    @if(!empty($giftBoxes))--}}
-    <div id="fh5co-services" class="fh5co-section-gray">
-        <div class="container">
-            <div class="row animate-box">
-                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                    <h2>Hộp quà mừng cưới</h2>
-                    <p>Thay vì quà mừng, chúng tôi rất vui nếu nhận được sự hiện diện của bạn trong ngày trọng đại của
-                        chúng tôi. Tuy nhiên, nếu bạn muốn gửi lời chúc mừng, một món quà nhỏ sẽ được chúng tôi trân
-                        trọng và sử dụng để bắt đầu cuộc sống mới cùng nhau.</p>
+    @if(count($giftBoxes) >= 2 && $wedding->show_money_box)
+        <div id="fh5co-services" class="fh5co-section-gray">
+            <div class="container">
+                <div class="row animate-box">
+                    <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
+                        <h2>Hộp quà mừng cưới</h2>
+                        <p>Thay vì quà mừng, chúng tôi rất vui nếu nhận được sự hiện diện của bạn trong ngày trọng đại của
+                            chúng tôi. Tuy nhiên, nếu bạn muốn gửi lời chúc mừng, một món quà nhỏ sẽ được chúng tôi trân
+                            trọng và sử dụng để bắt đầu cuộc sống mới cùng nhau.</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row g-4 justify-content-center">
-                @forelse($giftBoxes as $key => $box)
-                    @php
-                        $recipientLabel = $key === 'bride' ? 'Cô dâu' : 'Chú rể';
-                        $bank = $box->bank ?? null;
-                        $bankName = optional($bank)->name ?? optional($bank)->code ?? 'Đang cập nhật';
-                        $bankCode = optional($bank)->code;
-                    @endphp
-                    <div class="col-12 col-md-6 col-lg-5 d-flex animate-box">
-                        <div class="services w-100 h-100 position-relative text-start rounded-4 p-4 shadow-lg"
-                             style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(247, 248, 255, 0.97)); border: 1px solid rgba(226,232,240,0.8);">
-                            <h3 class="fw-bold mb-1" style="color: #1f2937;">{{ $box->name }}</h3>
-                            <p class="fst-italic text-muted mb-4 fs-5">Những lời chúc yêu thương của bạn là món quà ý nghĩa nhất dành cho chúng tôi.</p>
+                <div class="row g-4 justify-content-center">
+                    @forelse($giftBoxes as $key => $box)
+                        @php
+                            $recipientLabel = $key === 'bride' ? 'Cô dâu' : 'Chú rể';
+                            $bank = $box->bank ?? null;
+                            $bankName = optional($bank)->name ?? optional($bank)->code ?? 'Đang cập nhật';
+                            $bankCode = optional($bank)->code;
+                        @endphp
+                        <div class="col-12 col-md-6 col-lg-5 d-flex animate-box">
+                            <div class="services w-100 h-100 position-relative text-start rounded-4 p-4 shadow-lg"
+                                 style="background: linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(247, 248, 255, 0.97)); border: 1px solid rgba(226,232,240,0.8);">
+                                <h3 class="fw-bold mb-1" style="color: #1f2937;">{{ $box->name }}</h3>
+                                <p class="fst-italic text-muted mb-4 fs-5">Những lời chúc yêu thương của bạn là món quà ý nghĩa nhất dành cho chúng tôi.</p>
 
-                            <p class="text-uppercase text-secondary fw-semibold small mb-1">Ngân hàng</p>
-                            <p class="fs-4 fw-semibold text-dark mb-3">
-                                @if($bankCode)
-                                    {{ $bankCode }}
+                                <p class="text-uppercase text-secondary fw-semibold small mb-1">Ngân hàng</p>
+                                <p class="fs-4 fw-semibold text-dark mb-3">
+                                    @if($bankCode)
+                                        {{ $bankCode }}
+                                    @endif
+                                    {{ $bankName }}
+                                </p>
+                                <p class="text-uppercase text-secondary fw-semibold small mb-1">Số tài khoản</p>
+                                <p class="fs-4 fw-semibold text-dark mb-0">{{ $box->bank_number }}</p>
+                                <div class="d-flex flex-column align-items-center gap-3 mt-4">
+                                <button type="button"
+                                    class="btn btn-outline-primary btn-sm px-4 fs-5"
+                                    data-bank-number="{{ $box->bank_number }}"
+                                    onclick="copyBankInfo(this.dataset.bankNumber)">
+                                    Sao chép số tài khoản
+                                </button>
+
+                                @if(!empty($box->image_qr))
+                                    <div class="w-100 border border-2 border-dashed rounded-3 p-3 text-center bg-light"
+                                            style="cursor: pointer; border-style: dashed;"
+                                            onclick="showQR('{{ $box->image_qr }}')"
+                                            role="button">
+                                        <img src="{{ asset('storage/' . $box->image_qr) }}"
+                                                alt="Mã QR chuyển khoản cho {{ strtolower($recipientLabel) }}"
+                                                class="img-responsive center-block mx-auto" style="max-width: 170px; height: auto;">
+                                        <small class="d-block mt-2 text-muted">Nhấn để phóng to mã QR</small>
+                                    </div>
                                 @endif
-                                {{ $bankName }}
-                            </p>
-                            <p class="text-uppercase text-secondary fw-semibold small mb-1">Số tài khoản</p>
-                            <p class="fs-4 fw-semibold text-dark mb-0">{{ $box->bank_number }}</p>
-                            <div class="d-flex flex-column align-items-center gap-3 mt-4">
-                            <button type="button"
-                                class="btn btn-outline-primary btn-sm px-4 fs-5"
-                                data-bank-number="{{ $box->bank_number }}"
-                                onclick="copyBankInfo(this.dataset.bankNumber)">
-                                Sao chép số tài khoản
-                            </button>
-
-                            @if(!empty($box->image_qr))
-                                <div class="w-100 border border-2 border-dashed rounded-3 p-3 text-center bg-light"
-                                        style="cursor: pointer; border-style: dashed;"
-                                        onclick="showQR('{{ $box->image_qr }}')"
-                                        role="button">
-                                    <img src="{{ asset('storage/' . $box->image_qr) }}"
-                                            alt="Mã QR chuyển khoản cho {{ strtolower($recipientLabel) }}"
-                                            class="img-responsive center-block mx-auto" style="max-width: 170px; height: auto;">
-                                    <small class="d-block mt-2 text-muted">Nhấn để phóng to mã QR</small>
                                 </div>
-                            @endif
                             </div>
                         </div>
-                    </div>
-                @empty
-                    <div class="col-12 text-center">
-                        <p class="text-muted">Thông tin hộp quà sẽ được cập nhật trong thời gian sớm nhất.</p>
-                    </div>
-                @endforelse
-            </div>
-
-            <div id="copy-feedback" class="alert alert-success shadow-lg position-fixed end-0 bottom-0 me-3 mb-3 d-none fade"
-                 style="z-index: 1055; min-width: 260px;" role="alert">
-                Số tài khoản đã được sao chép. Cảm ơn bạn vì món quà ý nghĩa!
-            </div>
-
-        </div>
-    </div>
-
-{{--   Modal--}}
-    <div id="groom-image-modal" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-body p-0">
-                    <div class="p-5 text-center">
-                        <img src="" alt="QR Code" id="qr-code" width="300" height="500"
-                             class="object-contain" >
-                    </div>
+                    @empty
+                        <div class="col-12 text-center">
+                            <p class="text-muted">Thông tin hộp quà sẽ được cập nhật trong thời gian sớm nhất.</p>
+                        </div>
+                    @endforelse
                 </div>
-                <div class="modal-footer text-right">
-                    <button type="button" data-tw-dismiss="modal"
-                            class="btn btn-outline-secondary w-20 mr-1" onclick="closeMD()">Đóng
-                    </button>
+
+                <div id="copy-feedback" class="alert alert-success shadow-lg position-fixed end-0 bottom-0 me-3 mb-3 d-none fade"
+                     style="z-index: 1055; min-width: 260px;" role="alert">
+                    Số tài khoản đã được sao chép. Cảm ơn bạn vì món quà ý nghĩa!
                 </div>
+
             </div>
         </div>
-    </div>
+
+        {{--Modal--}}
+        <div id="groom-image-modal" class="modal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-body p-0">
+                        <div class="p-5 text-center">
+                            <img src="" alt="QR Code" id="qr-code" width="300" height="500"
+                                 class="object-contain" >
+                        </div>
+                    </div>
+                    <div class="modal-footer text-right">
+                        <button type="button" data-tw-dismiss="modal"
+                                class="btn btn-outline-secondary w-20 mr-1" onclick="closeMD()">Đóng
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 
 
     <div id="fh5co-started" class="fh5co-bg"
@@ -537,6 +498,15 @@
 <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
 </div>
+
+@if($wedding->play_background_music)
+    <div class="music" id="music-player-toggle" style="cursor: pointer;">
+        <span>
+            <i class="icon-sound" id="music-icon"></i>
+        </span>
+        <audio id="wedding-audio" src="https://zingmp3.vn/album/mot-doi-feat-buitruonglinh-Single-14-Casper-Bon-buitruonglinh/6B7B9ZI6.html" autoplay loop></audio>
+    </div>
+@endif
 
 <!-- jQuery -->
 <script src="{{asset('assets/wedding-master-template/js/jquery.min.js')}}"></script>
@@ -724,6 +694,21 @@
             showWishToast(serverWishSuccess);
         }
     });
+
+    @if($wedding->play_background_music)
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('music-player-toggle');
+            const audio = document.getElementById('wedding-audio');
+            const icon = document.getElementById('music-icon');
+            let isMuted = false;
+
+            toggle.addEventListener('click', function () {
+                isMuted = !isMuted;
+                audio.muted = isMuted;
+                icon.className = isMuted ? 'icon-sound' : 'icon-sound-mute';
+            });
+        });
+    @endif
 </script>
 
 @include('common.notification', ['notification' => $notification])
