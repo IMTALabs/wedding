@@ -71,6 +71,7 @@ class Wedding extends Model
         'show_parents_names',
         'bride_first_name',
         'groom_first_name',
+        'audio_id',
     ];
 
     /**

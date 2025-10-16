@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Audio;
 use App\Models\Settings;
 use App\Models\Wedding;
 use Illuminate\Support\Facades\Auth;
@@ -34,6 +35,11 @@ class Setting extends Component
 
     // For existing banner image
     public $existing_banner_image;
+
+    public $audio;
+
+    public $audio_id = null;
+    public $path = '';
 
     protected function rules()
     {
@@ -76,6 +82,7 @@ class Setting extends Component
     {
         // Get the first settings record or create a new one if it doesn't exist
         $this->settings = Wedding::where('created_by', Auth::id())->first();
+        $this->audio = Audio::all();
         if(!$this->settings) {
             return abort(404);
         }
@@ -101,6 +108,9 @@ class Setting extends Component
         $this->show_parents_names = $this->settings->show_parents_names ?? true;
         $this->bride_first_name = $this->settings->bride_first_name ?? '';
         $this->groom_first_name = $this->settings->groom_first_name ?? '';
+        $this->audio_id = $this->settings->audio_id ?? null;
+
+        $this->getPathAudio();
     }
 
     public function save()
@@ -122,7 +132,8 @@ class Setting extends Component
                 'show_animation' => $this->show_animation,
                 'show_parents_names' => $this->show_parents_names,
                 'groom_first_name' => $this->groom_first_name ?? null,
-                'bride_first_name' => $this->bride_first_name ?? null
+                'bride_first_name' => $this->bride_first_name ?? null,
+                'audio_id' => $this->audio_id ?? null,
             ];
 
             // Handle banner image upload
@@ -143,6 +154,11 @@ class Setting extends Component
             session()->flash('error', 'Có lỗi xảy ra khi cập nhật thiết lập: ' . $e->getMessage());
             $this->dispatch('show-error-notification');
         }
+    }
+
+    public function getPathAudio()
+    {
+        $this->path = $this->audio->firstWhere('id', $this->audio_id)->file_path;
     }
 
     public function render()

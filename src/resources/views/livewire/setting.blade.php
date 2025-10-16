@@ -104,22 +104,22 @@
                                     Nhạc nền
                                 </label>
                                 <div class="grid grid-cols-12 gap-6 items-center">
-                                    <div class="col-span-12 lg:col-span-3">
-                                        <select wire:model="background_music"
-                                            class="form-select @error('background_music') border-red-500 @enderror">
-                                            <option value="">Chọn nhạc nền</option>
-                                            <option value="1">Con đường tình yêu</option>
-                                            <option value="2">Cơn mưa ngang qua</option>
-                                            <option value="3">Thuyền quyên</option>
-                                            <option value="4">Ánh nắng của anh</option>
-                                            <option value="5">Marri me</option>
+                                    <div class="col-span-12 lg:col-span-3" wire:ignore>
+                                        <select wire:model="audio_id"
+                                            class="tom-select @error('background_music') border-red-500 @enderror"
+                                                wire:change="getPathAudio()"
+                                        >
+                                            <option value=""></option>
+                                            @foreach($audio as $value)
+                                                <option @if($value->id == $audio_id) selected @endif value="{{ $value->id }}">{{ $value->name }}</option>
+                                            @endforeach
                                         </select>
-                                        @error('background_music')
+                                        @error('audio_id')
                                             <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-span-12 lg:col-span-6">
-                                        <audio controls class="w-full h-9">
+                                        <audio controls class="w-full h-9" src="{{ asset('assets/audio/' . $path)  }}">
                                             Your browser does not support the audio element.
                                         </audio>
                                     </div>
@@ -142,7 +142,7 @@
                                             <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-span-3 lg:col-span-2">
+                                    <div class="col-span-6 lg:col-span-2">
                                         <div class="input-group">
                                             <input type="number" wire:model="animation_icon_height"
                                                 class="form-control @error('animation_icon_height') border-red-500 @enderror"
@@ -153,7 +153,7 @@
                                             <div class="text-red-600 text-sm mt-1">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="col-span-3 lg:col-span-2">
+                                    <div class="col-span-6 lg:col-span-2">
                                         <div class="input-group">
                                             <input type="number" wire:model="animation_icon_width"
                                                 class="form-control @error('animation_icon_width') border-red-500 @enderror"

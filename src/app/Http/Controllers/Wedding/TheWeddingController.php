@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Wedding;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateWishRequest;
+use App\Models\Audio;
 use App\Models\Event;
 use App\Models\GalleryAlbum;
 use App\Models\Notification;
@@ -28,6 +29,7 @@ class TheWeddingController extends Controller
             return $item->first();
         });
         $wishes = RsvpForm::where('wedding_id', $sub_domain->id)->where('is_hidden', 0)->get() ?? [];
+        $audio = Audio::find($sub_domain->audio_id);
 
 
         return view('wedding.wedding-master', [
@@ -38,6 +40,7 @@ class TheWeddingController extends Controller
             'notification' => $notification,
             'giftBoxes' => $giftBoxes,
             'wishes' => $wishes,
+            'audio' => $audio,
         ]);
     }
 
